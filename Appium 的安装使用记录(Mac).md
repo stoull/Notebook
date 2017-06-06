@@ -137,6 +137,10 @@ Appium提供了一个appium-doctor，用于检查Appium的依赖库是否安装�
 	$ appium -v
 	1.6.4
 	
+## 使用图形界面 Appium Gui
+[Appium.app](https://github.com/appium/appium-dot-app)
+[Appium.exe](https://github.com/appium/appium-dot-exe)
+	
 ## 五 运行 Appium 的iOS示例APP
 
 ### 编译iOS示例APP UICatalog
