@@ -344,6 +344,7 @@ Your branch is behind 'origin/master' by 1 commit, and can be fast-forwarded.
 ```
 **方法一:** 合并分支
 
+	git fetch origin master
 	git merge origin/master
 > 如果想保证只是Fast-forward 用这个命令 `git merge --ff-only origin/master`
 
