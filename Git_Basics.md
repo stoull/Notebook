@@ -1,4 +1,70 @@
 
+#Git 常见用法
+
+### 1. 如文件名含有空格，则用 “” 将文件名括起来
+
+### 2. 如果不是通过 git 删除的文件，如用rm 或Finder中删除的文件。如果也要在git中移除对应版本管理
+
+**Git 1.x 的版本**
+
+	$ git add -u
+
+This tells git to automatically stage tracked files -- including deleting the previously tracked files.
+
+**Git 2.0 的版本**
+
+To stage your whole working tree:
+
+	$ git add -u :/
+	
+To stage just the current path:
+
+	$ git add -u .
+
+**也可以用这个命令**
+
+	git ls-files --deleted -z | xargs -0 git rm
+
+> 来源[stackoverflow](https://stackoverflow.com/questions/492558/removing-multiple-files-from-a-git-repo-that-have-already-been-deleted-from-disk "stackoverflow") 
+
+### 3. Fast-forward a branch to head?
+
+像这样子：
+
+```
+Your branch is behind 'origin/master' by 1 commit, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+```
+**方法一:** 合并分支
+
+	git fetch origin master
+	git merge origin/master
+> 如果想保证只是Fast-forward 用这个命令 `git merge --ff-only origin/master`
+
+**方法二:**
+
+```
+git checkout master
+git pull origin
+```
+将会 fetch 并合并 origin/master 分支
+
+### 4. 取git仓库里面的部分文件
+最简单的取文件用：
+
+如我只想取XVim项目 （https://github.com/XVimProject/XVim.git）里面的文档文件（Documents/Developers）可用如下命令：
+
+	svn checkout https://github.com/XVimProject/XVim/trunk/Documents/Developers
+
+再一个例子：
+
+	svn checkout https://github.com/appium/appium/trunk/docs/en/appium-setup appium-setup
+参考 [How do I clone a subdirectory only of a Git repository?](http://stackoverflow.com/questions/600079/how-do-i-clone-a-subdirectory-only-of-a-git-repository)
+
+******
+
+## Git Basics
+
 >
  git有三种状态：Change, Staged, Committed。
  Change(Unstaged)：你改动了一个，没有调用任何git命令前，就是这种状态。
@@ -304,56 +370,5 @@ git push origin master  Git会把master分支推送到远程库对应的远程�
 
 
 ```
-
-
-#Git 常见用法
-
-### 1. 如文件名含有空格，则用 “” 将文件名括起来
-
-### 2. 如果不是通过 git 删除的文件，如用rm 或Finder中删除的文件。如果也要在git中移除对应版本管理
-
-**Git 1.x 的版本**
-
-	$ git add -u
-
-This tells git to automatically stage tracked files -- including deleting the previously tracked files.
-
-**Git 2.0 的版本**
-
-To stage your whole working tree:
-
-	$ git add -u :/
-	
-To stage just the current path:
-
-	$ git add -u .
-
-**也可以用这个命令**
-
-	git ls-files --deleted -z | xargs -0 git rm
-
-> 来源[stackoverflow](https://stackoverflow.com/questions/492558/removing-multiple-files-from-a-git-repo-that-have-already-been-deleted-from-disk "stackoverflow") 
-
-### 3. Fast-forward a branch to head?
-
-像这样子：
-
-```
-Your branch is behind 'origin/master' by 1 commit, and can be fast-forwarded.
-  (use "git pull" to update your local branch)
-```
-**方法一:** 合并分支
-
-	git fetch origin master
-	git merge origin/master
-> 如果想保证只是Fast-forward 用这个命令 `git merge --ff-only origin/master`
-
-**方法二:**
-
-```
-git checkout master
-git pull origin
-```
-将会 fetch 并合并 origin/master 分支
 
 
