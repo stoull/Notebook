@@ -96,11 +96,17 @@ Remove all untracked files and directories. (`-f` is `force`, `-d` is `remove di
 
 	$ git rm --cached FILENAME
 
+如果文件存在于多处，可使用下面的命令untrack移除所有的想要移除的文件，包含子目录中的
+
+`find . -name FILENAME -print0 | xargs -0 git rm --ignore-unmatch`
+
 #### 创建全局的 .gitignore
-全局的Git忽略文件，目录为`~/.gitignore_global`，那些没有设置独立.gitignore的仓库，就使用这个全局的忽略策略。如何设置：
+全局的Git忽略文件，目录为`~/.gitignore_global`，所有的仓库都会使用这个全局的忽略策略，也会使用独立的.gitignore策略。如何设置：
 
 	1. 打开终端
-	2. 运行这个命令：
+	2. 使用下面的命令，加入一个全局策略
+		$ echo .DS_Store >> ~/.gitignore_global 
+	3. 运行这个命令,告诉所有人仓库使用这个全局策略：
 	$ git config --global core.excludesfile ~/.gitignore_global
 
 #### 隐性 .gitignore
