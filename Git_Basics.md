@@ -2,7 +2,7 @@
 #Git 常见用法
 
 ### 1. 如文件名含有空格，则用 “” 将文件名括起来
-
+******
 ### 2. 如果不是通过 git 删除的文件，如用rm 或Finder中删除的文件。如果也要在git中移除对应版本管理
 
 **Git 1.x 的版本**
@@ -27,6 +27,7 @@ To stage just the current path:
 
 > 来源[stackoverflow](https://stackoverflow.com/questions/492558/removing-multiple-files-from-a-git-repo-that-have-already-been-deleted-from-disk "stackoverflow") 
 
+******
 ### 3. Fast-forward a branch to head?
 
 像这样子：
@@ -48,7 +49,7 @@ git checkout master
 git pull origin
 ```
 将会 fetch 并合并 origin/master 分支
-
+******
 ### 4. 取git仓库里面的部分文件
 最简单的取文件用：
 
@@ -63,7 +64,54 @@ git pull origin
 
 ******
 
+### 5. Revert uncommitted changes including files and folders.
+
+You can run these two commands:
+
+Revert changes to modified files.
+
+`git reset --hard`
+
+Remove all untracked files and directories. (`-f` is `force`, `-d` is `remove directories`)
+
+`git clean -fd`
+
+******
+### 6.设置忽略文件
+
+#### 创建独立的 .gitignore
+在Git仓库的目录下创建一个名为 `.gitignore` 的文件，在commit前，Git就会用这个文件里面的“策略”，去判断那些文件或文件夹需要忽略（版本管理时需要无视的文件）。
+
+ `.gitignore` 文件需要加入Git仓库中，这样别人Clone这个仓库后，都可以共享这个忽略文件策略。
+ 
+ 在Git上面维护着官方推荐的各种忽略'策略'文件[Gitignore Github public repository](https://github.com/github/gitignore)
+ 
+ 创建 `. gitignore`文件：
+ 
+ 	1. 在终端使用`cd`命令进入到对应的Git仓库。
+ 	2. 使用`touch .gitignore`命令，创建gitignore文件。
+ 
+
+如果已经有文件加入版本管理了，而你想忽略它。这个时候你加入忽略策略，Git是不会忽略它的，这个时候你先把这个文件untrack，使用下面的命令：
+
+	$ git rm --cached FILENAME
+
+#### 创建全局的 .gitignore
+全局的Git忽略文件，目录为`~/.gitignore_global`，那些没有设置独立.gitignore的仓库，就使用这个全局的忽略策略。如何设置：
+
+	1. 打开终端
+	2. 运行这个命令：
+	$ git config --global core.excludesfile ~/.gitignore_global
+
+#### 隐性 .gitignore
+如果你不想让你的 `. gitignore `分享给其他的人，不想加入版本管理，比如一些编辑器产生的文件，不同的人也会用不同的文件。
+你可以在文件`.git/info/exclude`中编辑对应策略，所有这些策略都只会影响本地仓库。
+
+******
+
 ## Git Basics
+
+*****
 
 >
  git有三种状态：Change, Staged, Committed。
@@ -114,7 +162,7 @@ git add yourFileName // yourFileName must integrity like ' LB_OutLinkCell.h ' in
 
 
 
-// * 设置忽略文件
+// * 设置忽略文件Ignoring files
 // ====================================================================
 touch .gitignore  //gitignore配置文件https://github.com/github/gitignore
 全局配置方法：
