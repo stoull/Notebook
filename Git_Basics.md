@@ -114,6 +114,61 @@ Remove all untracked files and directories. (`-f` is `force`, `-d` is `remove di
 你可以在文件`.git/info/exclude`中编辑对应策略，所有这些策略都只会影响本地仓库。
 
 ******
+### 7. 处理合并冲突 conflicts
+
+使用`git log --merge`查看冲突日志，看谁提交的代码产生了conficts。
+
+
+```
+$ git log --merge
+commit f98593256033d2e6b73ae234f509b6fc32fea369
+Author: linkapp <stoull@linkapp-Mac.local>
+Date:   Tue Aug 1 09:34:26 2017 +0800
+
+    April Did it
+    
+commit 8ae832fd0f4813cbc91e06257b81535456161464
+Author: linkapp <stoull@linkapp-Mac.local>
+Date:   Tue Aug 1 09:33:21 2017 +0800
+
+    Gun Do That
+```
+    
+`git diff April/branchone GunZi/branchtwo` 查看哪些代码有冲突，也可以直接对比两个冲突的commit
+
+	`git diff f98593256033d2e6b73ae234f509b6fc32fea369 8ae832fd0f4813cbc91e06257b81535456161464`
+
+
+使用合并工具查看改变，并处理改变
+
+	git mergetool
+
+确定那些文件有冲突
+```
+diff common mine
+diff common theirs
+```
+
+打开那些文件并处理冲突，处理完后，resolved 它：
+
+	git add the_file
+	
+如果全部都处理完了
+
+	git rebase --continue
+
+### 8. Not a valid object name: 'master'.
+
+当`git init`后，Git 不会自动创建 `master` 分支，要直到你第一次 `commit` 后才会创建对应的master分支。这个时候如果你去创建分支，就会报这个错误。所以解决这个问题就是，加一些文件进去，然后commit一下就可以了。
+
+### 9. 配置账号信息
+
+	$ git config --global user.name "YOUNAME"
+
+	$ git config --global user.email youremail@mail.com
+
+	$ git config --list   查看配置的信息
+	
 
 ## Git Basics
 
