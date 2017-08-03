@@ -53,6 +53,8 @@ You get a FILE pointer from fopen(), and use it as a parameter for other functio
 
 [iOS绘图](http://www.jianshu.com/p/72b386d755f5)
 
+[iOS绘图教程](http://www.cocoachina.com/industry/20140115/7703.html)
+
 ####raywenderlich.com
 
 [Core Graphics Tutorial Part 1: Getting Started](https://www.raywenderlich.com/90690/modern-core-graphics-with-swift-part-1
