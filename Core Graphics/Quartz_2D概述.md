@@ -55,6 +55,9 @@ You get a FILE pointer from fopen(), and use it as a parameter for other functio
 
 [iOS绘图教程](http://www.cocoachina.com/industry/20140115/7703.html)
 
+很棒的讲Core Graphics特性
+[Drawing into a Core Graphics context with UIGraphicsImageRenderer](https://www.hackingwithswift.com/read/27/3/drawing-into-a-core-graphics-context-with-uigraphicsimagerenderer)
+
 ####raywenderlich.com
 
 [Core Graphics Tutorial Part 1: Getting Started](https://www.raywenderlich.com/90690/modern-core-graphics-with-swift-part-1
