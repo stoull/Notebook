@@ -1,9 +1,11 @@
-# Graphics Contexts上下文的状态存储及之间的切换
+# Graphics Contexts上下文的之间的切换及状态存储
 
 使用 Graphics Contexts 在绘图的过程中，经常会遇到一些context状态的存储和context之间的切挽，一般使用下面三对方法：
 >1. CGContextSaveGState/CGContextRestoreGState
 >2. UIGraphicsPushContext/UIGraphicsPopContext
 >3. UIGraphicsBeginImageContext/UIGraphicsEndImageContext
+
+在绘图中需要对上下文的状态进行确定，确定当前的上下文
 
 ###1. CGContextSaveGState/CGContextRestoreGState
      
