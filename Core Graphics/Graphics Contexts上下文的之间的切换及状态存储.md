@@ -7,6 +7,8 @@
 
 在绘图中需要对上下文的状态进行确定，确定当前的上下文
 
+The Application Kit maintains a unique graphics context for each window and thread combination. Because each thread has its own graphics context object for a given window, it is possible to use secondary threads to draw to that window. There are some caveats, however.
+
 ###1. CGContextSaveGState/CGContextRestoreGState
      
      
