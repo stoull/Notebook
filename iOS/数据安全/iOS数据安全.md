@@ -157,7 +157,7 @@ func encode(with aCoder: NSCoder)
 }
 >```
 
-如果使用的是 `NSKeyedUnarchiver` 读取已存储的对象数据，确定对应的属性`requiresSecureCoding`为`true`。
+对应的使用`NSSecureCoding`,在使用的是 `NSKeyedUnarchiver` 反序列化存储数据时，确定对应的属性`requiresSecureCoding`为`true`。
 
 >```
 class func loadFromSavedData() -> ArchiveExample?
@@ -289,7 +289,7 @@ NotificationCenter.default.removeObserver(self, name: .UIApplicationWillEnterFor
 
 ### 数据销毁
 在删除对应的数据之后，真正的数据并没有完全的被删除，只是移除了文件对应的引用。如果是特别机密的文件就有可能需要将每一byte的数据移除，防止别人恢复。要真正的删除一个文件，一个方法是在删除这个文件之前，随机的写入些数据覆盖原先的文件数据，然后移除出应的文件引用。
-下面的C代码可以覆盖原先的文件数据，可以在`FileManager``removeFile `文件前调用这个方法，覆盖文件数据后再删除对应的文件，就可以真正的删除对应的文件数据了。
+下面的C代码可以覆盖原先的文件数据，可以在`FileManager``removeFile `文件前调用这个方法，覆盖文件数据后再删除对应的文件，就可以真正的删除对应的文件数据了。在Swift工程中使用C代码需要`Bridging-Header.h`文件，并添加`int SecureWipeFile(const char *filePath);`文件，可见示例代码:[示例代码]()
 
 ```
 #import <string.h>
@@ -298,6 +298,7 @@ NotificationCenter.default.removeObserver(self, name: .UIApplicationWillEnterFor
 #import <errno.h>
 #import <fcntl.h>
 #import <stdio.h>
+#import <stdlib.h>
  
 #define MY_MIN(a, b) (((a) < (b)) ? (a) : (b))
 int SecureWipeFile(const char *filePath)

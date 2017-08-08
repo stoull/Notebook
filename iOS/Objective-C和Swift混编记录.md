@@ -50,3 +50,9 @@
 [Using Swift with Cocoa and Objective-C中文手册](https://github.com/CocoaChina-editors/Welcome-to-Swift/blob/master/UsingSwiftwithCocoaandObjective-C中文手册.md)
 
 [Can't use Swift classes inside Objective-C](https://stackoverflow.com/questions/24206732/cant-use-swift-classes-inside-objective-c?noredirect=1&lq=1)
+
+
+
+## Swift 工程中使用 C 代码
+
+[Interacting with C APIs](https://developer.apple.com/library/content/documentation/Swift/Conceptual/BuildingCocoaApps/InteractingWithCAPIs.html)
