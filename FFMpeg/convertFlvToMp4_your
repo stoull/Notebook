@@ -1,0 +1,22 @@
+#!/bin/bash
+
+#script to recursively travel a dir of n levels
+
+function traverse() {
+
+find . -name "*.flv" -type f -print0 | while read -d $'\0' movFileName
+do
+	mp4FileName="${movFileName}.mp4"	
+	echo "Convert ${movFileName} to ${mp4FileName}"
+	
+	ffmpeg -i ./"${movFileName}" ./"${mp4FileName}"
+	wait $!
+	rm -rf "${movFileName}"
+done
+}
+
+function main() {
+    traverse "$1"
+}
+
+main "$1"

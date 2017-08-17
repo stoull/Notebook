@@ -1,0 +1,11 @@
+#!/bin/bash
+find . -name "*.flv" | while read filename;
+do
+        new_filename=$(echo "$filename" | sed "s/^\(.*\)flv$/\1mp4/g");
+        if [ ! -f "$new_filename" ]
+        then
+                ffmpeg -i "$filename" "$new_filename" &
+                wait $!;
+		rm -rf "$filename"
+        fi
+done
