@@ -1,0 +1,18 @@
+#!/bin/bash
+
+#script to recursively travel a dir of n levels
+
+function loopToConvert() {
+find . -name "*.flv" -type f -print0 | while read -d $'\0' movFileName
+do
+        mp4FileName=${${movFileName}/%.*/.mp4}  
+        echo "Convert ${movFileName} to ${mp4FileName}"
+	ffmpeg -i ./"${flvFileName}" ./"${mp4FileName}"
+done
+}
+
+function main() {
+    loopToConvert "$1"
+}
+
+main "$1"
