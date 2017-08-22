@@ -62,3 +62,6 @@ You get a FILE pointer from fopen(), and use it as a parameter for other functio
 
 [Core Graphics Tutorial Part 1: Getting Started](https://www.raywenderlich.com/90690/modern-core-graphics-with-swift-part-1
 )
+
+#### 关于Cocoa Drawing的博客
+[Cocoa Drawing Guide学习](http://blog.noark9.com/2014/01/07/cocoa-drawing-guide-study-part-2/)
