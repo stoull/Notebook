@@ -1,11 +1,11 @@
 # Graphics Contexts 上下文的获取和创建方法
-Graphics Contexts 是一个你要开始做图像处理的环境。如在PhotoShop中如果你要开始用画笔画一张图画，你就要新建一个画布（其实你看到的是画布上面的一张透明的图像），你需要设定画布的大小,颜色模式,分辨率等等。新建好之后就有一个空白的图像，这个时候工具栏的工具都可以用了（如矩形选框，画笔，文字等）。Graphics Contexts 就是这个新建的的空白画布，它包含了基本的绘制属性，如‘画笔’颜色、宽度、还有字体信息、裁减区域、混合模式是否抗锯齿等。当有了这样一个画布（CGcontext，上下文），就可以使用Quartz 2D或UIKit在其上面进行绘图了。能够熟悉的操作Graphics Contexts上下文是学习和使用Quartz 2D的基础。
+Graphics Contexts 是一个你要开始做图像处理的环境。如在PhotoShop中如果你要开始用画笔画一张图画，你就要新建一个画布（其实你看到的是画布上面的一张透明的图像），你需要设定画布的大小,颜色模式,分辨率等等。新建好之后就有一个空白的图像，这个时候工具栏的工具都可以用了（如矩形选框，画笔，文字等）。Graphics Contexts 就是这个新建的的空白画布，它包含了基本的绘制属性，如‘画笔’颜色、宽度、还有字体信息、裁减区域、混合模式是否抗锯齿等。当有了这样一个画布（CGcontext，上下文），就可以使用Quartz 2D或UIKit在其上面进行绘图了。能够熟悉的操作(创建，切换存储等)Graphics Contexts上下文是学习和使用Quartz 2D的基础。
 
 对Graphics Contexts主要操作有：
 
 1. 如何创建或获得Graphics Contexts（画布，上下文），这是Quartz 2D的开始。
 
-2. Graphics Contexts（画布，上下文）状态的存储，画布之间的切换，这些在绘图中也是必需要的技巧。
+2. Graphics Contexts（画布，上下文）状态的存储，画布之间的切换，这些在绘图中也是必需的技能。
 
 2. 还有就是从画布中导出绘制好的图形，如导出到屏幕显示，导出为Bitmap图像，PDF文件等。
 
@@ -16,7 +16,7 @@ Graphics Contexts 是一个你要开始做图像处理的环境。如在PhotoSho
 
 UIKit在UIView中提供一个获取当前Graphics Contexts的入口，  `draw(_ rect: CGRect)` 方法，在这个方法中可以很方便的使用UIKit的绘图方式绘图。 UIKit做了所有事情，获取Graphics Contexts，并将该上下文件切换为当前上下文，转换对应的坐标，将我们用UIKit做操作转成CoreGraphics的接口绘制上去等。
 下面在UIView上画一个矩形，填充并描边，根本就不要`import CoreGraphics`，直接用UIKit就可以。
-    
+   
 ```
 override func draw(_ rect: CGRect) {
         
@@ -35,9 +35,23 @@ override func draw(_ rect: CGRect) {
     }
 ```
 
+>尽量不要使用此方法，[官方文档](https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/WindowsandViews/WindowsandViews.html#//apple_ref/doc/uid/TP40009503-CH2-SW9) 说：
+>
+>There are also other ways to provide a view’s content, such as setting the contents of the underlying layer directly, but overriding the drawRect: method is the most common technique.
+>
+>For more information about how to draw content for custom views, see [Implementing Your Drawing Code](https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/CreatingViews/CreatingViews.html#//apple_ref/doc/uid/TP40009503-CH5-SW3).
+>
+> 在使用中此方法，内存会增加很多，所以使用CALayer或CAShapeLayer会好些
+ 
+
 ### 2. UIGraphicsGetCurrentContext()
+
 获取当前上下文的工具：UIGraphicsGetCurrentContext()。使用这个方法特别方便的获取当前的上下文。只要你或系统通过任何方式设置过当前上下文，像在UIView的draw(_ rect: CGRect)方法中，UIGraphicsBeginImageContextWithOptions方法后，或UIGraphicsPushContext(screenCTX)后，可以特别方便的获取当前的context。获取到context之后，就不仅可以使用UIKit进行绘图，还可以直接调用Quartz的绘图方法了。
-当前上下文的默认值为nil。如果先前没有使用UIView进行绘制动作，或没有UIGraphicsPushContext，即context的存储栈里面压入任何的context，调用此方法将返回nil。
+
+
+>**当前上下文的默认值为nil**
+>
+>如果先前没有使用UIView进行绘制动作，或没有UIGraphicsPushContext，即context的存储栈里面压入任何的context，调用此方法将返回nil。
 
 ```
 
@@ -59,7 +73,9 @@ if  let ctx = UIGraphicsGetCurrentContext() {
         }
 
 ```
+
 ### 3. CALayerDelegate 的代理方法：`draw(_ layer: CALayer, in ctx: CGContext)`
+
 使用这方法需要注意的是ctx并不是当前的上下文，而UIKit只能在当前上下文中绘图，所以如果在这个方法里面需要使用UIKit的绘图接口，定要先调用UIGraphicsPushContext存储以前的context并将ctx切换到当前上下文，绘制完后调用UIGraphicsPopContext退出当前上下文。
 >对应的Layer需要`myLayer.setNeedsDisplay()`才会调用这个代理方法
 
@@ -89,6 +105,7 @@ if  let ctx = UIGraphicsGetCurrentContext() {
 ```
 
 ### 4. CALayer的 `draw(in ctx: CGContext)`方法
+
 ```
 override func draw(in ctx: CGContext) {
         
@@ -111,6 +128,7 @@ override func draw(in ctx: CGContext) {
 
 
 ### 5. 使用 UIGraphicsBeginImageContextWithOptions() 创建上下文
+
 快捷创建Bitmap context上下文的方法，并将该新建的上下文存储并设置为当前上下文。它做了相当多的工作，首先是CGContext.init,然后将坐标系转换成UIKit的坐标系，以及将创建的context压入栈并设置为当前上下文的工作。
 
 >注意:
@@ -146,6 +164,7 @@ public func drawImage() -> UIImage? {
 ```
 
 ### 6. 直接使用Quartz的方法创建Graphics Contexts
+
 使用用Graphics Contexts的方法创建Bitmap graphics contexts，这是一种更为底层的方法，需要指定存储空间，颜色空间等信息。注意：使用这种方法创建的context不像其它通过UIKit获得的context，这个context的坐标系还是Quartz的坐标系，这个context也没有存储及切换为当前上下文。
 这种方法可以用来进行离屏绘图，就是都不用将Context渲染屏幕显示，直接导出绘制好的图形。不过在使用这个方式进行离屏绘图前，优先考虑使用CGLayer进行离屏绘图。
 
@@ -198,7 +217,8 @@ func getDrawImage() -> UIImage? {
 ```
 
 ### 7. iOS10+的新方法`UIGraphicsImageRenderer`
-UIGraphicsImageRenderer: A graphics renderer for creating Core Graphics-backed images iOS 10+
+
+You can use image renderers to accomplish drawing tasks, without having to handle configuration such as color depth and image scale, or manage Core Graphics contexts. 
 
 [Apple document](https://developer.apple.com/documentation/uikit/uigraphicsimagerenderer)
 
