@@ -169,6 +169,12 @@ diff common theirs
 
 	$ git config --list   查看配置的信息
 	
+### 10. 将Remote上新建的的BugFix分支 fetch 到origin/BugFix后，将origin/BugFix 变成local分支的方法
+
+	git checkout --track origin/BugFix
+	
+`--track` is shorthand for `git checkout -b [branch] [remotename]/[branch]` where `[remotename]` is origin in this case and `[branch]` is twice the same, `BugFix` in this case.
+	
 
 ## Git Basics
 
