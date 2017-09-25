@@ -1,3 +1,20 @@
+
+[Frequently asked questions about iCloud Keychain](https://support.apple.com/en-us/HT204085)
+
+[iCloud security and privacy overview](https://support.apple.com/en-us/HT202303)
+
+[How Safe Are Keychain and iCloud Keychain?](https://discussions.apple.com/thread/7606304?start=0&tstart=0)
+
+[How is the System Keychain secured in OS X?](https://apple.stackexchange.com/questions/53579/how-is-the-system-keychain-secured-in-os-x)
+
+[Mac上的钥匙串究竟如何安全?](https://www.zhihu.com/question/58502851)
+
+[Security Flaw in OS X displays all keychain passwords in plain text](https://medium.com/@brentonhenry/security-flaw-in-os-x-displays-all-keychain-passwords-in-plain-text-a530b246e960)
+
+
+
+
+
 ```
 // 从KeyChain中查找密码
 - (NSString *)querypasswordWithServer:(NSString*)keychainService andAccount:(NSString*)account {
