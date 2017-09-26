@@ -366,4 +366,6 @@ int SecureWipeFile(const char *filePath)
 }
 ```
 
-主要参考这个 [Securing iOS Data at Rest](https://code.tutsplus.com/series/securing-ios-data-at-rest--cms-1185) 的学习笔记总结
+资料：iOS安全白皮书 [About Software Security](https://developer.apple.com/library/content/documentation/Security/Conceptual/Security_Overview/Introduction/Introduction.html#//apple_ref/doc/uid/TP30000976)
+
+[Securing iOS Data at Rest](https://code.tutsplus.com/series/securing-ios-data-at-rest--cms-1185) 
