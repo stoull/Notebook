@@ -174,6 +174,17 @@ diff common theirs
 	git checkout --track origin/BugFix
 	
 `--track` is shorthand for `git checkout -b [branch] [remotename]/[branch]` where `[remotename]` is origin in this case and `[branch]` is twice the same, `BugFix` in this case.
+
+### 11 fatal: refusing to merge unrelated histories
+当在本地建一个repository, commit, 然后Github上新建一个repository，加入文件。在本地git remote add ''。之后就不能合并，push等操作，报这个错误。
+
+解决方法：
+
+See the git [release changelog](https://github.com/git/git/blob/master/Documentation/RelNotes/2.9.0.txt#L58-L68) for more information.
+
+You can use `--allow-unrelated-histories` to force the merge to happen.
+
+见：[git-refusing-to-merge-unrelated-histories](https://stackoverflow.com/questions/37937984/git-refusing-to-merge-unrelated-histories)
 	
 
 ## Git Basics
