@@ -44,6 +44,8 @@ SSH是一种网络协议，用于计算机之间的远程登录及其他网络�
 > 
 > #### *参考资料*
 
+> [Public key authentication for SSH](https://www.ssh.com/ssh/public-key-authentication)
+
 > [SSH原理与运用（一）：远程登录](http://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html "一些简单的SSH基础")
 
 > [16 条技巧让你更高效使用 SSH](http://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html "很COOL 但讲的不是很清晰SSH用法")
