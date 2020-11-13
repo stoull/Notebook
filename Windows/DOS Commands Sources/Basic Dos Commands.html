@@ -1,0 +1,264 @@
+<TITLE>Basic Dos Commands</TITLE>
+<H1><A  NAME="BasicDos">Some Basic DOS Commands</A></H1>
+<UL>
+<LI><A HREF="#DiskDrive">Disk drives</A>
+<LI><A HREF="#DefDrive">Default drive</A>
+<LI><A HREF="#ChgDefDrive">Changing the default drive</A>
+<LI><A HREF="#Dir">Directories</A>
+<LI><A HREF="#SpecFile">Specifying a filename</A>
+<LI><A HREF="#CopyFile">Copying files</A>
+<LI><A HREF="#AbbrevFile">Abbreviating filenames in DOS</A>
+<LI><A HREF="#ListFile">Listing the contents of a file on the monitor</A>
+<LI><A HREF="#StopScroll">To stop scrolling output on the screen</A>
+<LI><A HREF="#PrtScr">To print what is on the screen</A>
+<LI><A HREF="#SubDir">Subdirectories</A>
+<LI><A HREF="#Autoexec">The AUTOEXEC.BAT file</A>
+</UL>
+MS-DOS is a trademark of Microsoft Crop.  Unix is a trademark of AT&#38;T
+Bell Laboratories.  VAX is a trademark of Digital Equipment Corp.  IBM
+PC is a trademark of International Business Machines Corp.
+<P>
+To use SST on an IBM Personal Computer (or compatible),
+it helps to know a little about the disk operating system (DOS) used on
+the IBM PC. The best reference is your DOS manual (supplied with your
+computer), but we will review a few simple commands here. SST requires
+version 2.0 or higher of PC-DOS or MS-DOS.
+<P>
+<H2><A  NAME="DiskDrive">Disk drives</A></H2>
+Your PC has one or more floppy disk drives and possibly a fixed (or
+<DFN>hard</DFN>) disk to store programs and data. The advantage of a hard disk
+is that it can store large amounts of data which can be accessed
+relatively quickly. SST, however, can be run successfully on a PC with
+only a single floppy disk drive (see the section in Chapter 2, "Tips on
+using SST without a hard disk").
+<P>
+<H2><A  NAME="DefDrive">Default drive</A></H2>
+The "default drive" is where DOS expects to find your programs and
+data. To remind you which drive is currently the default, the DOS
+prompt is preceded by a letter which refers to it. A and B
+refer to floppy disk drives, while C refers to the hard disk (if
+one is installed). In the <CITE>User's Guide</CITE> all examples of DOS
+commands are preceded by a default drive designation (typically
+<CODE>A&#62;</CODE>) to avoid confusion with SST commands.
+<P>
+<H2><A  NAME="ChgDefDrive">Changing the default drive</A></H2>
+To change the default drive, type the desired drive letter followed by
+a carriage return. DOS will respond with a prompt that gives the
+desired drive as the default.
+<P>
+<H2><A  NAME="Dir">Directories</A></H2>
+To obtain a listing of the files on the default drive (a <DFN>directory</DFN>),
+give the command:
+<P>
+<PRE>
+A&#62;dir
+</PRE>
+<P>
+To a listing of the files on another drive, type:
+<P>
+<PRE>
+A&#62;dir a:
+</PRE>
+<P>
+to see, for example, which files are on the A disk. You could, of course,
+first make A the default drive and then give the previous command, but
+this is more cumbersome. This example illustrates a general feature of
+DOS. Unless you specify otherwise, DOS assumes that it will be dealing
+with the default drive. You can perform most operations without changing
+the default drive by specifing another drive letter at the appropriate
+spot.
+<P>
+<H2><A  NAME="SpecFile">Specifying a filename</A></H2>
+Most DOS commands require you to specify one or more filenames.
+Valid filenames are composed of up to eight characters and are optionally
+followed by an extension of up to three characters. The filename and
+extension are separated by a period. Some examples of DOS filenames are:
+<P>
+<PRE>
+sst.exe
+demo.cmd
+junk
+</PRE>
+<P>
+Extensions can be used to remind you what the file contains.  SST uses the
+extension <SAMP>`.cmd'</SAMP> for files of SST commands and the extension <SAMP>`.sav'</SAMP>
+for SST system files.
+<P>
+<H2><A  NAME="CopyFile">Copying files</A></H2>
+Frequently you will want to make a copy of a file.
+To copy a file (named <CODE>oldfile</CODE>) to a new file named <CODE>newfile</CODE>,
+enter:
+<P>
+<PRE>
+A&#62;copy oldfile newfile
+</PRE>
+<P>
+The file <CODE>newfile</CODE> will have exactly the same contents as the file
+<CODE>oldfile</CODE>. As always, DOS assumes <CODE>oldfile</CODE> is on the default
+drive and also places <CODE>newfile</CODE> on the default drive.  The syntax of DOS
+commands when two filenames are required is usually "from to", i.e. the
+first filename is the source (or "from") file and the second is the
+destination (or "to") file.
+<P>
+To copy a file from one disk to another, it is only necessary to precede
+the filename by a drive designation. If you are copying files between
+disks, then the copy can have the same filename as the original. In fact,
+if you do not supply a filename for the destination, DOS assumes that you
+want to use the same filename as the source. For example, if B is the
+default drive, the following command makes a copy of the file <CODE>oldfile</CODE>
+from the A disk on the B disk with the same name:
+<P>
+<PRE>
+B&#62;copy a:oldfile
+</PRE>
+<P>
+On the other hand, if <CODE>oldfile</CODE> is on B (the default drive) and you
+would like a copy on the A disk, type:
+<P>
+<PRE>
+A&#62;copy oldfile a:
+</PRE>
+<P>
+(It is not necessary to precede <CODE>oldfile</CODE> with a drive designation
+since it is on the default drive.)  If there is already a file named
+<CODE>oldfile</CODE> on A (the destination drive), it will be overwritten.
+<P>
+<H2><A  NAME="AbbrevFile">Abbreviating filenames in DOS</A></H2>
+DOS allows you to use a simple scheme of <DFN>wild cards</DFN> to refer to
+multiple filenames without having to type out the entire list of filenames
+that you want. There are two wild cards, the question mark and the
+asterisk. A question mark matches any character while an asterisk matches
+any string of characters. For example, <SAMP>`s?t'</SAMP> matches <SAMP>`sat'</SAMP>,
+<SAMP>`sst'</SAMP>, and <SAMP>`st'</SAMP>. Similarly, <SAMP>`s*t'</SAMP> would match each of the
+previous names as well as <SAMP>`short'</SAMP>, <SAMP>`s123.45t'</SAMP>. The abbreviation
+<SAMP>`*.sav'</SAMP> would match any filename with the extension <SAMP>`.sav'</SAMP> (i.e.,
+any SST system file), while <SAMP>`*'</SAMP> (or, equivalently, <SAMP>`*.*'</SAMP>) would
+match any filename.
+<P>
+To obtain a listing of all the files on the A drive with the extension
+<SAMP>`.sav'</SAMP>, type:
+<P>
+<PRE>
+B&#62;dir a:*.cmd
+</PRE>
+<P>
+To copy all files from A to B, you could use the command:
+<P>
+<PRE>
+C&#62;copy a:*.* b:
+</PRE>
+<P>
+SST uses a similar scheme of wild cards to abbreviate variable names.
+<P>
+<H2><A  NAME="ListFile">Listing the contents of a file on the monitor</A></H2>
+To display the contents of a text file on the monitor, you can use the
+DOS type command which has the following syntax:
+<P>
+<PRE>
+A&#62;type filename
+</PRE>
+<P>
+As always, if the filename is not preceded by a drive specification,
+DOS assumes the file is on the default drive. To type a file on the A
+drive, use instead:
+<P>
+<PRE>
+B&#62;type a:filename
+</PRE>
+<P>
+Not all files in DOS are textfiles. Files with the extension <SAMP>`.exe'</SAMP>
+or <SAMP>`.com'</SAMP> are executable programs stored in a binary format which
+cannot be typed.
+<P>
+<H2><A NAME="StopScroll">To stop scrolling output on the screen</A></H2>
+If you attempt to type a large file, it is apt to <DFN>scroll</DFN> down the
+screen faster than you are able to read it. To stop scrolling, press
+the &#60;Ctrl&#62; and the &#60;Scroll Lock&#62; keys simultaneously. To restart
+output, press the &#60;Ctrl&#62; and &#60;Scroll Lock&#62; keys again.
+<P>
+<H2><A NAME="PrtScr">To print what is on the screen</A></H2>
+If you have a printer connected to your computer and you would like a
+"hard" copy of what is currently on the screen, depress the &#60;shift arrow&#62;
+and &#60;PrtSc&#62; keys simultaneously, and DOS will send a copy of what is on the
+screen to your printer.  If you want to obtain a printed copy of the rest
+of your computer session, depress the &#60;Ctrl&#62; and &#60;PrtSc&#62; keys
+simultaneously.  Further output will be sent to the printer as it appears
+on the screen. To stop printing depress these keys again.
+<P>
+<H2><A NAME="SubDir">Subdirectories</A></H2>
+DOS allows you to organize disks into subdirectories--groupings of
+files in a tree structure. For most purposes a subdirectory on a
+disk is used as if it were a separate disk.
+<P>
+To create a subdirectory named <CODE>sst</CODE>, type:
+<P>
+<PRE>
+C&#62;mkdir sst
+</PRE>
+<P>
+The subdirectory <CODE>sst</CODE> now exists. There are two ways to access
+files in the subdirectory. First, you can make the subdirectory the
+<DFN>default</DFN> directory in the same way that you make a disk drive the
+default drive. This is done by changing directories:
+<P>
+<PRE>
+C&#62;cd sst
+</PRE>
+<P>
+You are now located within the sst subdirectory. To obtain a listing
+of files in the sst subdirectory, give the command:
+<P>
+<PRE>
+C&#62;dir
+</PRE>
+<P>
+Unless you specify otherwise, DOS assumes that you only want a listing
+of files in the default subdirectory--which is whatever subdirectory
+you happen to be located in at the time you issue a command. To return
+to the main (or <DFN>root</DFN>) directory, give the command:
+<P>
+<PRE>
+C&#62;cd \
+</PRE>
+<P>
+The backslash (<SAMP>`\'</SAMP>) is DOS's symbol for the top directory.
+<P>
+The other way to access files in a subdirectory is to provide DOS
+with a <DFN>path</DFN> telling it how to find the file you are interested in.
+If you are in the root directory and you would like to see the contents
+of a file in the <CODE>sst</CODE> subdirectory, try:
+<P>
+<PRE>
+C&#62;type sst\filename
+</PRE>
+<P>
+Thus, it is not necessary to change directories to access a file in
+another directory.
+<P>
+DOS allows you to create subdirectories in subdirectories so directory
+structures can become rather complicated. We do not recommend this
+practice if you are a newcomer to DOS. For the purposes of this manual
+we will assume that you do not have subdirectories to subdirectories.
+<P>
+Specifying pathnames can become rather tedious and DOS provides a
+facility for specifying which directories are to be searched for
+programs with the path command. If you type:
+<P>
+<PRE>
+C&#62;path \;\sst
+</PRE>
+<P>
+DOS will search the root directory (<CODE>\</CODE>) and the sst subdirectory
+(<CODE>\sst</CODE>) when it looks for programs to execute. With the above path
+command, it is possible to execute sst, for example, without being located
+in the sst subdirectory.
+<P>
+<H2><A NAME="Autoexec">The AUTOEXEC.BAT file</A></H2>
+Every time you start your computer, DOS looks for a file called
+<CODE>autoexec.bat</CODE> on the default drive and, if it finds this file,
+it executes the commands
+there.
+<HR>
+<A HREF="main.help.sst.html#TOP"><IMG SRC=contents.gif ALT=Back to Main Help></A>
+<A HREF="sst.start.html#TOP"><IMG SRC=forward.gif ALT=Starting SST></A>
+<HR>
