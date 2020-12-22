@@ -169,6 +169,20 @@ diff common theirs
 
 	$ git config --list   查看配置的信息
 	
+ Working with different Git accounts
+ 
+```
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+```
+	
 ### 10. 将Remote上新建的的BugFix分支 fetch 到origin/BugFix后，将origin/BugFix 变成local分支的方法
 
 	git checkout --track origin/BugFix
@@ -185,7 +199,27 @@ See the git [release changelog](https://github.com/git/git/blob/master/Documenta
 You can use `--allow-unrelated-histories` to force the merge to happen.
 
 见：[git-refusing-to-merge-unrelated-histories](https://stackoverflow.com/questions/37937984/git-refusing-to-merge-unrelated-histories)
-	
+
+### 12 Get error when Clone a huge git repository with slow internet connection
+```
+$ git clone https://github.com/CocoaPods/Specs.git master
+Cloning into 'master'...
+remote: Enumerating objects: 463, done.
+remote: Counting objects: 100% (463/463), done.
+remote: Compressing objects: 100% (390/390), done.
+error: RPC failed; curl 18 transfer closed with outstanding read data remaining
+fatal: the remote end hung up unexpectedly
+fatal: early EOF
+fatal: index-pack failed
+```
+
+One way that works for me. The idea is to do a shallow clone first and then update the repository with its history.
+
+```
+$ git clone https://github.com/CocoaPods/Specs.git master --depth 1
+$ cd master
+$ git fetch --unshallow
+```
 
 ## Git Basics
 
