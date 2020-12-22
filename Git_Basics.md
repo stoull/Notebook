@@ -161,7 +161,7 @@ diff common theirs
 
 当`git init`后，Git 不会自动创建 `master` 分支，要直到你第一次 `commit` 后才会创建对应的master分支。这个时候如果你去创建分支，就会报这个错误。所以解决这个问题就是，加一些文件进去，然后commit一下就可以了。
 
-### 9. 配置账号信息
+### 9. 配置账号信息(&working with different Git Accounts)
 
 	$ git config --global user.name "YOUNAME"
 
@@ -169,7 +169,7 @@ diff common theirs
 
 	$ git config --list   查看配置的信息
 	
- Working with different Git accounts
+ Working with different Git accounts:
  
 ```
 *** Please tell me who you are.
@@ -181,6 +181,29 @@ Run
 
 to set your account's default identity.
 Omit --global to set the identity only in this repository.
+```
+如果在一台电脑上有不同repository使用的不同帐号，可以通过‘git config user.name’设置该repository的用户名。这个时候去配置ssh配置文件```~/.ssh/config```，ssh会根据不同的用户选择对应的key进行push操作。[Generate ssh key]("https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent") , 文件格式如下, 对应文件可在本文件目录./Linux/ssh_config_template找到：
+```
+Host hutbe_github
+	HostName github.com
+	User hutbe
+	AddKeysToAgent yes
+	UseKeychain yes
+	IdentityFile ~/.ssh/github_hutbe25519
+
+Host stoull_github
+	HostName github.com
+	User stoull
+	AddKeysToAgent yes
+        UseKeychain yes
+        IdentityFile ~/.ssh/github_stoull25519
+
+Host growatt_git
+	HostName 192.168.3.240
+	User ios2
+	AddKeysToAgent yes
+	UseKeychain yes
+	IdentityFile ~/.ssh/id_rsa
 ```
 	
 ### 10. 将Remote上新建的的BugFix分支 fetch 到origin/BugFix后，将origin/BugFix 变成local分支的方法
