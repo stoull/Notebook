@@ -205,6 +205,14 @@ Host growatt_git
 	UseKeychain yes
 	IdentityFile ~/.ssh/id_rsa
 ```
+当你commit的时候增，作者信息：
+```git commit --amend --author="author <your-email@xxx.com>"```
+OR 指定用户名进行PUSH:
+`git push https://username:password@myrepository.biz/file.git --all`
+
+in this case https://username:password@myrepository.biz/file.git replace the origin in git push origin --all
+
+To see more options for git push, try `git help push`
 	
 ### 10. 将Remote上新建的的BugFix分支 fetch 到origin/BugFix后，将origin/BugFix 变成local分支的方法
 
@@ -242,6 +250,13 @@ One way that works for me. The idea is to do a shallow clone first and then upda
 $ git clone https://github.com/CocoaPods/Specs.git master --depth 1
 $ cd master
 $ git fetch --unshallow
+```
+
+### Rename Master Branch
+```
+git branch -m master development
+git branch -m published master
+git push -f origin master 
 ```
 
 ## Git Basics
