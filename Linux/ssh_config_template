@@ -1,0 +1,22 @@
+
+#place this file as the path of ~/.ssh/config
+Host hutbe_github
+	HostName github.com
+	User hutbe
+	AddKeysToAgent yes
+	UseKeychain yes
+	IdentityFile ~/.ssh/github_hutbe25519
+
+Host stoull_github
+	HostName github.com
+	User stoull
+	AddKeysToAgent yes
+        UseKeychain yes
+        IdentityFile ~/.ssh/github_stoull25519
+
+Host growatt_git
+	HostName 192.168.3.240
+	User ios2
+	AddKeysToAgent yes
+	UseKeychain yes
+	IdentityFile ~/.ssh/id_rsa
