@@ -221,6 +221,14 @@ $ cd master
 $ git fetch --unshallow
 ```
 
+### 13 checkout a single file from a specific commit
+checkout from a branch
+`git show somebranch:from/the/root/myfile.txt > new_file_path/and_name_youwant.ext`
+checkout from a commit:
+`git show HASH:file/path/name.ext > new_file_path/and_name_youwant.ext`
+the `HASH` is like this: `7bccc6db5d974de3ac0debe6b12bfc4b3781a5af`
+
+
 ## Git Basics
 
 *****
