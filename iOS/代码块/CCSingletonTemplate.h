@@ -19,6 +19,10 @@ static className *_instance;\
         dispatch_semaphore_wait(lock, DISPATCH_TIME_FOREVER);\
         if (_instance == nil) {\
             strongRef = [[super allocWithZone:NULL] init];\
+            SEL sel = NSSelectorFromString(@"singletonInit");\
+            if ([strongRef respondsToSelector:sel]) {\
+                [strongRef performSelector:@selector(singletonInit)];\
+            }\
             _instance = strongRef;\
         } else {\
             strongRef = _instance;\
