@@ -1,27 +1,5 @@
 # Appium 的安装使用记录
 
-[Appium 官网](http://appium.io)
-
-[Appium-中文各种平台的配置](http://appium.io/slate/cn/master/?ruby#客户端类库列表及appium服务端支持)
-
-[Getting started with appium](http://appium.io/slate/en/tutorial/ios.html?ruby#getting-started-with-appium)
-
-[MAC下搭建appium UI自动化环境详细步骤](http://qa.blog.163.com/blog/static/190147002201510161119832/)
-
-[appium安装的所有文档（英文）](https://github.com/appium/appium/tree/master/docs/en/appium-setup)
-
-[在Mac OS X 上使用 Appium](https://github.com/appium/appium/blob/master/docs/en/appium-setup/running-on-osx.md)
-
-[在Windows上使用Appium](https://github.com/appium/appium/blob/master/docs/en/appium-setup/running-on-windows.md)
-
-
-[appium/sample-code](https://github.com/appium/sample-code)
-
-
-[npm 使用介绍](http://www.runoob.com/nodejs/nodejs-npm.html)
-
-[package.json位于模块的目录下，用于定义包的属性](https://docs.npmjs.com/files/package.json)
-
 ## 配置测试环境
 >iOS 系统要求
 >
@@ -294,6 +272,26 @@ Appium 使用苹果提供的 instruments 来启动 iOS 模拟器，默认它会�
 
 	wget https://jenkins.ci.cloudbees.com/jnlpJars/jenkins-cli.jar
 
+[Appium 官网](http://appium.io)
 
+[Appium-中文各种平台的配置](http://appium.io/slate/cn/master/?ruby#客户端类库列表及appium服务端支持)
+
+[Getting started with appium](http://appium.io/slate/en/tutorial/ios.html?ruby#getting-started-with-appium)
+
+[MAC下搭建appium UI自动化环境详细步骤](http://qa.blog.163.com/blog/static/190147002201510161119832/)
+
+[appium安装的所有文档（英文）](https://github.com/appium/appium/tree/master/docs/en/appium-setup)
+
+[在Mac OS X 上使用 Appium](https://github.com/appium/appium/blob/master/docs/en/appium-setup/running-on-osx.md)
+
+[在Windows上使用Appium](https://github.com/appium/appium/blob/master/docs/en/appium-setup/running-on-windows.md)
+
+
+[appium/sample-code](https://github.com/appium/sample-code)
+
+
+[npm 使用介绍](http://www.runoob.com/nodejs/nodejs-npm.html)
+
+[package.json位于模块的目录下，用于定义包的属性](https://docs.npmjs.com/files/package.json)
 
 
