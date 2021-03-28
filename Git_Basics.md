@@ -182,7 +182,8 @@ Run
 to set your account's default identity.
 Omit --global to set the identity only in this repository.
 ```
-如果在一台电脑上有不同repository使用的不同帐号，可以通过‘git config user.name’设置该repository的用户名。这个时候去配置ssh配置文件```~/.ssh/config```，ssh会根据不同的用户选择对应的key进行push操作。[Generate ssh key]("https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent") , 文件格式如下, 对应文件可在本文件目录./Linux/ssh_config_template找到：
+如果在一台电脑上有不同repository使用的不同帐号，可以通过‘git config user.name’设置该repository的用户名。这个时候去配置ssh配置文件```~/.ssh/config```，ssh会根据不同的用户选择对应的key进行push操作。[Generate ssh key]("https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent") , 文件格式如下, 对应文件可在本文件目录`./Linux/ssh_config_template`找到：
+
 ```
 Host hutbe_github
 	HostName github.com
