@@ -5,7 +5,7 @@
 function loopToConvert() {
 find . -name "*.flv" -type f -print0 | while read -d $'\0' movFileName
 do
-        mp4FileName=${${movFileName}/%.*/.mp4}  
+        mp4FileName=${$movFileName/%.*/.mp4}  
         echo "Convert ${movFileName} to ${mp4FileName}"
 	ffmpeg -i ./"${flvFileName}" ./"${mp4FileName}"
 done
