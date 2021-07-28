@@ -268,6 +268,10 @@ git branch -m published master
 git push -f origin master 
 ```
 
+### 撤消Merge   Undo a git merge with conflicts
+
+`git merge --abort`
+
 ## Git Basics
 
 *****
@@ -391,7 +395,7 @@ git fetch origin master:temp //从远程的origin仓库的master分支下载到�
 
 git diff temp//比较master分支和temp分支的不同
 
-git merge temp//合并temp分支到master分支
+git merge temp//合并temp分支到当前分支
 
 git branch -d temp//删除temp
 
@@ -400,6 +404,8 @@ git branch -d temp//删除temp
 // *查看commit历史记录 log
 // ====================================================================
 git log
+
+git log --graph --pretty=oneline --abbrev-commit
 
 git log -p -2
 /*One of the more helpful options is -p, which shows the difference introduced in each commit. You can also use -2, which limits the output to only the last two entries:*/
@@ -451,6 +457,7 @@ git clone https://github.com/stoull/ticgit
 git remote
 git remote -v //
 git remote add shortCutName https://github.com/stoull/ticgit  //  use the string pb on the command line in lieu of the whole URL
+git remote set-url <remote_name> <remote_url>
 git fetch shortCutName
 
 git fetch [remote-name]
