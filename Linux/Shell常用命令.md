@@ -34,3 +34,6 @@ ls对当前目录和文件大小排序
 只对当前目录排序，并用直观的大小显示出来
 
 	for i in $(ls -l |grep '^d' |du -s * |sort -nr|awk '{print $2}');do du -sh $i;done
+
+
+## find . -type f -exec wc -l {} + | sort -n

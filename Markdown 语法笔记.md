@@ -54,7 +54,10 @@
 
 
 
+## 数学公式
+详见: [Cmd Markdown 公式指导手册](https://ericp.cn/cmd)
 
+或本地文件: [Markdown 数学公式指导手册.md](./Markdown 数学公式指导手册.md)
 
 
 

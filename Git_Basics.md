@@ -118,6 +118,11 @@ Remove all untracked files and directories. (`-f` is `force`, `-d` is `remove di
 
 使用`git log --merge`查看冲突日志，看谁提交的代码产生了conficts。
 
+### 8. Merge (with squash) all changes from another branch as a single commit
+```
+git merge --squash <feature branch>
+git commit 
+```
 
 ```
 $ git log --merge
@@ -535,6 +540,9 @@ git status        查看仓库状态
 git diff  XX      查看XX文件修改了那些内容
 
 git log          查看历史记录
+# 查找某个单独文件的记录
+git log --all --full-history -- <path-to-file> // 特定文件路径
+git log --all --full-history -- "**/thefile.*"	// 如果不知道文件路径
 
 git reset  –hard HEAD^ 或者 git reset  –hard HEAD~ 回退到上一个版本
 
