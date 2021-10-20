@@ -2,6 +2,32 @@
 
 真心不要用Markdown写 Markdown 语法笔记的笔记
 
+
+## 折叠内容
+<details>
+  <summary>Click to expand!</summary>
+  
+## Heading
+
+折叠内容的更多信息
+
+1. A numbered
+2. list
+ * With some
+ * Sub bullets
+</details>
+
+## 查看更多内容
+
+<!-- more -->
+
+## 下划线
+---
+***
+___
+<hr>
+<hr style="border:1px solid gray"> </hr>
+
 ##缩进的问题
 
 - **markdown 没有缩进这个概念**

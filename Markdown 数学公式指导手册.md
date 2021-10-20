@@ -1,4 +1,4 @@
-﻿---
+---
 <span style="float: left; display: contents;"><i class="icon-download-alt icon-1x"></i> Markdown 源文件下载</summary> / 链接未知</span><span style="float: right; display: block;">本文固定链接 https://ericp.cn/cmd</span>
 # Cmd Markdown 公式指导手册
 
