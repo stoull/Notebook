@@ -78,6 +78,12 @@ ___
 <a href="/current_url#the-header">Link to Header</a>
 ```
 
+## 表格
+
+|  表头   | 表头  |
+|  ----  | ----  |
+| 单元格  | 单元格 |
+| 单元格  | 单元格 |
 
 
 ## 数学公式
