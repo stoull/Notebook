@@ -277,6 +277,13 @@ git push -f origin master
 
 `git merge --abort`
 
+### 15 合并分支时，只合并一个commit
+
+`git merge topical_xFeature`
+`git merge --squash topical_xFeature`
+
+Which one you choose is up to you. Generally, I wouldn't worry about having multiple smaller commits, but sometimes you don't want to bother with extra minor commits, so you just squash them into one.
+
 ## Git Basics
 
 *****
