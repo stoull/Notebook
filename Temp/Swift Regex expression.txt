@@ -1,0 +1,51 @@
+
+
+
+
+
+// 定义Swift属性
+"?([a-zA-Z0-9_]+)"? = ([a-zA-Z0-9".* ;_\\:\/-]+)
+let $1:Int //$2?
+
+// init swfit 属性
+let ([0-9a-zA-Z_]+): ?([a-zA-Z\[\]:]+)\??(.+)
+// 数值类型
+$1 = info.get$2Value(fromKey: "$1") ?? 0
+// String 类型
+$1 = info["$1"] as? String  ?? ""
+
+// 数值类型
+if let $1Num = info["$1"] as? NSNumber {
+            $1 = $1Num.$2Value
+        } else if let str = info["$1"] as? String {
+            $1 = $2(str)
+        } else {
+	    $1 = nil
+	}
+#imageLiteral(resourceName: <#T##ShinePhone_gray#>))
+#imageLiteral(resourceName: "ShinePhone")
+
+取值
+let (.*):(.*)(\ =? .*)
+$1 = infoDic.get$2Value(fromKey:"$1") \?\? 0
+
+
+
+
+
+if let $1Num = info["$1"] as? NSNumber {
+            $1 = $1Num.doubleValue
+        } else if let str = info["$1"] as? String {
+            $1 = Double(str) ?? 0.0
+        } else {
+	    $1 = 0.0
+	}
+
+
+Codable
+init(from decoder: Decoder):
+用属性定义 匹配：
+let ([0-9a-zA-Z_]+): ?([a-zA-Z\[\]:]+)\??(.+)
+替换：
+
+

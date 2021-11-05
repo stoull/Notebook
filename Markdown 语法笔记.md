@@ -2,6 +2,7 @@
 
 真心不要用Markdown写 Markdown 语法笔记的笔记
 
+[Basic Syntax](https://www.markdownguide.org/basic-syntax/)
 
 ## 折叠内容
 <details>
