@@ -1,5 +1,9 @@
-# How to Install Swift in Linux raspberrypi 5.10.17-v7l+
+# How to Install Swift on Raspberrypi
 
+
+
+[Swift-ARM](https://swift-arm.com)
+[Github_swift-arm64](https://github.com/futurejones/swift-arm64)
 
 uname -a
 
