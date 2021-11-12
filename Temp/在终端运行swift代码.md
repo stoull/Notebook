@@ -1,4 +1,4 @@
-# 在终端运行swift代码
+# 在Linux终端运行swift代码
 
 ## 安装swift
 如果电脑安装了xcode一般会有swift程序，如没有安装可自行安装如用brew进行安装[Homebrew Formulae](https://formulae.brew.sh/formula/swift),如：
@@ -88,3 +88,7 @@ doSomething()
 
 `$ ./main `
 输出：`Hello world`
+
+[A Complete Guide to Swift Development on Linux](https://www.raywenderlich.com/8325890-a-complete-guide-to-swift-development-on-linux)
+使用其它的开发工具，编写swift程序：
+[Language Server Protocol (LSP)](https://microsoft.github.io/language-server-protocol/)
