@@ -37,6 +37,15 @@ Cartfile的文件格式可详见： [Carthage/Carthage](https://github.com/Carth
 这个命令会从包源下载最新的代码，`--platform iOS`指定编译iOS平台的frameworks。如果不指定`--platform` 则会编译所有平台的frameworks。
 >--platform: the platforms to build for (one of 'all', 'macOS', 'iOS', 'watchOS', 'tvOS', or comma-separated values of the formers except for 'all'
 
+#### 编译指定的依赖包
+carthage update Alamofire --platform iOS
+
+如果文件内为：
+`github "SoySauceLab/CollectionKit"`
+
+则使用命令：
+carthage update CollectionKit
+
 使用 `carthage help update` 查看更多的选项。
 
 
