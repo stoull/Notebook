@@ -12,6 +12,10 @@
 
 `shasum -a 1 [filenames]`
 
+>SHA1 函数返回以 160 位校验和的十六进制值的文本表示形式表示的 40 个字符的字符串。
+>531bd67968883a0ec24e8519ccf9d528fff248fe
+>或者：F7:A0:E6:E8:A9:2F:B6:92:D4:5C:F2:92:CE:F1:CA:3F:FB:DB:D4:91
+
 * 显示文件 `MD5` 的hash 值：
 
 `md5 -r 256 [filenames]`
