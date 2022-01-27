@@ -284,6 +284,34 @@ git push -f origin master
 
 Which one you choose is up to you. Generally, I wouldn't worry about having multiple smaller commits, but sometimes you don't want to bother with extra minor commits, so you just squash them into one.
 
+### 16 取消一最近的一次commit
+本地的commit:
+
+```
+git log
+    commit 101: bad commit    # Latest commit. This would be called 'HEAD'.
+    commit 100: good commit   # Second to last commit. This is the one we want.
+```
+
+```
+git reset --soft HEAD^     # Use --soft if you want to keep your changes
+git reset --hard HEAD^     # Use --hard if you don't care about keeping the changes you made
+```
+
+已上传到服务器的commit:
+
+```
+git revert HEAD
+
+Your changes will now be reverted and ready for you to commit:
+
+git commit -m 'restoring the file I removed by accident'
+git log
+    commit 102: restoring the file I removed by accident
+    commit 101: removing a file we don't need
+    commit 100: adding a file that we need
+```
+
 ## Git Basics
 
 *****
