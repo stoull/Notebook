@@ -1,6 +1,12 @@
 
 #Git 常见用法
 
+
+## Git安装
+CentOS 7
+`sudo yum install git`
+`git --version`
+
 ### 1. 如文件名含有空格，则用 “” 将文件名括起来
 ******
 ### 2. 如果不是通过 git 删除的文件，如用rm 或Finder中删除的文件。如果也要在git中移除对应版本管理

@@ -12,3 +12,5 @@ Typically **Tor** listens for SOCKS connections on port 9050. **Tor Browser** li
 [Configure tor as proxy](https://tor.stackexchange.com/questions/6939/configure-tor-as-proxy)
 
 [using Tor as Proxy](https://stackoverflow.com/questions/1962483/using-tor-as-proxy)
+
+[How can proxy scrapy requests with Socks5?](https://stackoverflow.com/questions/59085184/how-can-proxy-scrapy-requests-with-socks5)

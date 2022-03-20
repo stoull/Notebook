@@ -99,7 +99,61 @@ Using CSS Selectors for Extraction
 1. [SQL Tryit Editor](https://www.w3schools.com/sql/trysql.asp?filename=trysql_select_all) 这个页面中有一个button. 只有点击button数据才会显示出来，这里怎么做？！！！
 
 
+## 数据提取
 
+在整个页面中，搜索div 的 id = 'info' 的元素中所有span标签
+`response.xpath('//div[@id="info"]/span')[0].css('a')`
+
+`response.xpath('//span[@property="v:itemreviewed"]/text()').get()`
+
+`response.xpath('//div[@id="info"]/br/following-sibling::text()').getall()`
+
+`response.xpath('//img[@rel="v:image"]').xpath('@src').get()`
+
+`li.css('span::text').get()`
+
+[Selectors](https://docs.scrapy.org/en/latest/topics/selectors.html)
+
+[xpath cover page](https://www.w3.org/TR/xpath/all/)
+
+## Proxy
+
+Scrapy 现在只支持 http proxy， 不支持socket代理
+
+### 方法一 (Use Tor)
+
+#### 1. HTTP Proxy to Socks5
+
+1. 安装[pproxy](https://pypi.org/project/pproxy/)
+`pip3 install pproxy`
+
+2. Run
+`pproxy -l http://:8181 -r socks5://127.0.0.1:9150 -vv`
+
+#### 2. Scrapy with HTTP Proxy
+
+1. 在文件`middlewares.py`文件中:
+
+```
+class ProxyMiddleware(object):
+    def process_request(self, request, spider):
+        request.meta['proxy'] = "http://127.0.0.1:8181"
+```
+
+2. 将`middlewares.py`在设置文件为`setting.py`中激活
+
+```
+DOWNLOADER_MIDDLEWARES = {
+    'PROJECT_NAME_HERE.middlewares.ProxyMiddleware': 350
+}
+```
+注意：pproxy 和 scrapy使用相同的venv, 分两个终端
+
+### 方法二 （使用AWS EC2）
+
+
+
+[How can proxy scrapy requests with Socks5?](https://stackoverflow.com/questions/59085184/how-can-proxy-scrapy-requests-with-socks5)
 
 参考资料：
 
