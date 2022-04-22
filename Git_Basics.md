@@ -318,6 +318,15 @@ git log
     commit 100: adding a file that we need
 ```
 
+### 17 删除分支
+ 删除远程分支
+ 
+` $ git push -d <remote_name> <branchname> `
+
+ 删除本地分支
+` $ git branch -d <branchname> `
+` $ git branch -D <branchname> ` with force
+
 ## Git Basics
 
 *****

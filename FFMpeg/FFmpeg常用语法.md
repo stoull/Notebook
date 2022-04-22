@@ -21,6 +21,9 @@ Picking the 30 seconds fragment from 01:00 to 01:30:
 
 ffmpeg -i '12.Angry Men.mp4' -ss 0:01:00 -to 0:01:30 output.mp3
 
+ffmpeg -i sample.avi -q:a 0 -map a sample.mp3
+
+ffmpeg -i RPReplay_Final1649853524.MP4 -ss 00:00:00 -t 00:05:00.0 -q:a 0 -map a output_dd.mp3
 
 ##视频截图
 
