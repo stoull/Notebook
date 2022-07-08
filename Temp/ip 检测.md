@@ -1,9 +1,9 @@
 # ip 检测
 
+### https://httpbin.org/ip
+
 ### https://ipv4.appspot.com
 ipv4: `https://ipv4.appspot.com`
-
-### https://httpbin.org/ip
 
 ### http://checkip.dyndns.org
 
