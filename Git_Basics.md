@@ -485,6 +485,8 @@ git log -2 //-n show the last n commits
 git log --since=2.weeks
 git log -S function_name
 
+git log --all --decorate --oneline --graph
+
 // 条件查找
 // ====================================================================
 git log --pretty="%h - %s" --author=gitster --since="2008-10-01" \ --before="2008-11-01" --no-merges -- t/

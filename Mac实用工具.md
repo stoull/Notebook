@@ -22,7 +22,17 @@
 查看系统安装软件记录: `/var/log/install.log`
 
 
+ip-guard: 目录
+
+/usr/local/OCularApp
+
+/Users/OcularApp/Agt4Chk.app
+
+/usr/local/.OCular
+
 
 [ip-guard](http://www.ip-guard.net/en/index.html)
+
 [电脑总是弹出“TEC Guangzhou Solutions Limited"的系统扩展](https://discussionschinese.apple.com/thread/253457485)
+
 [IPGUARD Agt4Chk LSDHelper.app LAgent LAgentUser 方法](https://www.jianshu.com/p/a3c8e984cde5)

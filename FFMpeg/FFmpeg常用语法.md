@@ -44,24 +44,33 @@ https://stackoverflow.com/questions/18444194/cutting-the-videos-based-on-start-a
 
 Re-encoding
 
-ffmpeg -i movie.mp4 -ss 00:00:03 -t 00:00:08 -async 1 cut.mp4
+`ffmpeg -i movie.mp4 -ss 00:00:03 -t 00:00:08 -async 1 cut.mp4`
 
 NO Re-encoding
 
-ffmpeg -i input.mp4 -ss 01:10:27 -to 02:18:51 -c:v copy -c:a copy output.mp4
+`ffmpeg -i input.mp4 -ss 01:10:27 -to 02:18:51 -c:v copy -c:a copy output.mp4`
+
+### 视频精确剪切
+ffmpeg在进行转码的时候会自动精准时间，即不使用-codec copy编码，所以我们可以在剪切时，进行编码输出:
+
+`ffmpeg -accurate_seek -i original.mp4 -ss 00:33:23 -t 00:00:31 -c:v libx264 -avoid_negative_ts 1 segment1.mp4`
+
+###从视频合并成一个视频文件
+`ffmpeg -i "concat: segment1.mp4| segment2.mp4| segment3.mp4" -codec copy output.mp4`
+
 
 ##音频提取
 Picking the 30 seconds fragment at an offset of 1 minute:
 
-ffmpeg -i '12.Angry Men.mp4' -ss 0:01:00 -t 0:00:30 output.mp3
+`ffmpeg -i '12.Angry Men.mp4' -ss 0:01:00 -t 0:00:30 output.mp3`
 
 Picking the 30 seconds fragment from 01:00 to 01:30:
 
-ffmpeg -i '12.Angry Men.mp4' -ss 0:01:00 -to 0:01:30 output.mp3
+`ffmpeg -i '12.Angry Men.mp4' -ss 0:01:00 -to 0:01:30 output.mp3`
 
-ffmpeg -i sample.avi -q:a 0 -map a sample.mp3
+`ffmpeg -i sample.avi -q:a 0 -map a sample.mp3`
 
-ffmpeg -i RPReplay_Final1649853524.MP4 -ss 00:00:00 -t 00:05:00.0 -q:a 0 -map a output_dd.mp3
+`ffmpeg -i RPReplay_Final1649853524.MP4 -ss 00:00:00 -t 00:05:00.0 -q:a 0 -map a output_dd.mp3`
 
 ##视频截图
 
