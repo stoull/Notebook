@@ -7,7 +7,7 @@ CentOS 7
 `sudo yum install git`
 `git --version`
 
-### 1. 如文件名含有空格，则用 “” 将文件名括起来
+### 1. 如文件名含有空格，则用 “” 将文件名括起来
 ******
 ### 2. 如果不是通过 git 删除的文件，如用rm 或Finder中删除的文件。如果也要在git中移除对应版本管理
 
@@ -70,7 +70,7 @@ git pull origin
 
 ******
 
-### 5. Revert uncommitted changes including files and folders.
+### 5. Reset uncommitted changes including files and folders.
 
 You can run these two commands:
 
@@ -294,7 +294,7 @@ git push -f origin master
 
 Which one you choose is up to you. Generally, I wouldn't worry about having multiple smaller commits, but sometimes you don't want to bother with extra minor commits, so you just squash them into one.
 
-### 16 取消一最近的一次commit
+### 16 回撤commit
 本地的commit:
 
 ```
@@ -304,14 +304,15 @@ git log
 ```
 
 ```
-git reset --soft HEAD^     # Use --soft if you want to keep your changes
-git reset --hard HEAD^     # Use --hard if you don't care about keeping the changes you made
+git rebase -i HEAD~N
+git reset --soft HEAD^n     # Use --soft if you want to keep your changes
+git reset --hard HEAD^n     # Use --hard if you don't care about keeping the changes you made
 ```
 
 已上传到服务器的commit:
 
 ```
-git revert HEAD
+git revert HEAD^n
 
 Your changes will now be reverted and ready for you to commit:
 
@@ -320,6 +321,9 @@ git log
     commit 102: restoring the file I removed by accident
     commit 101: removing a file we don't need
     commit 100: adding a file that we need
+    
+git reset --hard <commit-hash>
+git push -f origin master
 ```
 
 ### 17 删除分支
