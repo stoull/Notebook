@@ -60,6 +60,9 @@ ffmpeg在进行转码的时候会自动精准时间，即不使用-codec copy编
 
 
 ##音频提取
+
+`ffmpeg -i videoplayback.mp4 -f mp3 我也不想这样.mp3`
+
 Picking the 30 seconds fragment at an offset of 1 minute:
 
 `ffmpeg -i '12.Angry Men.mp4' -ss 0:01:00 -t 0:00:30 output.mp3`
