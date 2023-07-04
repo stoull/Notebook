@@ -2,6 +2,11 @@
 
 [Carthage/Carthage](https://github.com/Carthage/Carthage#for-all-platforms) 官方
 
+### 常用命令
+
+`carthage version`
+
+
 ## 创建 Cartfile
 
 ```
@@ -87,6 +92,9 @@ carthage update Alamofire --platform iOS
 
 `carthage update --platform iOS`
 
+`carthage build --use-xcframeworks --platform iOS` // 只编译，不fetch最新的代码
+
+`--no-use-binaries` : does not use prebuild binary and use source code
 
 ### 遇到问题
 
