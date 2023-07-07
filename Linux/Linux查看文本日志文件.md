@@ -1,4 +1,4 @@
-# Linux查看文本文件
+# Linux查看文本日志文件
 
 ### cat
 一次性显示整个文件: `cat scrapy_log_03_26.txt` 

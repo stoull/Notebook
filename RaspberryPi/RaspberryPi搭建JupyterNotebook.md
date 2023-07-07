@@ -1,6 +1,6 @@
 # Jupyter Notebook on Raspberry Pi
 
-
+```
 apt-get update
 apt-get install python3-matplotlib
 apt-get install python3-scipy
@@ -11,10 +11,13 @@ sudo pip3 install jupyter
 sudo apt update
 sudo apt upgrade
 sudo pip3 install jupyter --upgrade
+```
 #### now repeated installation .. much faster and error free
+
+```
 sudo pip3 install jupyter
 sudo apt-get clean
-
+```
 
 ## 让Jupyter notebook 在本地的电脑可以访问
 
@@ -34,6 +37,8 @@ sudo apt-get clean
 	>使用`sudo ufw allow 8888` # enable your tcp:8888 port, which is ur default jupyter port
 * 设置访问密码(可选)
 	>`jupyter notebook password`
+	
+	上面的命令同时也可重置密码
 * 运行 jupyter notebook
 	>`jupyter notebook`
 
