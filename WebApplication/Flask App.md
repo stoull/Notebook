@@ -76,8 +76,58 @@ $ pip install flask-login
 ### 使用Flask-Login
 
 
-
-
-# 如何分离功能模块，不让app.py文件那么大？
+### 使用网面模块
 
 [Templates](https://flask.palletsprojects.com/en/2.0.x/templating/)
+
+## 获取Request数据
+
+
+## 使用Blueprints
+
+使用Blueprints可以在域下，分开多个路径到不同的文件下, 减少`app.py`中的代码量，如指向路径`/home`和`/movie`下的request, 可分别写到文件`home.py`及`movie.py`下， 如：
+
+`home.py`:
+
+```
+from flask import Blueprint
+home_bp = Blueprint('home', __name__)
+
+@home_bp.route('/hello/')
+def hello():
+    return "Hello from Home Page"
+```
+
+`home.py`:
+
+```
+from flask import Blueprint
+movie_bp = Blueprint('movie', __name__)
+
+@movie_bp.route('/hello/')
+def hello():
+    return "Hello from Contact Page"
+```
+
+`app.py`:
+
+```
+from flask import Flask
+
+from home import home_bp
+from contact import movie_bp
+
+app = Flask(__name__)
+
+app.register_blueprint(home_bp, url_prefix='/home')
+app.register_blueprint(movie_bp, url_prefix='/movie')
+
+app.run()
+```
+
+
+
+### 如何分离功能模块，不让app.py文件那么大？
+
+
+[Creating RESTful Web APIs using Flask and Python](https://towardsdatascience.com/creating-restful-apis-using-flask-and-python-655bad51b24)
