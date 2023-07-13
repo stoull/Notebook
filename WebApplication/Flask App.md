@@ -1,5 +1,6 @@
 # Flask App
 
+
 [Flask](https://flask.palletsprojects.com/en/2.0.x/)
 
 [Templates](https://flask.palletsprojects.com/en/2.0.x/templating/)
@@ -85,7 +86,7 @@ $ pip install flask-login
 
 ## 使用Blueprints
 
-使用Blueprints可以在域下，分开多个路径到不同的文件下, 减少`app.py`中的代码量，如指向路径`/home`和`/movie`下的request, 可分别写到文件`home.py`及`movie.py`下， 如：
+使用Blueprints可以在url下，分开多个路径到不同的文件下, 可将代码分功能模块，写到不同的文件里面，可减少`app.py`中的代码量，如指向路径`/home`和`/movie`下的request, 可分别写到文件`home.py`及`movie.py`下， 如：
 
 `home.py`:
 
@@ -106,7 +107,7 @@ movie_bp = Blueprint('movie', __name__)
 
 @movie_bp.route('/hello/')
 def hello():
-    return "Hello from Contact Page"
+    return "Hello from Moive Page"
 ```
 
 `app.py`:
@@ -125,9 +126,12 @@ app.register_blueprint(movie_bp, url_prefix='/movie')
 app.run()
 ```
 
-
-
-### 如何分离功能模块，不让app.py文件那么大？
+上例中两个Blueprint文件中都是调用`hello`方法。
+当调用：`http://127.0.0.1:5000/home/hello/` 输出的是`Hello from Home Page`
+当调用：`http://127.0.0.1:5000/movie/hello/` 输出的是`Hello from Moive Page`
 
 
 [Creating RESTful Web APIs using Flask and Python](https://towardsdatascience.com/creating-restful-apis-using-flask-and-python-655bad51b24)
+
+
+[Flask User’s Guide](https://flask.palletsprojects.com/en/2.3.x/)
