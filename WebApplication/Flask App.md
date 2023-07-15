@@ -86,7 +86,7 @@ $ pip install flask-login
 
 ## 使用Blueprints
 
-使用Blueprints可以在url下，分开多个路径到不同的文件下, 可将代码分功能模块，写到不同的文件里面，可减少`app.py`中的代码量，如指向路径`/home`和`/movie`下的request, 可分别写到文件`home.py`及`movie.py`下， 如：
+使用Blueprints可以在url下拥有URL空间，可分开多个路径到不同的文件下, 可将代码分功能模块，写到不同的文件里面，可减少`app.py`中的代码量，如指向路径`/home`和`/movie`下的request, 可分别写到文件`home.py`及`movie.py`下， 如：
 
 `home.py`:
 
