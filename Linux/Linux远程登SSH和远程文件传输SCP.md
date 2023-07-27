@@ -73,6 +73,10 @@ scp是secure copy的简写，用于在Linux下进行远程拷贝文件的命令�
 ##### 指定端口
 `$ scp -P 333333 /Users/stoull/Desktop/LinkBox/mainfest.plist username@198.168.4.85:/home/wwwroot/common/mainfest.plist`
 
+##### 使用证书
+
+`scp -i /Users/kevin/Documents/AWS/AWS_163_California.pem ~/Documents/vault.db ec2-user@raspberrypi.local:~/Documents`
+
 #### 复制目录
 复制目录 加参数 -r (递归复制整个目录)
 `$ scp /Users/stoull/Desktop/LinkBox/ username@198.168.4.85:/home/wwwroot/common/LinkBox`
