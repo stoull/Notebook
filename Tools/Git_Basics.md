@@ -380,6 +380,11 @@ git tag 分为 lightweight and annotated， lightweight 像commit一样打个tag
 #### 将所有tag推送到远程
 `git push --tags`
 
+#### 删除tag
+
+`git push --delete origin tagname` // 远端
+
+`git tag --delete tagname`	// 本地
 
 ### 19 提交部分修改的文件，即commit一个修改过的文件
 

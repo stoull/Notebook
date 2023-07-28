@@ -1,5 +1,13 @@
 # Mac 实用工具
 
+#### 更改图片大小
+`sips -Z 640 *.jpg`
+
+>sips is the command being used and -Z tells it to maintain the image's aspect ratio. "640" is the maximum height and width to be used and "*.jpg" instructs your computer to downsize every image ending in .jpg. It's really simple and shrinks your images very quickly. Be sure to make a copy first if you want to preserve their larger size as well.
+
+保存原图，将处理后的图片输出到文件夹`resized`:
+
+`mkdir -p resized && sips -Z 640 *.jpg --out resized/`
 
 #### 定时关机
 
