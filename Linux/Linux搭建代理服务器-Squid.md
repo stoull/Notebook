@@ -80,3 +80,46 @@ http_access allow auth_users
 [How To Setup and Configure a Proxy Server – Squid Proxy](https://devopscube.com/setup-and-configure-proxy-server/)
 
 ## Debian based systems
+
+## Squid Proxy Logs
+
+`/var/log/squid/access.log:`
+
+`/var/log/squid/cache.log:`
+
+`/var/log/squid/store.log:`
+
+使用命令查看：
+
+`sudo tail /var/log/squid/access.log`
+
+结果如下：
+
+
+```
+1691112128.537  28823 156.236.96.172 TCP_TUNNEL/200 139024 CONNECT img9.doubanio.com:443 - HIER_DIRECT/43.152.2.154 -
+1691112128.537  40313 156.236.96.172 TCP_TUNNEL/200 156598 CONNECT img9.doubanio.com:443 - HIER_DIRECT/43.152.2.154 -
+1691116334.800   3903 156.236.96.172 TCP_TUNNEL/200 5834 CONNECT httpbin.org:443 - HIER_DIRECT/100.26.90.23 -
+1691116817.693   4076 156.236.96.172 TCP_TUNNEL/200 5834 CONNECT httpbin.org:443 - HIER_DIRECT/100.26.90.23 -
+```
+
+第一栏为时间，不太好人类阅读：
+
+#！##@¥#@#@@3
+
+可以在`squid.conf`更改log格式：
+
+```
+logformat denniswave [%{%Y/%m/%d %H:%M:%S}tl] %>a %Ss:%Sh "%rm %ru HTTP/%rv" %Hs %<st "%{Referer}>h" "%{User-Agent}>h" %ui %un
+access_log /usr/local/squid/logs/access.log denniswave
+那 aceess log 就會變成這樣：
+[2009/10/27 13:24:40] 192.168.51.37 TCP_MISS:DIRECT "GET http://ad.yieldmanager.com/st? HTTP/1.1" 200 6128 "http://tw.mc729.mail.yahoo.com/mc/md.php?en=BIG5-HKSCS" "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; .NET CLR 1.1.4322; .NET CLR 2.0.50727; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729)" - -
+```
+
+```
+cat access.log|gawk '{print $4}'|sort|uniq -c|sort -nr
+```
+
+[Squid 記錄檔-access.log](https://article.denniswave.com/6307/)
+
+[Squid Web Cache wiki](https://wiki.squid-cache.org/Features/LogFormat)
