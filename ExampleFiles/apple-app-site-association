@@ -1,0 +1,25 @@
+{
+    "applinks": {
+        "apps": [],
+        "details": [
+            {
+                "appID": "id.com.hut.vault",
+                "paths": [
+                    "*"
+                ]
+            },
+            {
+                "appID": "id.com.hut.vault",
+                "paths": [
+                    "*"
+                ]
+            },
+            {
+                "appID": "id.com.hut.vault",
+                "paths": [
+                    "*"
+                ]
+            }
+        ]
+    }
+}
