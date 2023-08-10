@@ -7,7 +7,13 @@
 
 2. 使用HomeBrew 安装 `NTFS-3G`
 >`brew tap gromgit/homebrew-fuse`
-`brew install ntfs-3g-mac`
+`brew install ntfs-3g`
+
+```
+brew tap gromgit/homebrew-fuse
+brew install --cask macfuse
+brew install ntfs-3g-mac 
+```
 
 3. 手动挂载NTFS. **注意：将disk4s2更换为对应的分区**
 > 1. 使用`diskutil list`查看分区信息
