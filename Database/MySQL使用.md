@@ -15,7 +15,27 @@
 >
 运行更新：`source ~/.zsh_profile`
 
+* 方法三 Amazon Linux 2023安装：
 
+1. 安装命令：
+
+`sudo dnf update`
+`wget https://dev.mysql.com/get/mysql80-community-release-el9-3.noarch.rpm`
+`sudo dnf install mysql-community-server`
+
+2. mysql 服务控制：
+
+`sudo systemctl start mysqld`
+`sudo systemctl enable mysqld`
+`sudo systemctl status mysqld`
+
+3. 设置密码：
+
+查找初始密码：
+`sudo grep 'temporary password' /var/log/mysqld.log`
+
+设置密码, 需要使用初始密码：
+`sudo mysql_secure_installation -p`
 
 
 ## mysql使用
@@ -30,6 +50,10 @@ If you haven’t set a password for your MySQL user you can omit the -p switch.
 
 导入数据:
 ```mysql -u root -p 123456 < /Users/kevin/Documents/xxxxx.sql```
+
+mysql -u root -p < /home/ec2-user/Documents/TestProjects/meal_ordering_system/deploy/apsfc_20150727_2133.sql
+
+
 
 显示所有的database:`SHOW DATABASES;`
 

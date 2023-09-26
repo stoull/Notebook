@@ -40,6 +40,28 @@
 `sudo dnf install mysql80-community-release-el9-1.noarch.rpm -y`
 `sudo dnf install mysql-community-server -y`
 
+### 安装tomcat
+
+#### Amazon Linux 安装tomcat
+[Step by Step guide to install Apache Tomcat on Amazon Linux](https://medium.com/@raguyazhin/step-by-step-guide-to-install-apache-tomcat-on-amazon-linux-120748a151a9)
+
+确认java jdk已安装：`java -version`
+如未安装，需安装：`sudo yum install java-1.8*`
+
+```
+sudo su -
+cd /
+cd /opt/
+```
+下载：
+`wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.80/bin/apache-tomcat-9.0.80.tar.gz`
+解包：
+`tar -xvf apache-tomcat-9.0.80.tar.gz`
+
+重命名方便使用：
+`mv apache-tomcat-9.0.71 tomcat9`
+
+
 
 ### 安装docker
 
