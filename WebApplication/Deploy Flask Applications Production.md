@@ -1,7 +1,7 @@
 # 部署Flask - Deploy Flask Applications Production
 
 
-
+[How to Deploy Flask with Gunicorn and Nginx (on Ubuntu)](https://www.youtube.com/watch?v=KWIIPKbdxD0)
 
 ## 使用gunicorn
 
