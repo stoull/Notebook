@@ -359,6 +359,9 @@ git tag 分为 lightweight and annotated， lightweight 像commit一样打个tag
 `git tag -a v1.4 -m "my version 1.4"  // 创建一个annotated 标记`
 `git show v1.4`
 
+// 指定特定的版本
+`git tag -a v1.2 9fceb02 -m "Message here"`
+
 // If you forgot to tag the project at v1.2
 
 `git tag -a v1.2 9fceb02 -m "my version 1.2"`
