@@ -458,6 +458,13 @@ Finally push your newly created branch to remote repository.
 
 `git push -u origin NewBranchName`
 
+### 22 追踪单个文件的更改记录
+
+`git log -p -- filename` 此命令会这个文件每一次有更改的commit,及详情
+
+如:
+`git log -p -- MyGro/NewVersion/PopView/MGPresentViewController.swift`
+
 
 ## Git Basics
 

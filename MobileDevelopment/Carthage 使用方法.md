@@ -94,6 +94,9 @@ carthage update Alamofire --platform iOS
 
 `carthage build --use-xcframeworks --platform iOS` // 只编译，不fetch最新的代码
 
+`carthage build --use-xcframeworks --platform iOS --cache-builds` // 使用缓存 Passing the --cache-builds will cause carthage to avoid rebuilding a dependency if it can. 
+
+
 `--no-use-binaries` : does not use prebuild binary and use source code
 
 ### 遇到问题
