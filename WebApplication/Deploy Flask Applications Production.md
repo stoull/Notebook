@@ -20,6 +20,7 @@ WARNING: This is a development server. Do not use it in a production deployment.
 - SSL,处理对外ssl加密，多服务器统一的https加密出口
 - 对responses数据的压缩
 - Nginx可代替Python处理静态文件的请求，可提高性能
+- 与Nginx类似的服务
 
 ## 使用gunicorn
 
