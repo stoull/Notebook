@@ -17,7 +17,7 @@ su 和 sudo 用户切换及权限提升
 * sudo 命令需要输入当前用户的密码，su 命令需要输入 root 用户的密码。
 * sudo 命令只允许使用提升的权限运行单个命令，而 su 命令会启动一个新的 shell，同时允许使用 root 权限运行尽可能多的命令，直到明确退出登录。
 * `sudo su -` 使用当前用户密码登录root用户
-* `sudo su -u USERNAME /bin/bash` 切换到nologin用户, 或者`sudo -u USERNAME /bin/bash`
+* `sudo -u USERNAME /bin/bash` 切换到nologin用户, 或者`sudo -u USERNAME /bin/bash`
 
 ### 用户操作
 
