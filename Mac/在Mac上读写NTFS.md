@@ -16,6 +16,7 @@ brew install ntfs-3g-mac
 ```
 
 3. 手动挂载NTFS. **注意：将disk4s2更换为对应的分区**
+
 > 1. 使用`diskutil list`查看分区信息
 > 2. 如果NTFS磁盘已被系统自动挂载，先卸载对应的磁盘分区
 > `sudo diskutil unmount /dev/disk4s2`	(或手动推出，如将桌面上的磁盘拉到垃圾桶)
@@ -25,6 +26,7 @@ brew install ntfs-3g-mac
 > `sudo /usr/local/bin/ntfs-3g /dev/disk2s1 /Volumes/NTFS -o local -o allow_other -o auto_xattr -o auto_cache`
 > `sudo /opt/homebrew/Cellar/ntfs-3g-mac/2022.10.3/bin/ntfs-3g /dev/disk4s1 /Volumes/NTFS -o local -o allow_other -o auto_xattr -o auto_cache`
 > 或者 `sudo /usr/local/sbin/mount_ntfs /dev/disk4s2 /Volumes/NTFS`
+> 5. 或者：`sudo ntfs-3g /dev/disk8s1 /Volumes/NTFS -o local -o allow_other -o auto_xattr -o auto_cache`
 
 这样就会挂载一个名为NTFS的磁盘，可进行读写操作，使用`mount`查看对应的信息为：
 `/dev/disk4s2 on /Volumes/NTFS (macfuse, local, synchronous, noatime)`
