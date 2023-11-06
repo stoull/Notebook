@@ -46,12 +46,15 @@ ec2-user  160970  133420  0 07:51 pts/0    00:00:00 grep --color=auto nginx
 
 ## Nginx服务控制
 
+* `nginx -h`: 显示帮助栏
+* `nginx -t`: 测试nginx设置文件是否正确
+
 当nginx启动后，可以使用`nginx -s signal`进行控制，`signal`有如下参数：
 
-* `stop` — fast shutdown
-* `quit` — graceful shutdown
-* `reload` — reloading the configuration file, will not in interrupted the server
-* `reopen` — reopening the log files
+* `nginx -s stop` — fast shutdown
+* `nginx -s quit` — graceful shutdown
+* `nginx -s reload` — reloading the configuration file, will not in interrupted the server
+* `nginx -s reopen` — reopening the log files
 
 如停止nginx服务：`nginx -s quit`, 重新载入: `nginx -s reload`
 
@@ -83,6 +86,7 @@ ec2-user  160970  133420  0 07:51 pts/0    00:00:00 grep --color=auto nginx
 
 * `/etc/nginx`: Nginx服务的配置目录，所有配置文件都在此目录下
 * `/etc/nginx/nginx.conf`: 主要的nginx配置文件，配置nginx的全局配置。主要学习点
+* `/etc/nginx/conf.d/`: nginx服服务配置文件，一般于nginx.conf引用
 * `/etc/nginx/sites-available/`: 这个目录存储每一个网站的"server blocks"。nginx通常不会使用这些配置，除非它们陪连接到 sites-enabled 目录 (see below)。一般所有的server block 配置都在这个目录中设置，然后软连接到别的目录 。
 * `/etc/nginx/sites-enabled/`: 存放的是当前启用的网站配置文件的符号链接。也就是说，sites-enabled中存放的配置文件是实际生效的配置文件。
 * `/etc/nginx/snippets`: 这个目录主要可以包含在其它nginx配置文件中的配置片段。重复的配置都可以重构为配置片段。
@@ -90,6 +94,8 @@ ec2-user  160970  133420  0 07:51 pts/0    00:00:00 grep --color=auto nginx
 * `/etc/nginx/ koi-utf、koi-win、win-utf`: 这三个文件都是与编码转换映射相关的配置文件，用来将一种编码转换成另一种编码
 * `/etc/nginx/*.default`: 均为对应参数的备份文件 
 
+>`/etc/nginx/conf.d/`: 全局服务文件
+>`/etc/nginx/sites-enabled/`: 如支持多个网站，每个网站服务可单独定义一配置文件，方便管理。一般先写入`/etc/nginx/sites-available/`文件
 
 ### Server Logs
 
@@ -101,8 +107,78 @@ ec2-user  160970  133420  0 07:51 pts/0    00:00:00 grep --color=auto nginx
 
 ## Nginx配置文件`nginx.conf`
 
+配置文件结构
 
+```
+# 全局区
+user nginx
+worker_processes auto;
+pid /run/nginx.pid;
+include /etc/nginx/modules-enabled/*.conf;
+...
+              
+# events块
+events {
+	worker_connections 768;
+	# multi_accept on;   
+   ...
+}
 
+# http块
+http      
+{
+    # http全局块
+    	include /etc/nginx/mime.types;
+	default_type application/octet-stream;
+	
+	access_log /var/log/nginx/access.log;
+	error_log /var/log/nginx/error.log;
+	
+    ...   
+    # 虚拟主机server块
+    server        
+    { 
+        # server全局块
+        	listen 80 default_server; # 处理没有匹配到server的请求
+		listen [::]:80 default_server;
+        ...       
+        # location块
+        location [PATTERN]   
+        {
+        	location = /.well-known {
+				root /var/www/.well-known/;
+			}
+            ...
+        }
+        location [PATTERN] 
+        {
+            ...
+        }
+    }
+    
+    # 虚拟主机server块
+    server
+    {
+      ...
+    }
+    
+    # http全局块
+    	 include /etc/nginx/conf.d/*.conf;
+	 include /etc/nginx/sites-enabled/*;
+    ...     
+}
+```
+
+说明：
+
+* **全局区** : nginx配置全局定义区。一般有运行nginx服务器的用户组，nginx进程pid存放路径，日志存放路径，配置文件引入，允许生成worker process数等。
+* **events块** : 配置影响nginx服务器或与用户的网络连接。有每个进程的最大连接数，选取哪种事件驱动模型处理连接请求，是否允许同时接受多个网路连接，开启多个网络连接序列化等。
+* **http块** : 可以嵌套多个server，配置代理，缓存，日志定义等绝大多数功能和第三方模块的配置。如文件引入，mime-type定义，日志自定义，是否使用sendfile传输文件，连接超时时间，单连接请求数等。
+* **server块 **:  配置虚拟主机的相关参数，一个http中可以有多个server。
+
+> 虚拟主机server可分离出主配置文件，常在文件`/etc/nginx/conf.d/*.conf`,`/etc/nginx/sites-enabled/*`中配置
+
+* **location块** : 配置请求的路由，以及各种页面的处理情况。
 
 [NGINX-Beginner’s Guide](https://nginx.org/en/docs/beginners_guide.html)
 
@@ -111,3 +187,5 @@ ec2-user  160970  133420  0 07:51 pts/0    00:00:00 grep --color=auto nginx
 [Nginx学习笔记 -初识Nginx](https://www.cnblogs.com/FLY_DREAM/p/14265110.html)
 
 [Nginx 基本配置详解](https://zhuanlan.zhihu.com/p/24524057?refer=wxyyxc1992)
+
+[NGINX Basics and Best Practices](https://www.nginx.com/c/nginx-basics-and-best-practices/)
