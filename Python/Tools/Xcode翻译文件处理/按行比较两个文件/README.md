@@ -1,0 +1,3 @@
+#README
+
+compare_two_Localizable_strings_files.py 是按行比较两个文件不的同。先在文件A中取一行，循环B文件中的每一行直到最后或者找到与A文件那一行相同的行。输出在A文件中有但B文件中没有的行。
