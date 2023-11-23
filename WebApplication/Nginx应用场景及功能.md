@@ -1,20 +1,46 @@
 # Nginx应用场景及功能
 
+[nginx uri 如何匹配 location 规则](https://www.cnblogs.com/dreamanddead/p/how-uri-match-location-rule-in-nginx.html)
 
 ## 静态HTTP服务器
 
 ```
-# html服务
 server {
+	# html服务
 	listen 80 default_server;
 	listen [::]:80 default_server;
-	
-	server_name www.domain.com
-	
+
+	root /var/www/html;
+
+	# Add index.php to the list if you are using PHP
+	index index.html index.htm index.nginx-debian.html;
+
+	server_name _;
+
 	location / {
-		index index.html;
-    	root /var/www;
-    	try_files $uri $uri/ =404;
+		root /var/www/html;
+		# First attempt to serve request as file, then
+		# as directory, then fall back to displaying a 404.
+		try_files $uri $uri/ =404;
+	}
+}
+
+server {
+	# 图片服务
+	listen 8080;
+	listen [::]:8080;
+	
+	root /var/www/data/images;
+
+	# 请求的url过滤，正则匹配，~为区分大小写，~*为不区分大小写。
+	location ~* \.(gif|jpg|png)$ {
+		try_files $uri $uri/ =502;
+	}
+	
+    location ~* \.(gif|jpg|png)$ {
+		expires 30d;
+    	add_header Vary Accept-Encoding;
+      	access_log off;
 	}
 }
 ```
@@ -29,36 +55,17 @@ server {
 `nginx =t`: 测试配置
 `nginx -s reload`: 使用配置文件生效
 
-## 静态资源服务器
+```
+```
 
-```
-# 图片服务
-server {
-	listen 80;
-	listen [::]:80;
-	
-	root /var/www;
-	
-    	# 请求的url过滤，正则匹配，~为区分大小写，~*为不区分大小写。
-    	location ~* \.(gif|jpg|png)$ {
-    		root /data/images;
-    		try_files $uri $uri/ =502;
-	}
-	
-	# 定义客户端缓存时间为30天
-    location ~* \.(gif|jpg|png)$ {
-    		expires 30d;
-        	add_header Vary Accept-Encoding;
-	      	access_log off;
-	}
-}
-```
+## 静态资源服务器
 
 ## 反向代理和负载均衡
 
 ## HTTPS配置
 
 ## 虚拟主机
+
 
 
 [What are some common use cases for NGINX?](https://medium.com/@teeppiphat/nginx-and-use-cases-8ced7e2d80dc)
