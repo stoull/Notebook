@@ -54,5 +54,11 @@ server {
 }
 ```
 
+## 反向代理和负载均衡
+
+## HTTPS配置
+
+## 虚拟主机
+
 
 [What are some common use cases for NGINX?](https://medium.com/@teeppiphat/nginx-and-use-cases-8ced7e2d80dc)

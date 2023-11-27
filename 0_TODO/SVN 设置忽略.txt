@@ -1,0 +1,130 @@
+
+svn status | grep '^!' | awk '{print $2}' | xargs svn delete
+
+svn status | grep '^!' | awk '{str = sprintf("%s@", $2)} {print "--force" str}' | xargs svn delete
+
+svn rm $( svn status | sed -e '/^!/!d' -e 's/^!//' )
+Sed 's/(.*)([@])(.*)'/\1\\\2\3/'
+
+加入README.txt文件，记录工作所需要静态包的存放位置 
+
+http://svnbook.red-bean.com
+
+http://svnbook.red-bean.com/en/1.7/svn.tour.cycle.html
+
+
+How do I ignore files in Subversion?
+https://stackoverflow.com/questions/86049/how-do-i-ignore-files-in-subversion
+
+删除文件：
+===================
+svn delete file1 file2
+多个已移除的文件
+svn status | grep '^!' | awk '{print $2}' | xargs svn delete
+当文件含有@符号时，在文件名最后添加@以及在中间的@前添加‘\’即可
+That is because SVN uses the @ symbol as a way to determine a specific revision
+
+或者循环：
+for i in  $(svn st | grep \! | awk -F '^[!][ \t]*?' '{print $2}'); do svn delete $i; done
+
+如果文件名称包含@字符，如图片文件icon@2x.png可用如下命令：
+for i in  $(svn st | grep \! | awk -F '^[!][ \t]*?' '{print $2}'); do svn delete $i@; done
+
+
+从服务器更新（git pull fetch）：
+===================
+svn update .
+
+
+Checkout 仓库：
+===================
+svn checkout https://changchun.chen@192.168.3.115/svn/watch_app_ios
+
+删除分支
+===================
+svn rm branches/< mybranch >
+svn ci -m "message"
+
+
+新建分支 （实质是复制）
+===================
+svn copy https://changchun.chen@192.168.3.115/svn/watch_app_ios/trunk \
+           https://changchun.chen@192.168.3.115/svn/watch_app_ios/branches/dev\
+      -m "Creating a develop branch of project"
+
+提交版本
+svn commit -m "added howto section."
+指定文件
+svn commit -F file_under_vc.txt foo.c
+
+添加文件在repo
+===================
+svn add *
+svn add <path to directory> --force
+svn add * --force
+
+多个文件：
+for i in  $(svn st | grep \? | awk -F '^[?][ \t]*?' '{print $2}'); do svn add $i; done
+
+如文件名含有@
+for i in  $(svn st | grep \? | awk -F '^[?][ \t]*?' '{print $2}'); do svn add $i@; done
+记得转换分隔符
+IFS=$'\n'       # make newlines the only separator
+unset IFS
+
+注意查看SVN默认的忽略设置（*.a文件）
+===================
+Windows (file-based) - C:\Users\{you}\AppData\Roaming\Subversion\config
+Windows (registry-based) - Software\Tigris.org\Subversion\Config\Miscellany\global-ignores in both HKLM and HKCU.
+Linux/Unix - ~/.subversion/config
+
+设置忽略文件 -R 为递归所有目录 .表示根目录
+===================
+svn propset svn:ignore -R .DS_Store .
+指定目录
+svn propset svn:ignore Pods trunk/
+
+
+ignorelist.txt 用txt文件设置忽略文件
+===================
+svn propset svn:ignore -F ignorelist.txt .
+===================
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+xcuserdata
+*.ipa
+*.dSYM.zip
+*.dSYM
+Pods/
+*.xcworkspace
+Carthage
+
+重新设置忽略文件 newignorelist.txt
+===================
+svn propedit -R newignorelist.txt .
+
+删除忽略文件 newignorelist.txt
+===================
+svn propdel svn:ignore .
+Recursive:
+svn propdel svn:ignore -R 
+
+
+查看当前有哪些文件忽略了：
+===================
+svn status --no-ignore | grep "^I"
+
+查看当前忽略文件 svn:ignore property
+===================
+svn propget -R svn:ignore .
+每一个文件
+svn proplist -v -R [TARGET] 
+svn proplist -v -R . > file.txt
+
+
+
+连接对应的服务器：
+SSH: ssh -L localport:svnserver:svnport username@proxyserver
+

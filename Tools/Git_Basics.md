@@ -458,8 +458,13 @@ Finally push your newly created branch to remote repository.
 
 `git push -u origin NewBranchName`
 
-### 22 追踪单个文件的更改记录
+### 22 追踪文件的更改记录
 
+* `git diff [filename]` 查看未Staged的文件变化
+* `git diff --staged` 查看已Staged的文件变化
+* `git diff --cached [filename]` 查看已Staged的文件变化与`git diff --staged`一样
+
+#### 追踪单个文件的更改记录
 `git log -p -- filename` 此命令会这个文件每一次有更改的commit,及详情
 
 如:
