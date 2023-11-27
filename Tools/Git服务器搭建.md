@@ -17,6 +17,10 @@ done.
 cp -Rf my_project/.git my_project.git
 ```
 
+或者建立一个空的仓库：
+
+`git init --bare [仓库名].git`
+
 ### 创建server上的仓库
 一个git仓库在server上就对应一个bare仓库，所以将上面创建的bare仓库放到服务器上就成了一个git仓库:
 
@@ -61,7 +65,16 @@ sudo chown -R git:git /srv/git/my_project.git		// 改变仓库的所属
 ```
 现在应该只要将用户的ssh public key上传的服务器，并可通过ssh访问，应该就可以对仓库进行push操作了。
 
+### ssh key 访问
+
+新增`Git`用户：
+
+`sudo useradd git` ： 创建用户，但未创建用户主目录
+`sudo mkdir /home/git`: 创建用户主目录
+`sudo mkdir -m 700 /home/git/.ssh`
+`sudo cp ~/.ssh/authorized_keys /home/git/.ssh/`
 
 
+### git 密码访问
 
-
+`sudo passwd git`

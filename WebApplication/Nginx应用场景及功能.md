@@ -11,30 +11,10 @@ server {
 	
 	server_name www.domain.com
 	
-    	location / {
-    		index index.html;
-        	root /var/www;
-        	try_files $uri $uri/ =404;
-    	}
-}
-
-# 图片服务
-server {
-	listen 80;
-	listen [::]:80;
-	
-	root /var/www;
-	
-    	# 请求的url过滤，正则匹配，~为区分大小写，~*为不区分大小写。
-    	location ~* \.(gif|jpg|png)$ {
-    		root /data/images;
-    		try_files $uri $uri/ =502;
-	}
-	
-    	location ~* \.(gif|jpg|png)$ {
-		expires 30d;
-        	add_header Vary Accept-Encoding;
-	      access_log off;
+	location / {
+		index index.html;
+    	root /var/www;
+    	try_files $uri $uri/ =404;
 	}
 }
 ```
@@ -50,6 +30,29 @@ server {
 `nginx -s reload`: 使用配置文件生效
 
 ## 静态资源服务器
+
+```
+# 图片服务
+server {
+	listen 80;
+	listen [::]:80;
+	
+	root /var/www;
+	
+    	# 请求的url过滤，正则匹配，~为区分大小写，~*为不区分大小写。
+    	location ~* \.(gif|jpg|png)$ {
+    		root /data/images;
+    		try_files $uri $uri/ =502;
+	}
+	
+	# 定义客户端缓存时间为30天
+    location ~* \.(gif|jpg|png)$ {
+    		expires 30d;
+        	add_header Vary Accept-Encoding;
+	      	access_log off;
+	}
+}
+```
 
 
 [What are some common use cases for NGINX?](https://medium.com/@teeppiphat/nginx-and-use-cases-8ced7e2d80dc)
