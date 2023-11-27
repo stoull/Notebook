@@ -4,11 +4,19 @@ React - Declarative UI Programming
 
 React is a JavaScript library for building User Interfaces
 
+[reactnative docs](https://reactnative.dev/docs/getting-started)
+
 [React Native 中文网](https://reactnative.cn/docs/getting-started)
 
 [React-Native学习指南](https://github.com/reactnativecn/react-native-guide)
 
 [集成到现有原生应用](https://reactnative.cn/docs/integration-with-existing-apps?language=swift#2-事件处理)
+
+### Expo
+[expo-GitHub](https://github.com/expo/expo)
+
+[Install EXpo modules](https://docs.expo.dev/bare/installing-expo-modules/)
+
 
 # React Native
 
