@@ -12,6 +12,8 @@ React is a JavaScript library for building User Interfaces
 
 [集成到现有原生应用](https://reactnative.cn/docs/integration-with-existing-apps?language=swift#2-事件处理)
 
+[React Native Upgrade Helper](https://react-native-community.github.io/upgrade-helper/?from=0.71.3&to=0.72.3)
+
 ### Expo
 [expo-GitHub](https://github.com/expo/expo)
 
@@ -95,4 +97,21 @@ return (
 	</View>
 )}
 ```
+
+### npm build
+
+在package.josn文件中增加如下代码,生成`main.jsbundle`文件：
+
+```
+"scripts": {
+"build:ios": "node node_modules/react-native/local-cli/cli.js bundle --entry-file='index.js' --bundle-output='./main.jsbundle' --dev=false --platform='ios' --assets-dest='./ios'"
+}
+```
+
+* `--entry-file`: path to our index.js file
+* `--bundle-output`: path of where `main.bundlejs` will be created
+* `--dev=false`: bunch of perf optimisations are made when false
+* `--platform`: ios
+
+
 

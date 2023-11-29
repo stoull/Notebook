@@ -55,9 +55,6 @@ server {
 `nginx =t`: 测试配置
 `nginx -s reload`: 使用配置文件生效
 
-```
-```
-
 ## 静态资源服务器
 
 ## 反向代理和负载均衡
@@ -66,6 +63,80 @@ server {
 
 ## 虚拟主机
 
+## SSL证书
 
+查看SSL模块是否已安装：`nginx -V`
+在`configure arguments:`参数中，如有`--with-http_ssl_module`说明ssl模块已经安装
+如未安装需先安装
+
+### 上传证书
+
+在nginx目录下新建`cert`目录用于放置证书文件,
+
+`$cd /etc/nginx`	: `/etc/nginx`目录可能根据不同的系统会有变化
+`sudo mkdir cert`: 新建目录
+
+可使用不同工具上传证书相关的`.key`及`.pem`文件至这个目录，这里使用scp上传到用户的home目录：
+
+```
+scp /path/to/thefile.key ubuntu@xx.xx.xx.xx:~/
+scp /path/to/thefile.pem ubuntu@xx.xx.xx.xx:~/
+```
+然后移至对应的目录
+
+```
+sudo mv ~/thefile.key /etc/nginx/cert/
+sudo mv ~/thefile.pem /etc/nginx/cert/
+```
+### 配置文件
+nginx.conf配置文件如下：
+
+```
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+
+	# SSL configuration
+	# 服务器端口使用443，开启ssl
+	listen 443 ssl default_server;
+	listen [::]:443 ssl default_server;
+
+	# ssl证书地址
+    	ssl_certificate     /etc/nginx/cert/onehut.site_bundle.pem;  # pem文件的路径
+    	ssl_certificate_key  /etc/nginx/cert/onehut.site.key; # key文件的路径
+    
+    	# ssl验证相关配置
+    	ssl_session_timeout  60m;    #缓存有效期
+    	ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;    #加密算法
+    	ssl_protocols TLSv1 TLSv1.1 TLSv1.2;    #安全链接可选的加密协议
+    	ssl_prefer_server_ciphers on;   #使用服务器端的首选算法
+	
+	root /var/www;
+
+	# Add index.php to the list if you are using PHP
+	index index.html index.htm index.nginx-debian.html;
+
+	# 域名，多个以空格分开
+	server_name onehut.site www.onehut.site;
+
+	location / {
+		# First attempt to serve request as file, then
+		# as directory, then fall back to displaying a 404.
+		try_files $uri $uri/ =404;
+	}
+}
+```
+
+### 重启nginx
+重启前使用`sudo nginx -t`测试配置文件的正确性
+`sudo nginx -s reload` 重启服务
+
+使用https访问，通过则表示已生效。
+
+
+### 参考
+[Nginx 服务器 SSL 证书安装部署](https://cloud.tencent.com/document/product/400/35244)
+
+[Module ngx_http_ssl_module](https://nginx.org/en/docs/http/ngx_http_ssl_module.html)
 
 [What are some common use cases for NGINX?](https://medium.com/@teeppiphat/nginx-and-use-cases-8ced7e2d80dc)
