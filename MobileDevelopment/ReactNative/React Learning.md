@@ -115,3 +115,12 @@ return (
 
 
 
+### Routing
+
+[React Router Native Tutorial](https://www.youtube.com/watch?v=VYSIT2leZ1g)
+
+[React Native File Based Routing with Expo Router](https://galaxies.dev/react-native-file-based-routing)
+
+
+
+
