@@ -6,7 +6,19 @@ js可以在哪里运行？
 
 1. 浏览器中的console中运行。
 
+打开Safari或者Google Chrome中的调试工具
+Safari： Settings -> Advanced -> Show Dev..in menu bar(最低下)
+
+Inspect Elements -> Console 中输入：
+
+`$ console.log("Run JS Here") `
+
+`$ alert("Hi js")`
+
 2. node中运行。
+
+`node your_file.js`
+
 
 js编辑器有哪些？
 

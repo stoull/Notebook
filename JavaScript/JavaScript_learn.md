@@ -1,4 +1,6 @@
 
+// 在JS中所有都function是Function object.
+// 在JavaScript的世界里，一切都是对象。
 
 // This is an in-line comment.
 
@@ -12,6 +14,7 @@ Data types: `undefined`, `null`, `boolean`, `string`, `symbol`, `bigint`, `numbe
 
 块级声明变量（只有作用域里才能用的变量）
 `let camper = "James";`
+
 块级声明常量（只有作用域里才能用的变量）
 `const FAV_PET = "Cats";`
 `const product = 8 * 10;`
@@ -21,6 +24,14 @@ Data types: `undefined`, `null`, `boolean`, `string`, `symbol`, `bigint`, `numbe
 
 `const product = 11%2;`
 `const ourStr = "I come first. " + "I come second.";`
+
+分号的使用
+有分号的支持者和不支持者之争
+
+但要注意：
+
+* 对 return 语句要小心。如果你要返回什么，请在返回的同一行添加（对break、throw、continue也是如此）。
+* 不要用圆括号（即 (）开始一行，因为这些圆括号可能会与前一行串联起来，形成一个函数调用，或一个数组元素引用。
 
 转义符为`\`
 ```const sampleStr = "Alan said, \"Peter is learning JavaScript\".";```
@@ -58,6 +69,15 @@ substr(start, length)
 // 大小定转换
 'a'.toUpperCase()
 'A'.toLowerCase() 
+
+#### 模板字符串
+
+```
+let max = Number.MAX_SAFE_INTEGER;
+let max1 = max + 1
+let max2 = max + 2
+console.log(`max is : ${max}. max1 == max2 is: ${max1==max2}`);
+```
 
 ### array
 
@@ -279,7 +299,11 @@ const a = parseInt("007");		// 7 string to int 默认为十进制，可设置进
 
 const a = parseInt("10011", 2);		// 19 
 
+Number 和 String 之间的相互转换应该是比较复杂的，将字符串转化为数字的方法很多，比如Number()、parseInt()、parseFloat()。
 
+### 装箱转换
+
+上面提到，Number、String、Boolean、Symbol 基本类型在对象中都有对应的类，所谓装箱转换，就是把基本类型转换为对应的对象。
 
 ## ES6
 
@@ -309,6 +333,8 @@ let magic = function() {
   return new Date();
 };
 ```
+
+### Arrow Function（箭头函数）
 传参数：
 `const doubler = (item) => item * 2;`
 
@@ -361,6 +387,13 @@ const {today, tomorrow} = HIGH_TEMPERATURES;
 等同与：
 const today = HIGH_TEMPERATURES.today;
 const tomorrow = HIGH_TEMPERATURES. tomorrow;
+
+let [one, two, three] = foo;
+
+//等同于
+let one = foo[0];
+let two = foo[1];
+let three = foo[2];
 
 // 赋新值 可嵌套
 const {today: highToday, tomorrow: highTomorrow} = HIGH_TEMPERATURES;
@@ -480,6 +513,18 @@ import subtract from './math_functions.js'; // 这里 subtract 就是function()
 
 ### Promise
 
+A Promise is a proxy for a value not necessarily known when the promise is created.
+
+一个Promise有以下状态
+
+* `pending`: initial state, neither fulfilled nor rejected.
+* `fulfilled`: meaning that the operation was completed successfully.
+* `rejected`: meaning that the operation failed.
+
+A promise is said to be settled if it is either fulfilled or rejected, but not pending.:
+
+![Promise](./images/promises.png)
+
 ```
 const makeServerRequest = new Promise((resolve, reject) => {
   let responseFromServer = true;
@@ -499,6 +544,8 @@ makeServerRequest.catch(error => {
   console.log(error);
 });
 ```
+
+#### Chained Promises
 
 
 ## Regular Expressions
@@ -608,7 +655,16 @@ wrongText.replace(silverRegex, "blue");	// 结果为 "The sky is blue"
 
 console.log(typeof "");
 
+avaScript 规定了八种数据类型：
+* 未定义（Undefined）
 
+* 空（Null）
+* 数字（Number）
+* 字符串（String）
+* 布尔值（Boolean）
+* 符号（Symbol）
+* 任意大整数（BigInt）
+* 对象（Object）。
 
 
 ## Object Oriented Programming
@@ -808,14 +864,9 @@ duck.glide();
 ```
 
 
+[MDN-JavaScript](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript)
 
-
-
-
-
-
-
-
+[关于 JavaScript 数据类型，有哪些你不知道的细节？](https://juejin.cn/post/7008332322101526565)
 
 
 

@@ -27,3 +27,7 @@ openssl s_client -connect sqimg.qq.com:443
 openssl s_client -connect sqimg.qq.com:443 -servername sqimg.qq.com
 
 ```
+
+
+#### 查看证书信息
+`openssl x509 -noout -text -in ca.crt`

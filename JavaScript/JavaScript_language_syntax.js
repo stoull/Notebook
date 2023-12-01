@@ -54,7 +54,7 @@ let employee = {
 	overtime: 10,
 	rate: 18,
 	getWage: function() {
-		return baseSalary + (this.overtime * this.rate);
+		return this.baseSalary + (this.overtime * this.rate);
 	}
 }
 console.log(employee.getWage());
@@ -96,9 +96,9 @@ function Circle(radius) {
 
 	// 类方法
 	let turnAround = function(factor) {
-	let defaultLocation = {x: 0, y:0};
-	console.log('trun around at location: ' + defaultLocation);
-		// ...
+		let defaultLocation = {x: 0, y:0};
+		console.log('trun around at location: ' + defaultLocation);
+			// ...
 	}
 
 	this.radius = radius;
@@ -125,7 +125,7 @@ const anotherCirle = new Circle(2);
 // anotherCirle.defaultLocation = 1;
 anotherCirle.draw();
 
-// 在JS中所有都function是object.
+// 在JS中所有都function是Function object.
 const Circel_similar = new Function('radius', `
 this.radius = radius;
 this.draw = function() {

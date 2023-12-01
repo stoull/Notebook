@@ -1,11 +1,4 @@
-# React
-
-React - Declarative UI Programming
-
-React is a JavaScript library for building User Interfaces
-
-> In a model view controller architecture, React is the 'View' which is responsible for how the
-app looks and feels
+# React Native
 
 [reactnative docs](https://reactnative.dev/docs/getting-started)
 
@@ -82,6 +75,7 @@ Warning: Invalid version react-native@0.72.3 for expo sdkVersion 49.0.0. Use rea
 > * Solito: React Native + Next.js
 > * axios
 > * [Watchman](https://facebook.github.io/watchman/)
+> * JavaScriptCore.Framework
 
 React Native 工具:
 
@@ -127,5 +121,10 @@ return (
 [React Native File Based Routing with Expo Router](https://galaxies.dev/react-native-file-based-routing)
 
 
+### Deploy and Pubish
 
+[https://juejin.cn/post/7190203133585260599](https://juejin.cn/post/7190203133585260599)
 
+[集成热更新（CodePush）](https://todoit.tech/rn/devops/hotfix.html)
+
+[React-Native私服热更新的集成与使用](https://cloud.tencent.com/developer/article/1896497)
