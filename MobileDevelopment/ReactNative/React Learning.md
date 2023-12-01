@@ -4,6 +4,9 @@ React - Declarative UI Programming
 
 React is a JavaScript library for building User Interfaces
 
+> In a model view controller architecture, React is the 'View' which is responsible for how the
+app looks and feels
+
 [reactnative docs](https://reactnative.dev/docs/getting-started)
 
 [React Native 中文网](https://reactnative.cn/docs/getting-started)
@@ -11,6 +14,8 @@ React is a JavaScript library for building User Interfaces
 [React-Native学习指南](https://github.com/reactnativecn/react-native-guide)
 
 [集成到现有原生应用](https://reactnative.cn/docs/integration-with-existing-apps?language=swift#2-事件处理)
+
+[Add React Native to existing iOS app 2022](https://www.youtube.com/watch?v=3wftC30CN2I)
 
 [React Native Upgrade Helper](https://react-native-community.github.io/upgrade-helper/?from=0.71.3&to=0.72.3)
 
