@@ -24,9 +24,9 @@ app looks and feels.
 * JSX使用`className`而非`class`, 因`class`被Javascript占用。
 * Any JSX element can be written with a self-closing tag, and every element must be closed. 如`<hr />`
 
-* Components are the core of React. Everything in React is a component.
+* Components are the core of React. Everything in React is a **component**.
 	
-	- a stateless functional component:
+	- a **stateless functional component**:
 	
 	```
 	const DemoComponent = function() {
@@ -36,7 +36,7 @@ app looks and feels.
 };
 	```
 * React component is an `ES6` class which extends `React.Component`. It has a render method that returns HTML (from JSX) or null. 
-	- another way to define components class `MyComponent `:
+	- another way to define **components** class `MyComponent `:
 	
 	```
 	class Kitten extends React.Component {
@@ -62,5 +62,27 @@ app looks and feels.
 	```
 * components can nest. break down your UI into its basic building blocks, and those pieces become the components.
 * JSX使用props在各Components间进行传值,如：
-	`const Welcome = (props) => <h1>Hello, {props.user}!</h1>`
-	`<Welcome user={user.name}`
+
+	- 单个props值
+	`const Welcome = (props) => <h1>Hello, {props.username}!</h1>` 定义
+	传值: `<Welcome username={user.name}` 
+	- 多个props值
+	
+	```
+	<ParentComponent>
+  <ChildComponent colors={["green", "blue", "red"]} />
+</ParentComponent>
+	
+	const ChildComponent = (props) => <p>{props.colors.join(', ')}</p>
+	```
+	- 默认值及类型约束
+	 
+	`ChildComponent.defaultProps = { location: 'San Francisco' }`： 设置默认值。
+	
+	`MyComponent.propTypes = { handleClick: PropTypes.func.isRequired }`
+	`PropTypes.func` 表示MyComponent的prop类型是function, isRequired表示一定要赋这个`function`值。更多类型及使用可参见[prop-types](https://www.npmjs.com/package/prop-types)
+	
+	- ES6 class component 中使用props
+	
+		在字Components中使用`this.props.theParameters` 访问theParameters参数
+	
