@@ -123,8 +123,16 @@ return (
 
 ### Deploy and Pubish
 
+[Metro](https://metrobundler.dev/docs/getting-started)
+
+[Configuring Metro](https://metrobundler.dev/docs/configuration/)
+
 [https://juejin.cn/post/7190203133585260599](https://juejin.cn/post/7190203133585260599)
 
 [集成热更新（CodePush）](https://todoit.tech/rn/devops/hotfix.html)
 
 [React-Native私服热更新的集成与使用](https://cloud.tencent.com/developer/article/1896497)
+
+### 蓝牙
+
+[React Native BLE蓝牙通信](https://blog.csdn.net/withings/article/details/71378562)

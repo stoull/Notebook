@@ -59,9 +59,51 @@ server {
 
 ## 反向代理和负载均衡
 
-## HTTPS配置
+```
+upstream backend {
+	ip_hash;	# 同一个客户的请求会被分配到同一个地址
+	# 默认是循环，而weight是配制权重
+	server 127.0.0.1:8000 weight=3;
+	server 127.0.0.1:8001;
+	server 127.0.0.1:8002;
+}
+
+server {
+	listen		80;
+	server_name	localhost;
+
+	location /app {
+	  proxy_pass http://backend
+	}
+}
+
+```
+
 
 ## 虚拟主机
+在同一个服务器上运行多个服务，在server块中，只要指定特server name和不同端口, 就可以在同同一个服务器上运行多个主机。
+
+### 不同服务共同端口
+
+```
+
+# nginx 80端口配置 （监听a二级域名）
+server {
+    listen  80;
+    server_name     a.com;
+    location / {
+        proxy_pass      http://localhost:8080; # 转发
+    }
+}
+
+# nginx 80端口配置 （监听b二级域名）
+server {
+    listen  80;
+    server_name     b.com;
+    location / {
+        proxy_pass      http://localhost:8081; # 转发
+    }
+```
 
 ## SSL证书
 
