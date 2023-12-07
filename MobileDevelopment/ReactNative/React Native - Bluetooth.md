@@ -1,5 +1,7 @@
 # React Native - Bluetooth
 
+主要有两个库：
+
 [react-native-ble-plx](https://github.com/dotintent/react-native-ble-plx#documentation--support)
 
 
