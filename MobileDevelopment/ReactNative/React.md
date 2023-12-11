@@ -119,24 +119,50 @@ ou have access to the state object throughout the life of your component. You ca
 使用`this.state = {}`进行定义，使用`this.state.name`获取其中的值，如下：
 	
 ```
-class MyComponent extends React.Component {
+const styles = {
+  color: 'red',
+  fontSize: 22
+}
+
+
+class DisplayMessages extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: 'Initial State'
-    };
-    this.handleClick = this.handleClick.bind(this);
+      input: '',
+      messages: []
+    }
+    this.handleChange = this.handleChange.bind(this);
+    this.submitMessage = this.submitMessage.bind(this);
   }
-  handleClick() {
+
+  handleChange(event) {
     this.setState({
-      name: 'React Rocks!'
-    })
+      input: event.target.value
+    });
   }
+
+  submitMessage(event) {
+    this.setState({
+      input: '',
+      messages: this.state.messages.concat([this.state.input])
+    });
+  }
+
   render() {
+    const messageItems = this.state.messages.map(item => {
+      return <li key={item}>{item}</li>
+    })
     return (
       <div>
-        <button onClick={this.handleClick}>Click Me</button>
-        <h1>{this.state.name}</h1>
+        <h2>Type in a new Message:</h2>
+
+        <input value = {this.state.input} onChange={this.handleChange}/>
+        <button onClick={this.submitMessage}> Add message </button>
+        <ul style={styles}>
+          {messageItems}
+        </ul>
+
       </div>
     );
   }
