@@ -24,6 +24,8 @@
 
 
 * `brew install npm`
+
+#### 使用expo
 * `npx create-expo-app --help ` :会提示安装`expo`,进行安装`expo`, 使用如下:
 
 	* `$ npx create-expo-app <path> [options]` : 使用`npx`初始化 expo
@@ -56,6 +58,17 @@ Warning: Invalid version react-native@0.72.3 for expo sdkVersion 49.0.0. Use rea
 * `npx expo install --fix`
 * `npm start --clean-cache`
 
+#### 使用 React Native CLI
+
+```
+brew install node
+brew install watchman
+npx react-native@latest init AwesomeProject
+```
+
+选择特定版本的rn
+
+`npx react-native@X.XX.X init AwesomeProject --version X.XX.X`
 
 ### React Native vs React JS
 

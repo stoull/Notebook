@@ -10,6 +10,17 @@ app looks and feels.
 	- `ReactDOM.render(JSX, document.getElementById('root'))`. This function call is what places your JSX into React's own lightweight representation of the DOM. 
 
 
+## React安装及脚手架工具
+
+创建新的app: `create-react-app`: `npx create-react-app my-app`
+
+`react-scripts`: `npm install react-scripts@latest`
+`npm install --save-dev jest`
+
+Webpack： `npm install webpack webpack-cli --save-dev`
+
+[serve](https://www.npmjs.com/package/serve): serve helps you serve a static site, single page application or just a static file (no matter if on your device or on the local network).
+
 ## JSX
 
 形如：
