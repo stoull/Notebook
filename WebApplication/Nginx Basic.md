@@ -189,3 +189,5 @@ http
 [Nginx 基本配置详解](https://zhuanlan.zhihu.com/p/24524057?refer=wxyyxc1992)
 
 [NGINX Basics and Best Practices](https://www.nginx.com/c/nginx-basics-and-best-practices/)
+
+[详细解析 nginx uri 如何匹配 location 规则 ](https://www.cnblogs.com/dreamanddead/p/how-uri-match-location-rule-in-nginx.html)

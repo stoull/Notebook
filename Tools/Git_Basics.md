@@ -470,6 +470,24 @@ Finally push your newly created branch to remote repository.
 如:
 `git log -p -- MyGro/NewVersion/PopView/MGPresentViewController.swift`
 
+### 23 remote: error: object file ./objects/76/file is empty
+
+* 1 删除所有因为数据损坏导致的空对象文件(remove any empty object files)。执行第一步没有任何输出
+
+`$ find .git/objects/ -type f -empty | xargs rm`
+
+* 2 下载上一步删除的对象文件(fetch down the missing objects)
+
+`$ git fetch -p`
+
+
+```
+remote: error: object file ./objects/76/371ae3bca99d9d8463e21742ef9d41bc47dab9 is empty
+```
+
+* 3 做一次全面的存储对象检查(do a full object store check)
+
+`git fsck --full`
 
 ## Git Basics
 

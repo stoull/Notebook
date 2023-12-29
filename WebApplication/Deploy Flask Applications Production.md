@@ -28,7 +28,7 @@ WARNING: This is a development server. Do not use it in a production deployment.
 - gunicorn是Python语言的WSGI HTTP 服务器，即Web Servergatway Intergate
 - 与gunicorn类似的库还有uSWGI
 
-### WSGI - Python Web Server Gateway Interface
+### WSGI - Python Web Server Gateway Interface(gunicorn)
 
 WSGI指定了web服务器和Python web应用或web框架之间的标准接口，以提高web应用在一系列web服务器间的移植性。
 
@@ -52,6 +52,8 @@ WSGI指定了web服务器和Python web应用或web框架之间的标准接口，
 or
 
 `gunicorn -b 0.0.0.0:8000 app:app`
+
+`gunicorn -w 3 --forwarded-allow-ips="10.170.3.217,10.170.3.220" test:app`
 
 注意将使用的端口开放访问此处是`8000`号端口
 

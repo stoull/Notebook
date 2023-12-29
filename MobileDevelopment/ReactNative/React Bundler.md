@@ -1,5 +1,12 @@
-# About Metro Bundler
+# About Bundler
 
+## Bundle with React Native
+
+`react-native bundle --platform ios --entry-file index.js --bundle-output ./bundles/main.jsbundle --assets-dest  ./bundles --dev false`
+
+`react-native bundle --entry-file index.js --platform ios --dev true --bundle-output ./ios/bundle/main.jsbundle --assets-dest ./ios/bundle`
+
+You can use the `react-native-xcode.sh` script in `node_modules/react-native/scripts/` to generate that pre-bundled file.
 
 ## Bundle with Metro
 
@@ -25,7 +32,7 @@ const config = {};
 module.exports = mergeConfig(getDefaultConfig(__dirname), config);
 ```
 
-* eact-native
+* react-native
 
 `npm install @react-native/metro-config`
 
