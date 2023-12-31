@@ -9,6 +9,22 @@ app looks and feels.
 * Because JSX is not valid JavaScript, JSX code must be compiled into JavaScript. transpiler like [Babel.js](https://babeljs.io/setup).
 	- `ReactDOM.render(JSX, document.getElementById('root'))`. This function call is what places your JSX into React's own lightweight representation of the DOM. 
 
+### install
+
+`npm install react react-dom`
+
+```
+import { createRoot } from 'react-dom/client';
+
+// Clear the existing HTML content
+document.body.innerHTML = '<div id="app"></div>';
+
+// Render your React component instead
+const root = createRoot(document.getElementById('app'));
+root.render(<h1>Hello, world</h1>);
+```
+
+[Add React to an Existing Project](https://react.dev/learn/add-react-to-an-existing-project)
 
 ## React安装及脚手架工具
 
