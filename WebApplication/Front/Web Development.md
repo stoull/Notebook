@@ -10,8 +10,6 @@ Bootstrap is a front end framework used to design responsive web pages and appli
 
 [Build fast, responsive sites with Bootstrap](https://getbootstrap.com)
 
-#### [jQuery](https://www.freecodecamp.org/learn/front-end-development-libraries/)
-
 jQuery is a JavaScript library designed to simplify HTML DOM tree traversal and manipulation, as well as event handling, CSS animations, and Ajax. 
 
 installation: `npm install jquery`
@@ -19,6 +17,41 @@ installation: `npm install jquery`
 [jQuery](https://jquery.com)
 
 [Downloading jQuery](https://jquery.com/download/)
+
+#### import 
+
+方案一：
+
+```
+<script type="text/javascript" src="./static/js/jquery-3.7.1.min.dev.js"></script>
+	or 
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+// then can use jquery in main.js
+<script type="text/javascript" src="./static/js/main.js"></script>
+	
+```
+
+方案二：
+
+```
+var script = document.createElement('script');
+script.src = './static/js/jquery-3.7.1.min.dev.js'; // or 'https://code.jquery.com/jquery-3.7.1.min.js'; Check https://jquery.com/ for the current version
+document.getElementsByTagName('head')[0].appendChild(script);
+```
+
+测试：
+
+```
+$(document).ready(function (){
+    console.log('document is ready')
+
+    console.log(window.jQuery)
+	console.log(window.jQuery === $);
+	console.log(typeof($));
+})
+```
+<script> 需要在<head> 位置才能在ready之前
+
 
 #### 选择器`$`
 
