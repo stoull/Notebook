@@ -57,6 +57,10 @@ su 和 sudo 用户切换及权限提升
 1. `pkill -u username`: 删除前终结用户的所有进程
 2. `userdel -r username `: 删除用户，`-r`表示删除用户的同时，将其用户目录和系统内与其相关的内容删除。
 
+#### 将用户添加到sudo
+
+`sudo adduser <username> sudo`
+`sudo usermod -a -G sudo <username>`
 
 
 ## 用户组
