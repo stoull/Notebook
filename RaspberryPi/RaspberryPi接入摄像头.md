@@ -91,6 +91,22 @@ CSI(Camera Serial Interface)是由MIPI联盟下Camera工作组指定的接口标
 `raspivid` 命令
 
 
+### 安装摄像头
+
+```
+$ vcgencmd get_camera
+supported=1 detected=1, libcamera interfaces=0
+```
+
+
+[Introducing the Raspberry Pi Cameras](https://www.raspberrypi.com/documentation/computers/camera_software.html#introducing-the-raspberry-pi-cameras)
+
+`sudo apt install libcamera-apps`
+
+刷机：
+https://www.cnblogs.com/glodears/p/15539231.html
+https://miuiver.com/how-to-root-xiaomi-phone/
+
 ### raspberrypi-guide.github.io
 
 [Working with USB webcams on your Raspberry Pi](https://raspberrypi-guide.github.io/electronics/using-usb-webcams)
