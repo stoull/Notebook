@@ -103,11 +103,25 @@ supported=1 detected=1, libcamera interfaces=0
 
 `sudo apt install libcamera-apps`
 
-刷机：
-https://www.cnblogs.com/glodears/p/15539231.html
-https://miuiver.com/how-to-root-xiaomi-phone/
 
 ### raspberrypi-guide.github.io
+
+
+## RaspberryPi 上开启
+
+`sudo raspi-config` 通过上下左右键控制选择项
+
+`Interface Options` -> `Legacy Camera Eable/disable`
+
+https://forums.raspberrypi.com/viewtopic.php?t=336065
+
+`vcgencmd get_camera`
+ 
+`raspistill`
+
+[Building libcamera and rpicam-apps](https://www.raspberrypi.com/documentation/computers/camera_software.html#building-libcamera-and-rpicam-apps)
+
+[Getting started with the Camera Module](https://projects.raspberrypi.org/en/projects/getting-started-with-picamera/0)
 
 [Working with USB webcams on your Raspberry Pi](https://raspberrypi-guide.github.io/electronics/using-usb-webcams)
 

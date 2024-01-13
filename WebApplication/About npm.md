@@ -156,6 +156,24 @@ $ npm root -g
 
 `npm root -g`
 
+## 移除 uninstall package
+
+移除`dependencies`中的包:
+
+`npm uninstall <package_name>`
+
+移除`devDependencies`中的包：
+
+```
+npm uninstall --save-dev <package_name>
+# or
+npm uninstall -D <package_name>
+```
+
+移除`global`中的包
+
+`npm uninstall -g <package_name>`
+
 ### 其它
 
 * `npm help`: 查看帮忙
