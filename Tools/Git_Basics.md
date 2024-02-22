@@ -489,6 +489,24 @@ remote: error: object file ./objects/76/371ae3bca99d9d8463e21742ef9d41bc47dab9 i
 
 `git fsck --full`
 
+### 24 移除已被追踪（tracked）的文件
+
+有时候更新了`.gitignore`文件，但如果新忽略的文件之前已经是`tracked`的状态，那么已经是`tracked`的文件还会显示已更改的状态。
+
+* `.gitignore`文件只是用来防止将特定的未跟踪的文件`untrack`或文件夹加入`staged`。如果是`tracked`的就不能了。
+
+这个时候需要手动移除`tracked`的文件为`untrack`，这样`.gitignore`的策略就能对对应的文件生效了。
+
+从index中移除文件：
+
+`git rm --cached <file>`
+
+如果是文件夹，则递归（recursively）的移除其中的所有文件：
+
+`git rm -r --cached <folder>`
+
+
+
 ## Git Basics
 
 *****

@@ -87,6 +87,7 @@ const YourApp = () => {
 AppRegistry.registerComponent('YourApp', () => YourApp);
 ```
 
+[深入理解react-native](http://blog.ilibrary.me/2016/12/25/react-native-internal#react-native-架构)
 
 [Add React Native to existing iOS](https://www.youtube.com/watch?v=3wftC30CN2I)
 

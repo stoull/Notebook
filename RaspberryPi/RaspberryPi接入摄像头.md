@@ -116,8 +116,19 @@ supported=1 detected=1, libcamera interfaces=0
 https://forums.raspberrypi.com/viewtopic.php?t=336065
 
 `vcgencmd get_camera`
- 
-`raspistill`
+
+`libcamera-hello --list-cameras`
+
+`rpicam-jpeg -o rpicam-test.jpg`
+
+`libcamera-still -o rpicam-test.jpg`
+
+```
+camera_auto_detect=0    # instead of camera_auto_detect=1
+dtoverlay=imx708        # at the bottom of the file
+```
+
+[Camera Software](https://www.raspberrypi.com/documentation/computers/camera_software.html#getting-started)
 
 [Building libcamera and rpicam-apps](https://www.raspberrypi.com/documentation/computers/camera_software.html#building-libcamera-and-rpicam-apps)
 
