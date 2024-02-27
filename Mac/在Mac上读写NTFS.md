@@ -1,19 +1,35 @@
 # Mac上读写NTFS
 
 
-## 方案一 使用macFUSE
-1. 下载并安装最新的mac版FUSE [http://osxfuse.github.io. ](http://osxfuse.github.io)
+## 安装macFUSE
+* 法一、 下载并安装最新的mac版FUSE [http://osxfuse.github.io. ](http://osxfuse.github.io)
 这个步骤需要重启mac，安装后打开设置app, 在最底部可以找到`macFUSE`,能找到就可以
+	
+	也可以是在[macFUSE](https://osxfuse.github.io)网站上
 
-2. 使用HomeBrew 安装 `NTFS-3G`
->`brew tap gromgit/homebrew-fuse`
-`brew install ntfs-3g`
-
+* 法二、 使用HomeBrew 安装 `NTFS-3G`
+>
 ```
-brew tap gromgit/homebrew-fuse
 brew install --cask macfuse
+brew tap gromgit/homebrew-fuse
 brew install ntfs-3g-mac 
 ```
+
+### 查看是否安装成功
+
+
+* Intel芯片电脑：`/usr/local/bin/ntfs-3g --version`
+* M芯片电脑：`/opt/homebrew/Cellar/ntfs-3g-mac/2022.10.3/bin/ntfs-3g --version` 注意版本号2022.10.3
+
+如果重新运行`brew install ntfs-3g-mac` 会看到如下的告警信息，`2022.10.3`就是对应的版本
+
+```
+Warning: gromgit/fuse/ntfs-3g-mac 2022.10.3 is already installed and up-to-date.
+To reinstall 2022.10.3, run:
+  brew reinstall ntfs-3g-mac
+```
+
+## 挂载NTFS
 
 3. 手动挂载NTFS. **注意：将disk4s2更换为对应的分区**
 
