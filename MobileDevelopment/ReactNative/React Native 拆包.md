@@ -1,5 +1,12 @@
 # React-Native分包
 
+
+### 目前App的方式
+
+![RN-Package-main.jsbundle.png](../../images/MobileDevelopment/RN-Package-appdemo.png)
+
+
+
 ### 需求及分包
 
 React Native的功能，在开发时一般是作为功能模块或者依赖包以整体的方式进行开发。然后使用打包工具进行打包，一般会将代码，依赖库和资源文件打出一个`main.jsbundle`文件，在原生app上运行，如下图：
@@ -67,12 +74,37 @@ RN模块与RN模块之间可通过原生为桥梁或者在开发时通过JS引�
 
 #### 安卓端
 
-* 创建`RCTBridge`实例:
+```
+    /**
+     * 初始化React Native环境，并加载指定的ReactPackage列表及预打包的bundle文件
+     *
+     * @param context         Android应用上下文
+     * @param packages        需要加载的ReactPackage列表
+     * @param bundleAssetName 需要加载的bundleName
+     */
+    public static void initRNBundle(Context context, ReactPackage packages, String bundleAssetName) {
+        // 初始化ReactInstanceManager配置
+        ReactInstanceManagerBuilder builder = ReactInstanceManager.builder().setApplication((Application) context).setJSMainModulePath("index")  // JavaScript入口模块名
+                .addPackage(packages).setBundleAssetName(bundleAssetName).setUseDeveloperSupport(false).setInitialLifecycleState(LifecycleState.BEFORE_CREATE);
+        mReactInstanceManager = builder.build();
+        // 异步加载
+        if (!getReactInstanceManager().hasStartedCreatingInitialContext()) {
+            getReactInstanceManager().createReactContextInBackground();
+        }
+
+        getReactInstanceManager().addReactInstanceEventListener((ReactInstanceManager.ReactInstanceEventListener) reactContext -> {
+            //加载完成
+        });
+    }
+```
 
 
 ### 实操作
 
-待年后，赶上安卓后
+已实现在按独立模块分包，并在app启动后加载对应的非界面RN包，示例代码：
+
+- iOS: [http://20.6.1.65:9265/chenchangchun/SeparateRNPackage ](http://20.6.1.65:9265/chenchangchun/SeparateRNPackage)
+- 安卓: [http://20.6.1.65:9265/chenchangchun/SeparateRNPackage](http://20.6.1.65:9265/chenchangchun/SeparateRNPackage)
 
 
 参考资料：
