@@ -29,6 +29,13 @@ To reinstall 2022.10.3, run:
   brew reinstall ntfs-3g-mac
 ```
 
+### 权限管理 (需要重新启动)
+
+在首次挂载的时候，弹出权限提示，并且报错: `mount_macfuse: the file system is not available (1)`
+
+**System Settings** -> **Privacy & Security** -> `System software rom developer "Benjamin Fleischer" was blocked from loading.` -> **Allow** -> **Restart Mac**
+
+
 ## 挂载NTFS
 
 3. 手动挂载NTFS. **注意：将disk4s2更换为对应的分区**
