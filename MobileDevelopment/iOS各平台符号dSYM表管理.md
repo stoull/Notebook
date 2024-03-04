@@ -1,6 +1,14 @@
-# Bugly上传iOS 符号表
+# Bugly及Google Crashlytics上传iOS符号表
 
-## 下载bugly的符号表工具
+## 工具
+
+查看当前机器上的所有符号表：
+
+`mdfind -name .dSYM | while read -r line; do dwarfdump -u "$line"; done`
+
+## Bugly上传iOS 符号表
+
+### 下载bugly的符号表工具
 
 从 [Bugly Downloads](https://bugly.qq.com/v2/downloads) 页中找到**iOS端**的符号表工具，并下载。
 
@@ -9,14 +17,14 @@
 
 [Bugly iOS 符号表配置](https://bugly.qq.com/docs/user-guide/symbol-configuration-ios/?v=20240216160622)
 
-## dSYM文件在哪里？
+### dSYM文件在哪里？
 
 打到对应的Archives->'右键Show in Finder'->'选择xx.xcarchive文件'->'右键Show Package Content'->'dSYMs'->'找到yourAppName.app.dSYM'，就是它了！！！
 
 或通过`通过iTunes Connect找回`
 
 
-## 如何上传符号表到bugly平台？
+### 如何上传符号表到bugly平台？
 
 * 目前只能通过上面下载的符号表工具进行上传符号表，具体官方说明为：
 
@@ -64,7 +72,7 @@ ava -jar buglyqq-upload-symbol.jar -appid a278f01047
 
 如果看到200则表示上传成功，否则会看到错误日志信息。
 
-### 如未安装Java 
+#### 如未安装Java 
 
 如报:`The operation couldn’t be completed. Unable to locate a Java Runtime.`表示没有安装java, 或者使用`java -version`检查
 
@@ -83,7 +91,7 @@ Java(TM) SE Runtime Environment (build 1.8.0_401-b10)
 Java HotSpot(TM) 64-Bit Server VM (build 25.401-b10, mixed mode)
 ```
 
-## 上传
+### 上传到Bugly
 
 * 进入到下载的符号表工具：`cd /Users/hut/Downloads/buglyqq-upload-symbol-v3.3.5`
 * 运行上传指令：
@@ -102,3 +110,10 @@ java -jar buglyqq-upload-symbol.jar -appid 4a76xxxxx -appkey 64fa0ebc-aab3-4665-
 ##[info]-----------------------------------------------------------------------------
 ##[info]-----------------------------------------------------------------------------
 ```
+
+
+## Google Crashlytics 上传iOS 符号表
+
+参考：
+
+[Get readable crash reports in the Crashlytics dashboard](https://firebase.google.com/docs/crashlytics/get-deobfuscated-reports?platform=ios)
