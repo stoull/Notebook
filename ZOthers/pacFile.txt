@@ -1,0 +1,23 @@
+! Put user rules line by line in this file.
+! See https://adblockplus.org/en/filter-cheatsheet
+
+! ||api.github.com
+! ||githubusercontent.com
+medium.com
+! cambridgeenglish.org
+! libgen.rs
+
+sednax.com
+duotai.love
+xpp.li
+w3schools.com
+wujievpn.xyz
+
+theguardian.com
+ycombinator.com
+
+! douban.com
+! 163.com
+! qq.com
+
+! grammarly.com

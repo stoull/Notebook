@@ -88,6 +88,8 @@ carthage update Alamofire --platform iOS
 
 ## 更新依赖包
 
+`carthage update --no-build` 只更新代码不编译
+
 `carthage update --use-xcframeworks --platform iOS`
 
 `carthage update --platform iOS`

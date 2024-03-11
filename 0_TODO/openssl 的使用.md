@@ -7,6 +7,3 @@
 
 查看证书：
 `echo | openssl s_client -servername projectevcharger.com:8443`
-
-
-openssl s_client -showcerts -connect testcharge.growatt.com:9091
