@@ -87,6 +87,23 @@ Build version 15C500b
 	
 	`xcodebuild clean build -workspace "ProjectName.xcworkspace" -scheme "ProjectName" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED="NO"`
 	
+* 获取target信息,版号,build号等，以Project Vault为例：
+
+	```
+	$ xcodebuild -showBuildSettings -target Vault
+	....
+	INFOPLIST_KEY_CFBundleDisplayName = Vault
+	PRODUCT_NAME = Vault
+	MARKETING_VERSION = 1.0
+	CURRENT_PROJECT_VERSION = 24
+	DWARF_DSYM_FILE_NAME = Vault.app.dSYM
+	INFOPLIST_FILE = Vault/Info.plist
+	EXECUTABLE_FOLDER_PATH = Vault.app
+	```
+	获取build号：`xcodebuild -showBuildSettings -target Vault | grep CURRENT_PROJECT_VERSION | sed 's/CURRENT_PROJECT_VERSION = //g'`
+	获取DisplayName：`xcodebuild -showBuildSettings -target Vault | grep INFOPLIST_KEY_CFBundleDisplayName | sed 's/INFOPLIST_KEY_CFBundleDisplayName = //g'`
+	获取ProductName：`xcodebuild -showBuildSettings -target Vault | grep PRODUCT_NAME | sed 's/PRODUCT_NAME = //g'`
+	
 * 列出project中所有的targets, build配置，schemes：
 
 	`xcodebuild -list -project <your_project_name>.xcodeproj`
@@ -113,7 +130,9 @@ Build version 15C500b
 
 如导出iOS App:
 
-`xcodebuild -exportArchive -archivePath iOSApp.xcarchive -exportPath Release/MyApp -exportOptionsPlist OptionsPlist.plist`
+Manual: `xcodebuild -exportArchive -archivePath yourfile.xcarchive -exportPath Release/MyApp -exportOptionsPlist OptionsPlist.plist`
+
+Auto: `xcodebuild -exportArchive -archivePath yourfile.xcarchive -exportPath Release/MyApp -exportOptionsPlist OptionsPlist.plist --allowProvisioningUpdates`
 
 ### 测试
 
@@ -168,13 +187,13 @@ Build version 15C500b
 	<string>ad-hoc</string>
 	<key>provisioningProfiles</key>
 	<dict>
-		<key>AppBundleID</key>
-		<string>AppBundleID</string>
-		<key>AppBundleID.NotificationServiceExtension</key>
-		<string>extensionID</string>
+		<key>AppBundleID like com.xxx.myapp</key>
+		<string>Profile file name</string>
+		<key>AppBundleIDNotificationServiceExtension like extension.com.xxx.myapp</key>
+		<string>Profile file name</string>
 	</dict>
 	<key>signingCertificate</key>
-	<string>iPhone Distribution</string>
+	<string>Certificate Name like iPhone Distribution 此项可选</string>
 	<key>signingStyle</key>
 	<string>manual</string>
 	<key>stripSwiftSymbols</key>

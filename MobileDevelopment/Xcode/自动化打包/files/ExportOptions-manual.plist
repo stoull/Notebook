@@ -8,10 +8,10 @@
 	<string>ad-hoc</string>
 	<key>provisioningProfiles</key>
 	<dict>
-		<key>AppBundleID</key>
-		<string>AppBundleID</string>
-		<key>AppBundleID.NotificationServiceExtension</key>
-		<string>extensionID</string>
+		<key>AppBundleID like com.xxx.myapp</key>
+		<string>Profile file name</string>
+		<key>AppBundleIDNotificationServiceExtension like extension.com.xxx.myapp</key>
+		<string>Profile file name</string>
 	</dict>
 	<key>signingCertificate</key>
 	<string>iPhone Distribution</string>
