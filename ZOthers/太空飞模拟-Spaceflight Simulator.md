@@ -17,6 +17,17 @@
 |第三宇宙速度(third cosmic velocity)|16.7km/s|是指在地球上发射的物体摆脱太阳引力束缚，飞出太阳系所需的最小初始速度。|
 |第四宇宙速度(fourth cosmic velocity)|---|是指在地球上发射的物体摆脱银河系引力束缚，飞出银河系所需的最小初始速度。但由于人们尚未知道银河系的准确大小与质量，因此只能粗略估算，其数值在525公里/秒以上。而实际上，仍然没有航天器能够达到这个速度。|
 
+### 问题
+
+* 怎么样进入地球轨道最省燃料
+* 进入地球的角度及姿势
+	航天飞机重返大气层时的“迎角”为 40 度。
+	* [Why the angle of attack is 40 degrees for shuttle started to enentry](https://www.physicsforums.com/threads/why-the-angle-of-attack-is-40-degrees-for-shuttle-started-to-enentry.1972/)
+	* [How were re-entry angle, altitude, and speed figured to enter the Earth’s atmosphere for crafts such as the Apollo command module, Soyuz or Space Shuttle?](https://www.quora.com/How-were-re-entry-angle-altitude-and-speed-figured-to-enter-the-Earth-s-atmosphere-for-crafts-such-as-the-Apollo-command-module-Soyuz-or-Space-Shuttle)
+* 怎么样让月球捕获及环绕
+
+
+
 [NASA-Welcome to the Beginner's Guide to Rockets](https://www.grc.nasa.gov/www/k-12/rocket/bgmr.html)
 
 [Rockets and rocket launches, explained - NationalGeographic](https://www.nationalgeographic.com/science/article/rockets-and-rocket-launches-explained)
