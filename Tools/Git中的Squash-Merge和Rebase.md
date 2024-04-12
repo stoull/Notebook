@@ -28,3 +28,5 @@ Automatic merge went well; stopped before committing as requested
 Line
 
 [Squash, Merge, or Rebase? - Matt Rickard](https://matt-rickard.com/squash-merge-or-rebase)
+
+[图解4种git合并分支方法](https://yanhaijing.com/git/2017/07/14/four-method-for-git-merge/)
