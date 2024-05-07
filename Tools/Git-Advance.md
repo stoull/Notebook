@@ -137,7 +137,7 @@ Remove all untracked files and directories. (`-f` is `force`, `-d` is `remove di
 ### 8. Merge (with squash) all changes from another branch as a single commit
 ```
 git merge --squash <feature branch>
-git commit 
+git commit
 
 使用`merge`，如果没有冲突会自动`commit`。使用 `--squash` 与使用merge是一样的效果, 但不会commit，不移动HEAD, 所以要额外的commit。其效果相当于将another分支上的多个commit合并成一个，放在当前分支上，原来的commit历史则没有拿过来。可以用来合并多个意义不大的commit.
 判断是否使用`--squash`选项最根本的标准是，待合并分支上的历史是否有意义。
