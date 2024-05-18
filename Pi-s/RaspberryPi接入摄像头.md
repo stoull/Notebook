@@ -88,23 +88,72 @@ CSI(Camera Serial Interface)是由MIPI联盟下Camera工作组指定的接口标
 
 [MIPI CSI2学习（一）：说一说MIPI CSI2](https://blog.csdn.net/u011652362/article/details/81741134)
 
-`raspivid` 命令
+
+## Raspberry Pi CSI接口摄像头
+
+### 硬件购买及安装
+
+详情可参考：[Camera - 硬件信息](https://www.raspberrypi.com/documentation/accessories/camera.html)
+
+
+根据需求购买对应的摄像头，并且需要知道所够买的摄像头的模组类型，像Camera Module v1， Camera Module v2， Camera Module 3， HQ等，可参见上面的硬件说明。后面可能需要根据型号，让RaspberryPi在系统启动时加载对应的驱动程序。
+
+RaspberryPi中需要额外的驱动程序需要配置启动文件`/boot/config.txt`,如：
+
+`dtoverlay=ov5647`: 加载Camera Module v1 模组类型驱动
+`dtoverlay=imx219`: 加载Camera Module v2 模组类型驱动
+`toverlay=imx477`: 加载HQ  Camera 模组类型驱动
+
+> dtoverlay（ Device Tree Overlay）是一种用于在树莓派系统内加载额外的驱动程序和配置的方法，它在树莓派的启动过程中被自动加载
+> dtoverlay（ Device Tree Overlay）在 kernel 启动以后系统加载时候修改或者增加部分dts，最终把整个系统需要的设备驱动全部加载进去。
+
+
+### 检测及测试摄像头软件-`libcamera`
+
+**注意**：`raspistill` has been replaced by `libcamera`.
+
+####  安装`libcamera`
+
+使用命令： `sudo apt install libcamera-apps`
+
+[Camera software - 软件信息](https://www.raspberrypi.com/documentation/computers/camera_software.html#getting-started)
+
+当从CSI接口安装好摄像头后，使用使命令检测:
+
+ * `vcgencmd get_camera`: 检测当时连接的摄像头信息
+* `libcamera-hello --list-cameras`: 检测当时连接的摄像头信息
+
+使用 `vcgencmd get_camera`，如果如下信息，则表示成功识别到摄像头：
+
+```
+$ vcgencmd get_camera
+supported=1 detected=1, libcamera interfaces=1
+```
+
+#### 问题`supported=1 detected=0, libcamera interfaces=1`
+
+```
+pi@hutpi:~ $ vcgencmd get_camera
+supported=1 detected=0, libcamera interfaces=1
+```
+
+```
+pi@hutpi:~ $ libcamera-hello --list-cameras
+No cameras available!
+```
+
+解决方法：
+
+检查摄像头有没有连接好
 
 
 ### 安装摄像头
 
-```
-$ vcgencmd get_camera
-supported=1 detected=1, libcamera interfaces=0
-```
 
+
+`raspivid` 命令
 
 [Introducing the Raspberry Pi Cameras](https://www.raspberrypi.com/documentation/computers/camera_software.html#introducing-the-raspberry-pi-cameras)
-
-`sudo apt install libcamera-apps`
-
-
-### raspberrypi-guide.github.io
 
 
 ## RaspberryPi 上开启
@@ -143,3 +192,6 @@ dtoverlay=imx708        # at the bottom of the file
 
 `ffmpeg -f v4l2 -video_size 1280x720 -i /dev/video0 -frames 1 mage2023-0928-2.jpg`
 
+
+
+[参考 - raspistill: command not found 树莓派4B无法使用raspistill命令](https://blog.csdn.net/weixin_51245887/article/details/124692953?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-5-124692953-blog-130135257.235^v43^pc_blog_bottom_relevance_base7&spm=1001.2101.3001.4242.4&utm_relevant_index=8)
