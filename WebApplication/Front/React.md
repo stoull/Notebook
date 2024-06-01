@@ -133,7 +133,7 @@ Webpack： `npm install webpack webpack-cli --save-dev`
 
 State consists of any data your application needs to know about, that can change over time. You want your apps to respond to state changes and present an updated UI when necessary. 
 
-ou have access to the state object throughout the life of your component. You can update it, render it in your UI, and pass it as props to child components. The state object can be as complex or as simple as you need it to be.
+With State you can access to the state object throughout the life of your component. You can update it, render it in your UI, and pass it as props to child components. The state object can be as complex or as simple as you need it to be.
 
 #### Stateless component  vs Stateful component
 
@@ -199,18 +199,28 @@ class DisplayMessages extends React.Component {
 * `state`用于追踪数据的变化并在界面上发生改变
 * React使用虚拟DOM检测`state`中的属性发生改变时，会触发`render()`方法，以及`prop`中有用到`state`的子视图。但只有有必须渲染的，才会渲染到真正的DOM中。
 *  `state`是私有的，只有在本component才能引用。如果要在子视图中使用，需要通过`props`.
-*  使用`this.setState()`. React 可能 batch multiple setState() calls into a single update. 所以在`setState`中不能直接使用属性`this.state.xxx`,而要使用方法如下：
+*  使用`this.setState()`, 不能直接使用点语法，像`this.state.name='hut'`。
 
-	```
-	this.setState((state, props) => ({
-  counter: state.counter + props.increment
+React可能会等待多个State更改后进行渲染，可能并不能及时刷新界面不能写成如下的形式：
+
+```
+this.setState({
+	counter: prevState.counter + props.increment
+});
+```
+ 为了防止异步渲染，应写成一个函数据的形式：
+
+
+```
+this.setState((state, props) => ({
+	counter: state.counter + props.increment
 }));
-	```
-	```
-	this.setState(state => ({
-  counter: state.counter + 1
+```
+```
+this.setState(state => ({
+	counter: state.counter + 1
 }));
-	```
+```
 * 父子`component`之前的交互，通过props传方法
 
 ### Component 生命周期
