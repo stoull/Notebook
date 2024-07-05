@@ -29,8 +29,12 @@ Ruby enVironment (Version) Manager (RVM)
 
 ## 指令说明
 
+[RVM CLI Usage](https://rvm.io/rvm/cli)
+
 #### 常用指令：
 
+* `reset`     - remove default and current settings, exit the shell.
+* `info`      - show information for current ruby
 * `rvm list`				# 列出已安装的ruby解释器版本
 * `rvm list known`		# 列出可安装的ruby解释器版本
 * `rvm install <version>`	# 安装的ruby版本

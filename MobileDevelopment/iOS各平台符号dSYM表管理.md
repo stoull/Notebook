@@ -60,7 +60,7 @@ java -jar buglyqq-upload-symbol.jar -appid <APP ID>
 示例:
 
 ```
-ava -jar buglyqq-upload-symbol.jar -appid a278f01047
+java -jar buglyqq-upload-symbol.jar -appid a278f01047
  				   -appkey 1e5ab6b3-b6fa-4f9b-a3c2-743d31dffe86 
  				   -bundleid com.tencent.demo.buglyprodemo 
  				   -version 4.3.0 

@@ -76,49 +76,7 @@
 34 限定Ip以及端口 (\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})[^\d]+(\d+)![^\d]）
 ((?:(?:25[0-5]|2[0-4]\d|((1\d{2})|([1-9]?\d)))\.){3}(?:25[0-5]|2[0-4]\d|((1\d{2})|([1-9]?[1-9])))(\:\d){2,5})
 ```
-
-### 先行断言和后行断言
-
-正则表达式的先行断言(lookahead)和后行断言(lookbehind) 或叫 环视，或 预搜索
-
-* `(?=pattern)` 零宽正向先行断言(zero-width positive lookahead assertion)
-
->代表字符串中的一个位置，紧接该位置之后的字符序列能够匹配 pattern。 如： `re(?=gular)`
-
-* `(?!pattern)` 零宽负向先行断言(zero-width negative lookahead assertion)
-
-> 代表字符串中的一个位置，紧接该位置之后的字符序列不能匹配 pattern。  如： `re(?!g)`
-
-* `(?<=pattern)` 零宽正向后行断言(zero-width positive lookbehind assertion)
-
-> 代表字符串中的一个位置，紧接该位置之前的字符序列能够匹配 pattern。 如： `(?<=\w)re`
-
-* `(?<!pattern)` 零宽负向后行断言(zero-width negative lookbehind assertion)
-
-> 代表字符串中的一个位置，紧接该位置之前的字符序列不能匹配 pattern。如： `(?<!\w)re`
-
-#### 后行断言(lookbehind) 例：
-	>
 	
-	```
-	语句 a(?!\+)
-	a+bc
-	ab
-	abc
-	```
-	
-	匹配a, abc, 但不匹配a+bc
-
-#### 先行断言(lookahead) 例：
-	>
-	
-	```  
-	语句: (?<!\+)b
-	a+bc
-	ab
-	abc
-	```
-	匹配ab, abc, 但不匹配a+bc
 	
 - 合法数字判断
 	> `^-?\d*(\.\d+)?$`
@@ -253,3 +211,58 @@ NSString *phoneNumRegexp = @"^\(\\+\\d\{1,2}\\s\?)\?1\?\\-\?\\.\?\\s\?\\(\?\\d\{
 `^(?!").+`
 
 ####More
+
+
+
+
+
+### 先行断言和后行断言
+
+正则表达式的先行断言(lookahead)和后行断言(lookbehind) 或叫 环视，或 预搜索
+
+* `(?=pattern)` 零宽正向先行断言(zero-width positive lookahead assertion)
+
+>代表字符串中的一个位置，紧接该位置之后的字符序列能够匹配 pattern。 如： `re(?=gular)`
+
+* `(?!pattern)` 零宽负向先行断言(zero-width negative lookahead assertion)
+
+> 代表字符串中的一个位置，紧接该位置之后的字符序列不能匹配 pattern。  如： `re(?!g)`
+
+* `(?<=pattern)` 零宽正向后行断言(zero-width positive lookbehind assertion)
+
+> 代表字符串中的一个位置，紧接该位置之前的字符序列能够匹配 pattern。 如： `(?<=\w)re`
+
+* `(?<!pattern)` 零宽负向后行断言(zero-width negative lookbehind assertion)
+
+> 代表字符串中的一个位置，紧接该位置之前的字符序列不能匹配 pattern。如： `(?<!\w)re`
+
+#### 后行断言(lookbehind) 例：
+	>
+	
+	```
+	语句 a(?!\+)
+	a+bc
+	ab
+	abc
+	```
+	
+	匹配a, abc, 但不匹配a+bc
+
+## 先行断言(lookahead) 例：
+	>
+	
+	```  
+	语句: (?<!\+)b
+	a+bc
+	ab
+	abc
+	```
+	匹配ab, abc, 但不匹配a+bc
+	
+	
+`(?![0-9]+$)` : 该位置后面不全是数字
+`(?![a-zA-Z]+$)` : 该位置后面不全是字母
+`(?!.*?NSLocalizedString).*` : 不包含 NSLocalizedString 的
+`(?=.*?[\u4e00-\u9fa5]).+` : 至少包含一个中文
+
+`^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,24}$` : 正则表达式匹配数字和字母混合（限定位数6-24）
