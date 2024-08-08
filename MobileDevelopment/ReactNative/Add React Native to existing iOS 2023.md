@@ -3,7 +3,7 @@
 
 * `mkdir IntegrateRN`
 * `cd IntegrateRN`
-* `nmp init -y`
+* `npm init -`
 * `touch index.js`
 * modified `package.json` scripts to 
 	
