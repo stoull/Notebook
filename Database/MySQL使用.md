@@ -3,6 +3,7 @@
 
 ## 安装
 
+### Mac
 * 方法一 HomeBrew
 
 * 方法二 MySQL官网下载：
@@ -15,21 +16,23 @@
 >
 运行更新：`source ~/.zsh_profile`
 
-* 方法三 Amazon Linux 2023安装：
+### CentOS
 
-1. 安装命令：
+##### Amazon Linux 2023上安装
+
+* 1.安装命令：
 
 `sudo dnf update`
 `wget https://dev.mysql.com/get/mysql80-community-release-el9-3.noarch.rpm`
 `sudo dnf install mysql-community-server`
 
-2. mysql 服务控制：
+* 2.mysql 服务控制：
 
-`sudo systemctl start mysqld`
-`sudo systemctl enable mysqld`
-`sudo systemctl status mysqld`
+* `sudo systemctl start mysqld`
+* `sudo systemctl enable mysqld`
+* `sudo systemctl status mysqld`
 
-3. 设置密码：
+* 3.设置密码：
 
 查找初始密码：
 `sudo grep 'temporary password' /var/log/mysqld.log`
@@ -37,6 +40,62 @@
 设置密码, 需要使用初始密码：
 `sudo mysql_secure_installation -p`
 
+### Debian
+
+##### Raspberrypi 上安装
+
+#### 1.保持系统最新状态:
+
+`sudo apt update`
+`sudo apt upgrade`
+
+#### 2.安装mariadb-server:
+
+`sudo apt install mariadb-server`
+
+#### 3.初始化数据库设置:
+
+`sudo mysql_secure_installation`
+
+	建议设置如下:
+	* Change the default root password (from no password) Y
+	* Remove anonymous users
+	* Disallow remote root login
+	* Remove the test database
+	* Reload the privilege tables
+
+#### 4.连接服务:
+
+`mariadb -u root -p`
+
+#### 5.Maria数据库的其它操作
+
+重装,重装前注意备份数据:
+
+`sudo apt reinstall mariadb-server`
+
+如果数库为空的,只是想清空安装:
+
+```
+$ sudo apt purge mariadb-server
+$ sudo rm -rf /var/lib/mysql/
+$ sudo apt install mariadb-server
+```
+
+全部移除
+`$ sudo apt-get purge mariadb-*`
+
+Maria服务控制:
+
+| Operation | Command | --- |
+| --- | --- | --- |
+| Start | sudo systemctl start mariadb |
+| Stop | sudo systemctl stop mariadb |
+| Restart | sudo systemctl restart mariadb |
+| Enable during startup | sudo systemctl enable mariadb |
+| Disable during startup | sudo systemctl disable mariadb |
+| Status | sudo systemctl status mariadb |
+| View systemd journal | sudo journalctl -u mariadb |
 
 ## mysql使用
 
