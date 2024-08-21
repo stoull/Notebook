@@ -2,7 +2,7 @@
 
 ## 一、MariaDB的安装
 
-[MariaDB 官网](https://mariadb.com)
+[mariadb.org](https://mariadb.org). [MariaDB 官网](https://mariadb.com)
 
 ### 1.保持系统最新状态:
 
@@ -105,7 +105,7 @@ Maria服务控制:
 
 ### `FLUSH PRIVILEGES;`
 
-## 四、远程访问
+## 四、远程访问(如果需要)
 
 MariaDB因为安全的原因, 默认是监听localhost, 及3306端口, 不允许远程访问. 如需要远程可按如下步骤检查配置信息:
 
@@ -151,9 +151,17 @@ tcp        0      0 0.0.0.0:3306            0.0.0.0:*               LISTEN
 
 
 
+## 五、Python中使用MariaDB
 
 
 
+[How to connect Python programs to MariaDB](https://mariadb.com/resources/blog/how-to-connect-python-programs-to-mariadb/)
+
+[Using SQLAlchemy with MariaDB Connector/Python: Part 1](https://mariadb.com/resources/blog/using-sqlalchemy-with-mariadb-connector-python-part-1/)
+
+[Using SQLAlchemy with MariaDB Connector/Python: Part 2](https://mariadb.com/resources/blog/using-sqlalchemy-with-mariadb-connector-python-part-2/)
+
+[dev-example-blog-samples](https://github.com/mariadb-corporation/dev-example-blog-samples/blob/main/mariadb_python_sqlalchemy/part_1/employees.py)
 
 
 
