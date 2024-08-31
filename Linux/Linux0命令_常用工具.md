@@ -16,7 +16,11 @@ pv my_big_file > backup/my_big_file
 
 [How to show the transfer progress and speed when copying files with cp?](https://askubuntu.com/questions/17275/how-to-show-the-transfer-progress-and-speed-when-copying-files-with-cp)
 
-#### b
+#### 使用命令行 打开某个网页
+
+`x-www-browser http://hutpi.local/analyse`
+`chromium-browser http://hutpi.local/analyse`
+`xdg-open http://hutpi.local/analyse`
 
 #### c
 
