@@ -4,6 +4,8 @@
 [Beginner Tutorial: How to Stream Video from Raspberry Pi Camera to Local Computer using Python](https://www.youtube.com/watch?v=qs3KhLDUBmk)
 
 
+[How to stream over RTSP using RPi Bullseye](https://code.berrydejager.com/Libcamera-RTSP/)
+
 [Stream video over a network with rpicam-apps](https://www.raspberrypi.com/documentation/computers/camera_software.html)
 
 
@@ -11,3 +13,6 @@
 
 [picamera](https://picamera.readthedocs.io/en/release-1.13/)
 
+
+
+[picamera2/examples/opencv_face_detect_3.py](https://github.com/raspberrypi/picamera2/blob/main/examples/opencv_face_detect_3.py)
