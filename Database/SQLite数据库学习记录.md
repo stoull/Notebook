@@ -38,11 +38,33 @@ CREATE TABLE System(
 ### 从DATETIME中过滤 date 信息进行查询
 
 ```
-select * from test 
+select * from test
 where date between '2021-10-22' and '2021-10-22 23:59:59'
 ```
 
 ```
 select * from test 
 where datediff(day, date, '2021-10-22') = 0
+```
+
+### 将UTC时间转化成本地时间
+
+这里将utc转化成+8时区的时间:
+
+```
+SELECT *, DATETIME(createDate, '+8 hours') AS localTime
+FROM 
+    surroundings
+WHERE localTime BETWEEN '2024-08-26 01:00:00' AND '2024-08-26 08:00:00';
+```
+
+转成将utc转化成+8时区,并按时间选择对应的数量:
+
+```
+SELECT
+    COUNT( DATETIME(createDate, '+8 hours') )
+FROM 
+    surroundings
+WHERE 
+    DATETIME(createDate, '+8 hours') BETWEEN '2024-08-26 01:00:00' AND '2024-08-26 08:00:00';
 ```
