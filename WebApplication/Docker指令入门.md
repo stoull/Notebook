@@ -93,6 +93,7 @@
 	
 4. **存储(数据,资料)卷相关**
 
+	* `docker volume ls`: 列出当前已创建的存储卷
 	* `docker volume create a-test-volume`: 创建存储卷
 	* `docker volume inspect a-test-volume`: 查看存储卷信息
 	* `docker run -itd --rm --name smart_clock --mount source=a-test-volume,target=/data smart_clock`: 将创建的卷挂载到smart_clock容器

@@ -50,6 +50,11 @@ SQL语言分成了几种要素，包括：
 删除一个数据库
 > `DROP DATABASE news_notification;`
 
+删除一个数据表`saved `
+> `DROP TABLE news_notification.saved;`
+> 
+> `DROP saved;` 载入后
+
 载入一个数据库
 > `USE news_notification;`
 
