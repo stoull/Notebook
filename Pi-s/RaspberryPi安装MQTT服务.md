@@ -60,6 +60,8 @@ Or, if you don't want/need a background service you can just run:
   /opt/homebrew/opt/mosquitto/sbin/mosquitto -c /opt/homebrew/etc/mosquitto/mosquitto.conf
 ```
 
+可见在macOS上`mosquitto.conf `的目录为`/opt/homebrew/etc/mosquitto/mosquitto.conf`
+
 ### 测试
 
 安装完`mosquitto`及`mosquitto-clients`后，可以在两个终端，一个终端订阅信息，另一个终端发布信息测试整个mqtt的功能。
