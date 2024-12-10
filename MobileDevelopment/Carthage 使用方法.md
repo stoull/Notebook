@@ -103,7 +103,7 @@ carthage update Alamofire --platform iOS
 
 ### 遇到问题
 
-####  his SDK is not supported by the compiler
+####  this SDK is not supported by the compiler
 
 ```
 Failed to build module 'CryptoSwift'; this SDK is not supported by the compiler (the SDK is built with 'Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)', while this compiler is 'Apple Swift version 5.6.1 (swiftlang-5.6.0.323.66 clang-1316.0.20.12)'). Please select a toolchain which matches the SDK.
