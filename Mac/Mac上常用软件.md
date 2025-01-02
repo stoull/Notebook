@@ -16,6 +16,12 @@
 
 	HandBrake is a open-source tool, built by volunteers, for converting video from nearly any format to a selection of modern, widely supported codecs.
 
+### 开源图片处理
+
+* [GIMP](https://www.gimp.org): This is the official website of the GNU Image Manipulation Program (GIMP).
+
+* [GIMP - downloads](https://www.gimp.org/downloads/)
+
 ### 电子书编辑：
 
 * [calibre - E-book management](https://calibre-ebook.com)
