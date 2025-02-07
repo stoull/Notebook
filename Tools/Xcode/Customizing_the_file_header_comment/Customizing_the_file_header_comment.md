@@ -2,9 +2,9 @@
 # 更改Xcode新建文件时头部的默认注释
 
 ### 使用IDETemplateMacros.plist文件
-Xcode 在新建一些文件的时候会按模板进行新建，这些模板一般在：Xcode.app -> Contents -> Developer -> Platforms -> iPhoneOS.platform -> Developer -> Library -> Xcode -> Templates 目录下。
+Xcode 在新建一些文件的时候会按模板进行新建，这些模板一般在：`Xcode.app -> Contents -> Developer -> Platforms -> iPhoneOS.platform -> Developer -> Library -> Xcode -> Templates` 目录下。
 
-比如创建NSObject文件的模板在：/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/Xcode/Templates/File\ Templates/iOS/Source/Cocoa\ Touch\ Class.xctemplate/NSObjectObjective-C
+比如创建NSObject文件的模板在：`/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/Xcode/Templates/File\ Templates/iOS/Source/Cocoa\ Touch\ Class.xctemplate/NSObjectObjective-C`
 
 根据 ‘Customize text macros’ 的说明，Xcode会在以下目录中第一次找到IDETemplateMacros.plist进行替换，创建文件。
 
@@ -20,7 +20,7 @@ Workspace shared data: <WorkspaceName>.xcworkspace/xcshareddata/IDETemplateMacro
 
 User Xcode data: ~/Library/Developer/Xcode/UserData/IDETemplateMacros.plist.
 
-如果只是想让个人新建的文件使用自定义的文件注释，则只要将文件IDETemplateMacros.plist放到目录： <ProjectName>.xcodeproj/xcuserdata/[username].xcuserdatad/IDETemplateMacros.plist 下
+如果只是想让个人新建的文件使用自定义的文件注释，则只要将文件IDETemplateMacros.plist放到目录： `<ProjectName>.xcodeproj/xcuserdata/[username].xcuserdatad/IDETemplateMacros.plist` 下
 
 ### IDETemplateMacros.plist 文件的格式
 

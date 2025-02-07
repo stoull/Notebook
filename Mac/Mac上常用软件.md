@@ -1,6 +1,10 @@
 # Mac上常用软件
 
 
+### markdown编辑器
+
+[MacDown](https://macdown.uranusjr.com)
+
 ### 视频播放器：
 
 * [IINA - The modern media player for macOS.](https://iina.io)
@@ -21,6 +25,7 @@
 * [GIMP](https://www.gimp.org): This is the official website of the GNU Image Manipulation Program (GIMP).
 
 * [GIMP - downloads](https://www.gimp.org/downloads/)
+* [RawTherapee](https://rawtherapee.com/downloads/5.11/): 相机照片原始RAW文件处理
 
 ### 电子书编辑：
 
