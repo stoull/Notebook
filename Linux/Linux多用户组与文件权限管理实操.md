@@ -62,6 +62,18 @@ su 和 sudo 用户切换及权限提升
 `sudo adduser <username> sudo`
 `sudo usermod -a -G sudo <username>`
 
+* `sudo usermod -aG sudo username`
+* `sudo usermod -aG wheel username` : 在某些发行版中（如CentOS），组名为wheel而不是sudo
+
+如果还是显示没有在sudo组里面
+
+* `sudo vi /etc/sudoers` 添加这一行：`%sudo ALL=(ALL:ALL) ALL`
+
+* 检查nginx用户的shell设置： `cat /etc/passwd | grep nginx`
+
+	> 如果显示 /bin/bash 而不是 /sbin/nologin，这是个安全问题
+
+* 检查nginx用户是否设置了密码: `sudo passwd -S nginx`
 
 ## 用户组
 
