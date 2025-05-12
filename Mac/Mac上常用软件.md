@@ -20,6 +20,15 @@
 
 	HandBrake is a open-source tool, built by volunteers, for converting video from nearly any format to a selection of modern, widely supported codecs.
 
+### 音频文件工具： 
+
+给mp3文件添加封面：
+
+```
+ffmpeg -i in.mp3 -i test.jpeg -map 0:0 -map 1:0 -codec copy -id3v2_version 3 \ 
+-metadata:s:v title="Album cover" -metadata:s:v comment="Cover (front)" out.mp3
+```
+
 ### 开源图片处理
 
 * [GIMP](https://www.gimp.org): This is the official website of the GNU Image Manipulation Program (GIMP).
@@ -33,6 +42,8 @@
 
 	calibre is a powerful and easy to use e-book manager. Users say it’s outstanding and a must-have. It’ll allow you to do nearly everything and it takes things a step beyond normal e-book software. It’s also completely free and open source and great for both casual users and computer experts.
 	
+	
+	mp3tag
 ### 系统清理
 
 * [OnlyX](https://www.titanium-software.fr/en/applications.html)

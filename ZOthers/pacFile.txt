@@ -1,23 +1,29 @@
 ! Put user rules line by line in this file.
 ! See https://adblockplus.org/en/filter-cheatsheet
+||githubusercontent.com
+||api.github.com
+||github.com
+||chat.openai.com
+||openai.com
 
-! ||api.github.com
-! ||githubusercontent.com
-medium.com
-! cambridgeenglish.org
-! libgen.rs
+||github.io
+||chatgpt.com
 
-sednax.com
-duotai.love
-xpp.li
-w3schools.com
-wujievpn.xyz
+! Here is the comments, below are the custom settings
+! The Network of Company has banned the Services Of WeChat
+! You MUST remove the rules of ‘@@||qq.com’ in the file of ‘/Users/UserName/.V2rayU/proxy.js’
+||wechat.com
+||qq.com
+||login.weixin.qq.com
+||login.web.wechat.qq.com
+||wx.qq.com
 
-theguardian.com
-ycombinator.com
+! The Network of Company has banned the e-mail service of 163 and qq
+||163.com
 
-! douban.com
-! 163.com
-! qq.com
+! The Network of Company has It’s own access of this websites
+@@||douban.com
+@@||google.com
+@@||faceboo.com
+@@||x.com
 
-! grammarly.com
