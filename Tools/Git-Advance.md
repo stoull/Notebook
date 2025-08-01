@@ -549,3 +549,37 @@ git delete not existing remote branches
 注意：**所有commit都会作更改**
 
 [How can I remove/delete a large file from the commit history in the Git repository?](https://stackoverflow.com/questions/2100907/how-can-i-remove-delete-a-large-file-from-the-commit-history-in-the-git-reposito)
+
+
+### 28.移除Git项目中Untracked的文件或才忽略文件
+
+当想要删除新增加的文件和目录的时候，使用：`git clean` 指令, 像如下情况：
+
+```
+% git status
+On branch dev
+Your branch is up to date with 'origin/dev'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        src/api/cache.js
+        src/api/config.js
+        src/api/examples.js
+        src/assets/test/
+        
+% git clean -f -d 
+Removing src/api/cache.js
+Removing src/api/config.js
+Removing src/api/examples.js
+Removing src/assets/test/
+```
+
+`git clean -n -d`: 列出哪些文件和目录会被移除（dry run）
+
+**会删除文件！！！！确认文件删除安全**
+
+* `git clean -f`: 移除当前目录下的Untracked文件
+* `git clean -f -d` or `git clean -fd`: 移除Untracked的文件及目录和遍历目录下的文件
+* `git clean -f -X` or `git clean -fX`: 仅删除 Git 忽略的文件Untracked文件
+* `git clean -f -x` or `git clean -fx`:  删除 Git 忽略的和没有忽略的Untracked文件
+

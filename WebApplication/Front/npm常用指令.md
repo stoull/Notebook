@@ -3,15 +3,6 @@
 npm（node package manager）是你安装 Node.js 时开箱即用的依赖/包管理器。它为开发者提供了一种在全局和本地安装包的方法
 
 
-
-
-
-
-
-
-
-
-
 ### 初始化
 
 `npm init`： 生成一份`package.json`配置，会以询问的方式进行一些初始化配置。
@@ -76,6 +67,25 @@ latest: 使用可用的最新版本。
 * `npm install pkg --save`: 安装pkg依赖包，并记录在package.json的dependencies中
 * `npm install pkg --save-dev`: 安装pkg依赖包，并记录在package.json的devDependencies中，可以用简写-D
 * `npm install pkg --global`: 安装pkg到全局，可以用简写
+
+`npm install -flag`有以下一些选项: 
+
+           •   -P, --save-prod: Package will appear in your dependencies. This is the default unless -D or -O are present.
+
+           •   -D, --save-dev: Package will appear in your devDependencies.
+
+           •   --save-peer: Package will appear in your peerDependencies.
+
+           •   -O, --save-optional: Package will appear in your optionalDependencies.
+
+           •   --no-save: Prevents saving to dependencies.
+
+       When using any of the above options to save dependencies to your package.json, there are two additional, optional flags:
+
+           •   -E, --save-exact: Saved dependencies will be configured with an exact version rather than using npm's default semver range
+               operator.
+
+           •   -B, --save-bundle: Saved dependencies will also be added to your bundleDependencies list.
 
 ### 查看
 

@@ -28,7 +28,22 @@ root.render(<h1>Hello, world</h1>);
 
 ## React安装及脚手架工具
 
+比较流行的三大框架都有属于自己的脚手架
+
+* Vue脚手架：@vue/cli
+* Angular的脚手架：@angular/cli
+* React的脚手架：create-react-app
+
+
+它们的作用都是生成一个通用的目录结构，并且已经将我们需要的工程环境配置好
+
+**React:**
+
+[create-react-app](https://create-react-app.dev/docs/getting-started/)
+
 创建新的app: `create-react-app`: `npx create-react-app my-app`
+
+`npx create-react-app --help`: 查看帮助
 
 `react-scripts`: `npm install react-scripts@latest`
 `npm install --save-dev jest`
