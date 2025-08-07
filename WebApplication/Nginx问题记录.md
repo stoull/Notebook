@@ -24,6 +24,8 @@ nginx     194704  194703  0 01:48 ?        00:00:00 nginx: worker process
 
 `user nginx;`
 
+在Debian系统中不指定是使用`www-data`用户
+
 即表示nginx服务使用用户`nginx`运行。需要创建nginx用户并让它有资源目录根目录的权限。
 
 这样运行nginx，只在master process运行在root环境下，因为只有 root processes 可以监听1024以下的端口，像80/443.

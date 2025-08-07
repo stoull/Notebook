@@ -583,3 +583,9 @@ Removing src/assets/test/
 * `git clean -f -X` or `git clean -fX`: 仅删除 Git 忽略的文件Untracked文件
 * `git clean -f -x` or `git clean -fx`:  删除 Git 忽略的和没有忽略的Untracked文件
 
+
+### 29 创建本地分支追踪远程分支
+he practical difference comes when using a local branch named differently:
+
+* `git checkout -b mybranch origin/abranch` will create mybranch and track origin/abranch
+* `git checkout --track origin/abranch` will only create 'abranch', not a branch with a different name.
