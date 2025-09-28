@@ -280,17 +280,25 @@ $ git fetch --unshallow
 
 ### 13. Checkout a single file from a specific commit
 checkout from a branch
-`git show somebranch:from/the/root/myfile.txt > new_file_path/and_name_youwant.ext`
+`git show somebranch:from/the/root/myfile.txt > new_file_path/and_name_youwant.txt`
 checkout from a commit:
-`git show HASH:file/path/name.ext > new_file_path/and_name_youwant.ext`
+`git show HASH:file/path/name.ext > new_file_path/and_name_youwant.txt`
 the `HASH` is like this: `7bccc6db5d974de3ac0debe6b12bfc4b3781a5af`
 
 
-### 14. Rename Master Branch
+### 14. Rename Master Branch, change master to main
 ```
-git branch -m master development
-git branch -m published master
-git push -f origin master 
+git branch --move master main
+git push --set-upstream origin main
+git push origin --delete master
+```
+
+其它人：
+```
+git branch -m master <BRANCH>
+git fetch origin
+git branch -u origin/<BRANCH> <BRANCH>
+git remote set-head origin -a
 ```
 
 ### 撤消Merge   Undo a git merge with conflicts
@@ -582,6 +590,7 @@ Removing src/assets/test/
 * `git clean -f -d` or `git clean -fd`: 移除Untracked的文件及目录和遍历目录下的文件
 * `git clean -f -X` or `git clean -fX`: 仅删除 Git 忽略的文件Untracked文件
 * `git clean -f -x` or `git clean -fx`:  删除 Git 忽略的和没有忽略的Untracked文件
+* `git clean -d -x -f`: Git忽略的和Untracked的文件和目录都会被删除
 
 
 ### 29 创建本地分支追踪远程分支
@@ -589,3 +598,116 @@ he practical difference comes when using a local branch named differently:
 
 * `git checkout -b mybranch origin/abranch` will create mybranch and track origin/abranch
 * `git checkout --track origin/abranch` will only create 'abranch', not a branch with a different name.
+
+`git branch -vv`: 显示所有本地分支、当前分支指向的远程分支（如果有），以及最后一次提交信息。如：
+
+```
+ % git branch -vv
+  Dev_ChargeAndDisCharge                  4db5a16cd save
+  GWNewShineTools                         bc8fd9bf6 [origin/GWNewShineTools] Add new directory
+  NewDev/3.4.2New-SPH10000TL_HU（AU）澳版 f40126907 [origin/NewDev/3.4.2New-SPH10000TL_HU（AU）澳版] save
+  NewDev/3.5.7-SPEStation                 8c17dd4ed [origin/NewDev/v3.5.7-SPE系列建站<E5>: behind 124] 电表 CT切换自测OK
+  NewDev/v3.4.10                          730627779 [origin/NewDev/v3.4.10: behind 9] bug 修复 兼容wifi-x 3.1.1.2 大于
+```
+
+### 30 解析非ASCII字符的路径或文件名
+
+什么是 core.quotepath
+core.quotepath 是 Git 的一个核心配置选项，它控制 Git 如何显示包含非 ASCII 字符的文件名和路径。
+
+默认行为（core.quotepath = true）
+当 core.quotepath 设置为 true（这是默认值）时，Git 会对路径中的非 ASCII 字符进行转义，使用八进制转义序列来表示。
+
+例如：
+
+中文文件名 测试文件.txt 会显示为类似 "\346\265\213\350\257\225\346\226\207\344\273\266.txt" 这样的转义字符
+包含空格或特殊字符的文件名也会被引号包围
+
+设置为 true 的效果:
+
+```
+% git status
+On branch NewDev/v3.5.6.X
+Your branch is up to date with 'origin/NewDev/v3.5.6.X'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        ../LocalDebug.xcodeproj/project.xcworkspace/
+        ../LocalDebug.xcodeproj/xcuserdata/hut.xcuserdatad/
+        "MainModules(App\344\270\232\345\212\241\345\261\202)/Devices\357\274\210\350\256\276\345\244\207\345\210\206\347\261\273\357\274\211/DeviceRN\357\274\210RN\346\217\222\344\273\266\357\274\211/"
+        "MainModules(App\344\270\232\345\212\241\345\261\202)/MoreInfoVC\357\274\210\346\233\264\345\244\232\351\200\211\351\241\271\357\274\211/QuickBuildStation(\344\270\200\351\224\256\345\273\272\347\253\231)/\344\270\200\351\224\256\345\273\272\347\253\231/"
+        "\345\237\272\347\261\273/"
+        "\346\234\254\345\234\260\350\260\203\350\257\225/"
+```
+
+```
+% git config --get core.quotepath
+ % git config --global core.quotepath false
+% git config --get core.quotepath
+```
+
+设置为 false 的效果:
+
+```
+ % git status
+On branch NewDev/v3.5.6.X
+Your branch is up to date with 'origin/NewDev/v3.5.6.X'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        LocalDebug.xcodeproj/project.xcworkspace/
+        LocalDebug.xcodeproj/xcuserdata/hut.xcuserdatad/
+        LocalDebug/MainModules(App业务层)/Devices（设备分类）/DeviceRN（RN插件）/
+        LocalDebug/MainModules(App业务层)/MoreInfoVC（更多选项）/QuickBuildStation(一键建站)/一键建站/
+        LocalDebug/基类/
+        LocalDebug/本地调试/
+```
+
+* 如果你有脚本解析 Git 输出，可能需要处理包含空格或特殊字符的文件名
+需要正确处理文件名中的引号、换行符等特殊字符
+* 确保终端编码正确: `echo $LANG`  # 应该显示类似 zh_CN.UTF-8
+
+
+### 31 checout 默认的分支 `origin/HEAD`
+
+`origin/HEAD`所指向的分支是在clone下来，默认checkout的分支，示例如下，clone下来之后，就自动checkout master 分支：
+
+```
+$git branch -a
+* master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/main
+  remotes/origin/master
+```
+
+如果想要更改默认分支为main, 则使用如下指令：
+
+`git remote set-head origin main`
+
+变成如下：
+
+```
+$git branch -a              
+* master
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/main
+  remotes/origin/master
+```
+
+删除`origin/HEAD`: `git remote set-head origin -d`: 
+
+```
+$git branch -a
+* master
+  remotes/origin/main
+  remotes/origin/master
+```
+
+`git remote set-head origin -a`: 根据远程默认分支，自动更改默认分支， 如果别人更改了远程的`origin/HEAD`， 使用这个进行本地的更正：
+
+```
+% git remote set-head origin -a 
+'origin/HEAD' has changed from 'master' and now points to 'main'
+```
+
+以上都是更改本地的默认分支，如果需要更改远程的则需要在后台去更改，如github等网页端等。

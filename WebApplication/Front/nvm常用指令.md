@@ -5,7 +5,7 @@ nvm：node 版本管理器，也就是说：一个 nvm 可以管理多个 node �
 ## 安装
 
 * brew: `brew install nvm`
-* official: `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash`
+* official: `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash`
 	最新版本及详情见：[nvm - official README](https://github.com/nvm-sh/nvm/blob/master/README.md)
 
 
