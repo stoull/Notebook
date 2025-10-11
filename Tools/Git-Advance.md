@@ -610,6 +610,15 @@ he practical difference comes when using a local branch named differently:
   NewDev/v3.4.10                          730627779 [origin/NewDev/v3.4.10: behind 9] bug 修复 兼容wifi-x 3.1.1.2 大于
 ```
 
+在push的时候,可能会遇到 当前分支名和远程分支名不匹配的问题，需要增加`HEAD:`字符：
+
+```
+致命错误：您当前分支的上游分支和您当前分支名不匹配，为推送到远程的上游分支，
+使用
+
+    git push origin HEAD:NewDev/v3.5.7.SPM建站二期兼容
+```
+
 ### 30 解析非ASCII字符的路径或文件名
 
 什么是 core.quotepath
@@ -711,3 +720,31 @@ $git branch -a
 ```
 
 以上都是更改本地的默认分支，如果需要更改远程的则需要在后台去更改，如github等网页端等。
+
+
+### 32 Git 配置文件
+
+`git config --list`: 查看所有的配置信息
+`git config --list --global`: 查看全局性配置信息
+`git config --list --global --show-origin`: 查看配置信息，并指出对应的配置信息是当前仓库的还是全局的
+
+如果换了公用电脑，不能使用ssh key, 这个时候需要更新用户名，使用密码进行验证：
+
+`git config user.name "username"`: 更改本地仓库的用户名
+`git config user.email "youremail"`: 更改本地仓库的邮箱
+
+或者通过remote的url进行用户名更换，使用完再更改回去
+
+`git remote set-url origin "http://username@20.xx.x.65:3158/path/to/your/project.git" `
+
+* `git://`:	 (Git 协议, 匿名)
+* `ssh://`：一次性配置，方便
+* `https://`：通常需输密码/Token
+
+`git+ssh`或者`git+http`, 更明确的写法，主要用于某些特定的包管理器依赖声明（如 npm, pip），用来指明这个 Git 仓库应该使用哪种协议来克隆。
+
+`git+ssh://git@github.com:username/repo.git`: 明确使用ssh协议
+
+`git+https://github.com/username/repo.git`: 明确使用https协议
+
+
