@@ -112,7 +112,7 @@ Listening at: http://0.0.0.0:8000
 
 ### Deploying Gunicorn
 
-run: `gunicorn -w 2 --forwarded-allow-ips="127.0.0.0.1" app:app`
+run: `gunicorn -w 2 --forwarded-allow-ips="127.0.0.1" app:app`
 
 then socket to nginx:
 

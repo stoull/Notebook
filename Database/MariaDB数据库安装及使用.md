@@ -51,13 +51,16 @@ Maria服务控制:
 
 | Operation | Command | --- |
 | --- | --- | --- |
-| Start | sudo systemctl start mariadb |
-| Stop | sudo systemctl stop mariadb |
-| Restart | sudo systemctl restart mariadb |
-| Enable during startup | sudo systemctl enable mariadb |
-| Disable during startup | sudo systemctl disable mariadb |
-| Status | sudo systemctl status mariadb |
+| Start | sudo systemctl start mariadb | 开启服务 |
+| Stop | sudo systemctl stop mariadb | 停止服务 |
+| Restart | sudo systemctl restart mariadb | 重启启服务 |
+| Enable during startup | sudo systemctl enable mariadb | 打开开机自启 |
+| Disable during startup | sudo systemctl disable mariadb | 关闭开机自启 |
+| Status | sudo systemctl status mariadb | 查看服务状态（最常用）|
 | View systemd journal | sudo journalctl -u mariadb |
+| is-active | sudo systemctl is-active mariadb| 检查是否运行 |
+| is-enabled| sudo systemctl is-enabled mariadb| 检查是否开机自启 |
+| show | sudo systemctl show mariadb| 查看服务详细信息 |
 
 ## 二、MariaDB的使用
 
