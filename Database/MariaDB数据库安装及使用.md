@@ -26,7 +26,11 @@
 
 ### 4.连接服务:
 
-`mariadb -u root -p`
+`mariadb -u root -p`: 通过Unix Socket连接本地MariaDB服务器-操作系统内部进程间通信(IPC)
+
+如果在docker容器中，需要指定主机和端口,使用tcp连接连接到Docker容器：
+
+`mariadb -h 127.0.0.1 -P 3306 -u root -p`: 更改成对应的ip
 
 见下面的问题记录详见[六、问题记录](#六、问题记录)
 
@@ -51,16 +55,13 @@ Maria服务控制:
 
 | Operation | Command | --- |
 | --- | --- | --- |
-| Start | sudo systemctl start mariadb | 开启服务 |
-| Stop | sudo systemctl stop mariadb | 停止服务 |
-| Restart | sudo systemctl restart mariadb | 重启启服务 |
-| Enable during startup | sudo systemctl enable mariadb | 打开开机自启 |
-| Disable during startup | sudo systemctl disable mariadb | 关闭开机自启 |
-| Status | sudo systemctl status mariadb | 查看服务状态（最常用）|
+| Start | sudo systemctl start mariadb |
+| Stop | sudo systemctl stop mariadb |
+| Restart | sudo systemctl restart mariadb |
+| Enable during startup | sudo systemctl enable mariadb |
+| Disable during startup | sudo systemctl disable mariadb |
+| Status | sudo systemctl status mariadb |
 | View systemd journal | sudo journalctl -u mariadb |
-| is-active | sudo systemctl is-active mariadb| 检查是否运行 |
-| is-enabled| sudo systemctl is-enabled mariadb| 检查是否开机自启 |
-| show | sudo systemctl show mariadb| 查看服务详细信息 |
 
 ## 二、MariaDB的使用
 
@@ -78,6 +79,9 @@ Maria服务控制:
 * `SHOW DATABASES;` : 列出所有的库
 * `SHOW CREATE TABLE users \G` : 查看表更详细的信息
 * `drop databse testdb;` : 删库
+* `quit;` or `exit;` : 命令退出
+* `COMMIT;` : 如果有未提交的事务，使用 COMMIT 命令来提交：
+* `ROLLBACK;` : 如果决定不提交事务，可以使用 ROLLBACK 命令来回滚：
 
 [Application Programming Interfaces](https://mariadb.com/kb/en/connectors/)
 
@@ -168,82 +172,96 @@ tcp        0      0 0.0.0.0:3306            0.0.0.0:*               LISTEN
 
 ## 六、问题记录
 
-* 报错误: `ERROR 1698 (28000): Access denied for user 'root'@'localhost'`
+### 报错误: ERROR 1698 (28000): Access denied for user 'root'@'localhost'
 
-	参考解决方法1: [ERROR 1698 (28000): Access denied for user 'root'@'localhost'](https://stackoverflow.com/questions/39281594/error-1698-28000-access-denied-for-user-rootlocalhost)
+参考解决方法1: [ERROR 1698 (28000): Access denied for user 'root'@'localhost'](https://stackoverflow.com/questions/39281594/error-1698-28000-access-denied-for-user-rootlocalhost)
 	
-	产生这个问题是因为在一些系统中,像Ubuntu Debain 使用的是[Unix auth_socket plugin](https://dev.mysql.com/doc/mysql-security-excerpt/5.5/en/socket-pluggable-authentication.html)系统授权, 如你当前使用的不是root用户登录系统,就不能授权登录数据库. 处理的方法有二种:
+产生这个问题是因为在一些系统中,像Ubuntu Debain 使用的是[Unix auth_socket plugin](https://dev.mysql.com/doc/mysql-security-excerpt/5.5/en/socket-pluggable-authentication.html)系统授权, 如你当前使用的不是root用户登录系统,就不能授权登录数据库. 处理的方法有二种:
 
-	* 设置root用户不使用系统授权系统登录数据库,而使用原生的`mysql_native_password`验证方式
-	* 新增加与系统用户匹配的数据库用户进行访问(推荐)
+* 设置root用户不使用系统授权系统登录数据库,而使用原生的`mysql_native_password`验证方式
+* 新增加与系统用户匹配的数据库用户进行访问(推荐)
 
 	
-	```
-	sudo mysql -u root
-	MariaDB [(none)]> USE mysql;
-	.... Database changed
-	MariaDB [mysql]> SELECT User, Host, plugin FROM mysql.user;
-	+------+-----------+-------------+
-	| User | Host      | plugin      |
-	+------+-----------+-------------+
-	| root | localhost | unix_socket |
-	+------+-----------+-------------+
-	1 row in set (0.000 sec)
-	```
-	可以看到root用户使用的是`unix_socket`进行用户授权验证.有的系统为`auth_socket`
+```
+sudo mysql -u root
+MariaDB [(none)]> USE mysql;
+.... Database changed
+MariaDB [mysql]> SELECT User, Host, plugin FROM mysql.user;
++------+-----------+-------------+
+| User | Host      | plugin      |
++------+-----------+-------------+
+| root | localhost | unix_socket |
++------+-----------+-------------+
+1 row in set (0.000 sec)
+```
+可以看到root用户使用的是`unix_socket`进行用户授权验证.有的系统为`auth_socket`
 	
-	* 方法一
+* 方法一
 
-	```
-	sudo mysql -u root # I had to use "sudo" since it was a new installation
+```
+sudo mysql -u root # I had to use "sudo" since it was a new installation
 
-	mysql> USE mysql;
-	mysql> UPDATE user SET plugin='mysql_native_password' WHERE User='root';
-	mysql> FLUSH PRIVILEGES;
-	mysql> exit;
+mysql> USE mysql;
+mysql> UPDATE user SET plugin='mysql_native_password' WHERE User='root';
+mysql> FLUSH PRIVILEGES;
+mysql> exit;
 	
-	sudo service mysql restart
-	```
+sudo service mysql restart
+```
 	
 	
-	* 方法二 (其中的`YOUR_SYSTEM_USER`要替换为当前登录的用户名,可使用`$whoami`查看)
+* 方法二 (其中的`YOUR_SYSTEM_USER`要替换为当前登录的用户名,可使用`$whoami`查看)
 
-	```
-	sudo mysql -u root # I had to use "sudo" since it was a new installation
+```
+sudo mysql -u root # I had to use "sudo" since it was a new installation
 
-	mysql> USE mysql;
-	mysql> CREATE USER 'YOUR_SYSTEM_USER'@'localhost' IDENTIFIED BY 'YOUR_PASSWD';
-	mysql> GRANT ALL PRIVILEGES ON *.* TO 'YOUR_SYSTEM_USER'@'localhost';
-	mysql> UPDATE user SET plugin='unix_socket' WHERE User='YOUR_SYSTEM_USER';
-	mysql> FLUSH PRIVILEGES;
-	mysql> exit;
+mysql> USE mysql;
+mysql> CREATE USER 'YOUR_SYSTEM_USER'@'localhost' IDENTIFIED BY 'YOUR_PASSWD';
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'YOUR_SYSTEM_USER'@'localhost';
+mysql> UPDATE user SET plugin='unix_socket' WHERE User='YOUR_SYSTEM_USER';
+mysql> FLUSH PRIVILEGES;
+mysql> exit;
 	
-	sudo service mysql restart
-	```
+sudo service mysql restart
+```
 	
-* 报错误: `ERROR 1130 (HY000): Host 'x.x.x.x' is not allowed to connect to this MariaDB server`
+### 报错误: `ERROR 1130 (HY000): Host 'x.x.x.x' is not allowed to connect to this MariaDB server`
 
-	这个是通过远程连接数据库时出现的错误,原因是默认创建用户的时候只允许本地访问, 形如: 'root'@'localhost', `localhost`即只能本地访问.
+这个是通过远程连接数据库时出现的错误,原因是默认创建用户的时候只允许本地访问, 形如: 'root'@'localhost', `localhost`即只能本地访问.
 	
-	查看用户
-	```
-	$mysql -u root
-	mysql> USE mysql;
-	mysql> SELECT User, Host, plugin FROM mysql.user;
-	```
+查看用户
+```
+$mysql -u root
+mysql> USE mysql;
+mysql> SELECT User, Host, plugin FROM mysql.user;
+```
 	
-	设置对应用户设置可连接的ip:
+设置对应用户设置可连接的ip:
 	
-	* `GRANT ALL ON *.* to root@'123.123.123.123' IDENTIFIED BY 'put-your-password';`: 特定ip可以访问
-	* `GRANT ALL PRIVILEGES ON *.* TO 'username'@'%' WITH GRANT OPTION;` 所有ip可以访问
-	* `GRANT ALL ON database_name.* to 'database_username'@'156.236.9.%' IDENTIFIED BY ‘database_password’;`: 156.236.9.*段ip可以访问
+* `GRANT ALL ON *.* to root@'123.123.123.123' IDENTIFIED BY 'put-your-password';`: 特定ip可以访问
+* `GRANT ALL PRIVILEGES ON *.* TO 'username'@'%' WITH GRANT OPTION;` 所有ip可以访问
+* `GRANT ALL ON database_name.* to 'database_username'@'156.236.9.%' IDENTIFIED BY ‘database_password’;`: 156.236.9.*段ip可以访问
 
-	如果需要多个ip,则运行多次:
+如果需要多个ip,则运行多次:
 	
-	```
-	mysql> GRANT ALL PRIVILEGES ON *.* TO 'USERNAME'@'1.2.3.4' IDENTIFIED BY 'PASSWORD' WITH GRANT OPTION;
-	mysql> GRANT ALL PRIVILEGES ON *.* TO 'USERNAME'@'5.6.7.8' IDENTIFIED BY 'PASSWORD' WITH GRANT OPTION;
-	```
+```
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'USERNAME'@'1.2.3.4' IDENTIFIED BY 'PASSWORD' WITH GRANT OPTION;
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'USERNAME'@'5.6.7.8' IDENTIFIED BY 'PASSWORD' WITH GRANT OPTION;
+```
+
+### Docker中连接数据库
+
+进入容器内部，通过Unix Socket连接容器内MariaDB服务器：
+
+* `docker exec -it mariadb-server bash`
+
+* `mariadb -u root -p` 
+
+
+从外部使用tcp连接连接到Docker容器：
+
+* `mariadb -h 127.0.0.1 -P 3306 -u root -p`
+
 
 
 [How to connect Python programs to MariaDB](https://mariadb.com/resources/blog/how-to-connect-python-programs-to-mariadb/)

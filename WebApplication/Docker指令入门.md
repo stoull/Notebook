@@ -1,5 +1,7 @@
 # Docker指令入门
 
+### Docker Engine
+
 1. **docker服务控制管理**
 
 	| Operation | Command | --- |
@@ -140,6 +142,36 @@
 
 6. 多容器
 7. 其它
+
+
+### Docker Build
+
+Docker Build implements a client-server architecture, where:
+
+Client: Buildx is the client and the user interface for running and managing builds.
+Server: BuildKit is the server, or builder, that handles the build execution.
+When you invoke a build, the Buildx client sends a build request to the BuildKit backend. BuildKit resolves the build instructions and executes the build steps. The build output is either sent back to the client or uploaded to a registry, such as Docker Hub.
+
+Buildx and BuildKit are both installed with Docker Desktop and Docker Engine out-of-the-box. When you invoke the docker build command, you're using Buildx to run a build using the default BuildKit bundled with Docker.
+
+### Docker Compose
+
+
+To start all the services defined in your compose.yaml file:
+
+* docker compose up
+
+To stop and remove the running services:
+
+* docker compose down 
+
+If you want to monitor the output of your running containers and debug issues, you can view the logs with:
+
+* docker compose logs
+
+To list all the services along with their current status:
+
+* docker compose ps
 
 
 [Docker docs](https://docs.docker.com/manuals/)

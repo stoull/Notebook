@@ -130,6 +130,10 @@ If you are using a legacy system that doesn't support the Ed25519 algorithm, use
 			  	IdentityFile /Users/hut/Auth/AWS/xxxx.pem
 			```
 
+4. 测试
+	- `ssh-add ~/.ssh/`: mac上添加新的key
+	- `ssh -T git@hostName的别名`: 可以验证是否正确
+
 ### 服务器权限配置
 
 * `chmod 700 ~/.ssh`
