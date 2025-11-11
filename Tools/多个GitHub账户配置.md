@@ -1,29 +1,33 @@
 #多个GitHub账户配置
 
+[Linux配置OpenSSH](../linux/Linux配置OpenSSH.md)
 
 
-`~/.ssh/config`文件：
+### `~/.ssh/config`文件配置：
 
 ```
-Host github.com-stoull
+Host github.com-john
     HostName github.com
     User git
     AddKeysToAgent yes
     IdentityFile ~/.ssh/id_ed25519
+    IdentitiesOnly yes
 
-Host github.com-achangehut
+Host github.com-kevin
     HostName github.com
     User git
     AddKeysToAgent yes
-    IdentityFile ~/.ssh/id_ed25519_achangehut
+    IdentityFile ~/.ssh/id_ed25519_2
+    IdentitiesOnly yes
 
-Host github.com-hutbe
+Host github.com-hut
     HostName github.com
     User git
     AddKeysToAgent yes
-    IdentityFile ~/.ssh/id_ed25519_hutbe
+    IdentityFile ~/.ssh/id_ed25519_3
+    IdentitiesOnly yes
 
-Host ahut.site
+Host hut-value-site
   HostName ahut.site
   Port 31800
   User hut
@@ -31,21 +35,36 @@ Host ahut.site
   UseKeychain yes
 ```
 
-`ssh-add ~/.ssh/id_ed25519_personal`: 加载key
+`IdentitiesOnly yes` : 限制只使用 Host 条目里列出的IdentifyFile key，不再尝试其它的key了
 
-`ssh -T git@github.com-hutbe`: 测试连接的用户
+### 
+
+### 测试
+
+- `ssh-add ~/.ssh/`: mac上添加新的key，这里是所有的key
+
+- `ssh -T git@github.com-hut`: 测试连接的用户
 
 ```
-ssh -T git@github.com-hutbe   
+ssh -T git@github.com-kevin   
 Hi hutbe! You've successfully authenticated, but GitHub does not provide shell access.
 ```
 
-`ssh -T git@github.com-achangehut`: 测试连接的用户，如下，说明ssh-key和想要的用户不一致，说明用错了
+`ssh -T git@github.com-john`: 测试连接的用户，如下，说明ssh-key和想要的用户不一致，说明用错了
 
 ```
-hut@hutdeMac-mini Vault % ssh -T git@github.com-achangehut
+hut@hutdeMac-mini Vault % ssh -T git@github.com-john
 Hi stoull! You've successfully authenticated, but GitHub does not provide shell access.
 ```
+
+### Git remote url 配置
+
+在remote url配置中，使用对应的Host别名：
+
+- `git remoet -v`
+- `git remoet set-url origin git@github.com-john:hutbe/Vault.git`
+
+这样就可以确定使用正确的ssh-key了。
 
 [SSH: Bad configuration option: usekeychain](https://www.unixtutorial.org/ssh-bad-configuration-option-usekeychain/)
 

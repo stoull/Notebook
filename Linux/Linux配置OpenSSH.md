@@ -112,16 +112,17 @@ If you are using a legacy system that doesn't support the Ed25519 algorithm, use
 		
 		
 			```
-			Host:		hostName的别名
+			Host:		hostName的别名, 在使用的时候也可以直接使用hostName的别名，openssh会转换到真正的HostName域名上面
 			HostName: 	是目标主机的主机名，也就是平时我们使用ssh后面跟的地址名称。
 			Port：		指定的端口号。
 			User：		指定的登陆用户名。
 			IdentifyFile：指定的私钥地址。
+			IdentitiesOnly yes: 只用我在此 Host 条目里列出的IdentifyFile key，不再尝试其它的key了
 			```
 			示例配置文件：
 			
 			```
-			Host youhost.com
+			Host hut-value-site
 				HostName ahut.site
 				Port 31800
 				User hut
@@ -132,7 +133,8 @@ If you are using a legacy system that doesn't support the Ed25519 algorithm, use
 
 4. 测试
 	- `ssh-add ~/.ssh/`: mac上添加新的key
-	- `ssh -T git@hostName的别名`: 可以验证是否正确
+	- `ssh -T git@hut-value-site`: 可以验证是否正确
+	
 
 ### 服务器权限配置
 
