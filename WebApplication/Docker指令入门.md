@@ -157,6 +157,10 @@ docker compose up -d --build --no-deps nginx : 更新特定的容器
 	* `ping smart_clock`
 	* `ping smart_clock2`
 
+	* `docker inspect vault-app | grep IPAddress`: 查看容器名为vault-app的ip地址
+
+容器内，所有的127.0.0.1都指向容器自已
+
 
 6. 多容器
 7. 其它
@@ -164,22 +168,89 @@ docker compose up -d --build --no-deps nginx : 更新特定的容器
 
 ### Docker Build
 
-Docker Build implements a client-server architecture, where:
+* 在docker build 之前，增加.dockerignore（避免把不必要文件放进镜像）
+* 在 Docker Hub 上创建一个 Access Token（比直接用密码更安全），用于命令行登录。
+	- `docker login -u user_name`: 复制粘贴生成的token进行登录
+* 使用`docker build -t <dockerhub-username>/<repo>:<tag> .` 进行打包
+	- `docker build -t stoull/mqtt_client:latest .`
+	- 更或打包好后，进行加标签`docker tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]`
+* 使用 `docker push YOUR_USERNAME/REPO:TAG` 推送到远程
+- 例如 `docker push stoull/mqtt_client:latest `
+* 如果你本地镜像的container_name和仓库中的名称对不上，那要先将本地的镜像打tag,然后推到远程
 
-Client: Buildx is the client and the user interface for running and managing builds.
-Server: BuildKit is the server, or builder, that handles the build execution.
-When you invoke a build, the Buildx client sends a build request to the BuildKit backend. BuildKit resolves the build instructions and executes the build steps. The build output is either sent back to the client or uploaded to a registry, such as Docker Hub.
+	 ```
+	docker tag local_image_name:tag YOUR_USERNAME/REPO:TAG
+	# 例如, 本地叫vault_mqtt_client，远程叫mqtt_client，建立对应关系
+	docker tag vault_mqtt_client:latest stoull/mqtt_client:latest 
+	
+	再push到远程
+	docker push YOUR_USERNAME/REPO:TAG
+	# 例如
+	docker push stoull/mqtt_client:1.0
+	```
 
-Buildx and BuildKit are both installed with Docker Desktop and Docker Engine out-of-the-box. When you invoke the docker build command, you're using Buildx to run a build using the default BuildKit bundled with Docker.
+##### 架构不匹配的问题
 
-当构建完成一个Dockerfile之后，使用下面的指令构建镜像：
+```
+docker pull stoull/vault-nginx:latest
+Error response from daemon: no matching manifest for linux/amd64 in the manifest list entries: no match for platform in manifest: not found
+```
 
-`docker build -t my-app:latest .`: 读取Dockerfile，生成名为my-app、标签为latest的镜像
-`docker run -d -p 8080:80 my-app:latest`: 基于镜像创建并后台运行容器，并将主机8080端口映射到容器80端口
+Mac电脑上:
+
+```
+% uname -m
+arm64
+```
+
+服务器上:
+
+```
+$ uname -m
+x86_64
+```
+x86_64（即 amd64）
+
+在 Mac 上（尤其是 Apple Silicon M1/M2/M3 芯片），默认构建的是 ARM64 架构的镜像,不能适配AMD64的架构。
+
+```
+# 构建时指定平台
+docker build --platform linux/amd64 -t your-image:amd64 .
+
+# 运行 amd64 容器
+docker run --platform linux/amd64 -it your-image:amd64 bash
+
+# 验证架构
+docker run --platform linux/amd64 --rm your-image:amd64 uname -m
+# 应该输出: x86_64
+
+```
+
+#### 方案1：使用 Docker Buildx（推荐）
+```
+# 1. 创建并使用支持多架构的构建器
+docker buildx create --name multiarch-builder --use --bootstrap
+
+# 2. 查看当前构建器支持的架构
+docker buildx inspect --bootstrap
+
+# 3. 构建 amd64 架构的镜像（单架构）
+docker buildx build --platform linux/amd64 -t myapp:amd64 .
+
+# 4. 构建多架构镜像（包含 amd64 和 arm64）
+docker buildx build --platform linux/amd64,linux/arm64 -t myapp:multiarch .
+```
+
+docker buildx build --platform linux/amd64,linux/arm64 -t vault-app:latest .
+
 
 ### Docker Compose 指令
 
 Docker Compose 指令的基本格式是 `docker compose [OPTIONS] [COMMAND] [ARGS...]`。通常在包含 `docker-compose.yml` 文件的目录下执行。
+
+指定的文件compose.yml文件：
+
+`docker-compose -f docker-compose.custom.yml up`
 
 #### 1. 生命周期管理
 

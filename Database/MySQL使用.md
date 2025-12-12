@@ -113,6 +113,7 @@ If you haven’t set a password for your MySQL user you can omit the -p switch.
 mysql -u root -p < /home/ec2-user/Documents/TestProjects/meal_ordering_system/deploy/apsfc_20150727_2133.sql
 
 
+### 关闭外键检查
 
 显示所有的database:`SHOW DATABASES;`
 
@@ -123,6 +124,16 @@ mysql -u root -p < /home/ec2-user/Documents/TestProjects/meal_ordering_system/de
 显示所有的表:`SHOW TABLES;`
 
 
+我们可以使用
+    `SET FOREIGN_KEY_CHECKS=0;`
+来禁用外键约束.
+     `然后这块执行我们的插入语句....`
+之后再用
+    `SET FOREIGN_KEY_CHECKS=1;`
+来启动外键约束.
+ 
+查看当前FOREIGN_KEY_CHECKS的值可用如下命令
+    `SELECT  @@FOREIGN_KEY_CHECKS;`
 
 [To Install Apache Maven and Java 8 on your EC2 instance](https://docs.aws.amazon.com/neptune/latest/userguide/iam-auth-connect-prerq.html)
 

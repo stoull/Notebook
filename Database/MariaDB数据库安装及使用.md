@@ -78,7 +78,7 @@ Maria服务控制:
 * `DESC users;` : 查看表的详情
 * `SHOW DATABASES;` : 列出所有的库
 * `SHOW CREATE TABLE users \G` : 查看表更详细的信息
-* `drop databse testdb;` : 删库
+* `drop database testdb;` : 删库
 * `quit;` or `exit;` : 命令退出
 * `COMMIT;` : 如果有未提交的事务，使用 COMMIT 命令来提交：
 * `ROLLBACK;` : 如果决定不提交事务，可以使用 ROLLBACK 命令来回滚：
@@ -88,6 +88,33 @@ Maria服务控制:
 [Building a Portable Database Server](https://mariadb.com/resources/blog/building-a-portable-database-server/)
 
 ## 三、用户管理
+
+### 查看当前的用户
+
+`SELECT user, host FROM mysql.user`
+
+查找特定的用户
+
+`SELECT user, host FROM mysql.user WHERE user LIKE '%hut%';`
+
+```
+MariaDB [(none)]> SELECT user, host FROM mysql.user;
++-------------+-----------+
+| User        | Host      |
++-------------+-----------+
+| hut         | %         |
+| root        | %         |
+| healthcheck | 127.0.0.1 |
+| healthcheck | ::1       |
+| healthcheck | localhost |
+| mariadb.sys | localhost |
+| root        | localhost |
++-------------+-----------+
+7 rows in set (0.002 sec)
+```
+
+* `'hut'@'localhost'`安全性：高，只能从服务器本地连接
+* `'hut'@'%'` 安全性：较低，可从任何网络位置连接
 
 ### 创建用户
 
@@ -113,7 +140,29 @@ Maria服务控制:
 
 `GRANT ALL PRIVILEGES ON * . * TO 'matthew'@'%';` 为给matthew所有的权限.
 
+`GRANT SELECT, INSERT, UPDATE, DELETE ON image_db.* TO 'hut'@'%';`: 给hut用户特定的权限
+
+`GRANT ALL PRIVILEGES ON image_db.* TO 'hut'@'%';`: 给予一个数据库的所有权限
+
+`FLUSH PRIVILEGES;`: 刷新权限
+
+`SHOW GRANTS FOR 'hut'@'%';`: 验证权限
+
 ### `FLUSH PRIVILEGES;`
+
+### 修改密码
+
+如果知道当前密码：
+
+`mysqladmin -u root -p password '新密码'`
+
+或者在数据库中修改：
+
+```
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'your_pass-word';
+```
+
+重启数据库
 
 ## 四、远程访问(如果需要)
 
@@ -247,6 +296,15 @@ mysql> SELECT User, Host, plugin FROM mysql.user;
 ```
 mysql> GRANT ALL PRIVILEGES ON *.* TO 'USERNAME'@'1.2.3.4' IDENTIFIED BY 'PASSWORD' WITH GRANT OPTION;
 mysql> GRANT ALL PRIVILEGES ON *.* TO 'USERNAME'@'5.6.7.8' IDENTIFIED BY 'PASSWORD' WITH GRANT OPTION;
+```
+
+###  Can't connect to local server through socket
+
+```
+hut@hutdeMac-mini ~ % mariadb -u hut -p
+Enter password: 
+ERROR 2002 (HY000): Can't connect to local server through socket '/tmp/mysql.sock' (2)
+
 ```
 
 ### Docker中连接数据库

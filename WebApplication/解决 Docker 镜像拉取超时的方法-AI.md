@@ -1,5 +1,54 @@
 ## 解决 Docker 镜像拉取超时的方法
 
+
+#### docker镜像配置目录`/etc/docker/daemon.json`
+
+重启Docker: `sudo systemctl restart docker`
+
+快速更改配置：
+
+```
+sudo tee /etc/docker/daemon.json <<-'EOF'
+{
+  "registry-mirrors": [
+    "https://docker.mirrors.ustc.edu.cn",
+    "https://hub-mirror.c.163.com",
+    "https://mirror.baidubce.com",
+    "https://registry.docker-cn.com"
+  ]
+}
+EOF
+```
+
+#### 加速项目
+
+https://github.com/DaoCloud/public-image-mirror
+
+```
+{
+  "registry-mirrors": [
+    "https://docker.m.daocloud.io"
+  ]
+}
+```
+
+#### AI 给的镜像
+
+```
+{
+  "registry-mirrors": [
+    "https://docker.1ms.run",
+    "https://docker.xuanyuan.me",
+    "https://docker.m.daocloud.io",
+    "https://hub-mirror.c.163.com"
+  ]
+}
+```
+
+
+
+
+
 ### 方法 1：配置 Docker 镜像加速器（推荐）
 
 配置国内镜像源以加速拉取。
@@ -39,7 +88,7 @@ sudo tee /etc/docker/daemon.json <<-'EOF'
   ]
 }
 EOF
-
+  
 # 重启 Docker
 sudo systemctl daemon-reload
 sudo systemctl restart docker
