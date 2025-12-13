@@ -144,6 +144,26 @@ docker compose up -d --build --no-deps nginx : 更新特定的容器
 	**注意**在Mac系统中,Docker的volumes不直接暴露在 macOS 的文件系统中. 而是存储在 Docker 虚拟机的文件系统中. 
 	
 	如果想查看某个卷的内容，可以使用以下命令启动一个临时容器，并将卷挂载到该容器中：`docker run --rm -v a-test-volume:/data alpine ls /data`
+	
+	**容器内用户访问容器外挂载目录权限问题**
+	
+```
+# 进入容器查看 app 用户的 UID
+docker exec <container_name> id
+# 输出示例: uid=1000(app) gid=1000(app) groups=1000(app)
+	
+# 或者查看 Dockerfile
+# 通常会有类似: USER 1000 或 USER app
+```
+	
+```
+# 方法1: 修改目录所有者为 UID 1000
+sudo chown -R 1000:1000 /path/to/shared_data
+
+# 方法2: 或者使用用户映射（如果有同名用户）
+USERNAME=$(whoami)
+sudo chown -R $USERNAME:$USERNAME /path/to/shared_data
+```
 
 5. **网络控制相关**
 
@@ -165,6 +185,34 @@ docker compose up -d --build --no-deps nginx : 更新特定的容器
 6. 多容器
 7. 其它
 
+#### Docker 查看日志
+
+容器内的日志路径
+
+```
+# 错误日志（默认）
+/var/log/mysql/error.log
+/var/log/mysql/mariadb.err
+/var/log/mysqld.log
+```
+
+使用 Docker 命令
+```
+# 查看实时日志（最常用）
+docker logs mariadb-container-name
+
+# 查看最后 N 行
+docker logs --tail 100 mariadb-container
+
+# 跟踪实时日志（类似 tail -f）
+docker logs -f mariadb-container
+
+# 查看时间戳
+docker logs -t mariadb-container
+
+# 查看特定时间段的日志
+docker logs --since 2024-01-01 mariadb-container
+```
 
 ### Docker Build
 
@@ -307,7 +355,43 @@ Docker Compose 指令的基本格式是 `docker compose [OPTIONS] [COMMAND] [ARG
     ```
     列出 Compose 文件使用的镜像。
 
-#### 3. 执行命令与进入容器
+#### 3. 进入容器终端与执行命令
+
+1. 查看容器内可用的 Shell
+	- `docker exec container_name cat /etc/shells`
+	- `docker exec container_name ls -la /bin/*sh`
+	
+2. 进入正在运行的容器
+	- `docker exec -it <容器名或ID> /bin/bash`
+```
+# 示例
+docker exec -it my-nginx bash
+docker exec -it abc123def456 sh
+```
+	
+	
+3. 根据镜像选择不同的shell
+
+```
+ # Bash（如果镜像包含）
+docker exec -it container_name bash
+	
+# Sh（Alpine 等轻量镜像）
+docker exec -it container_name sh
+	
+# Ash（Alpine 默认）
+docker exec -it container_name ash
+	
+# 其他 Shell
+docker exec -it container_name /bin/zsh
+docker exec -it container_name /bin/ksh
+```
+
+##### 能过compose执行命令
+
+* 在指定的服务容器内执行一次性命令
+* 类似于单机的 docker exec，但专为 Compose 项目设计
+* 不需要知道具体的容器名或 ID，只需要服务名
 
 *   **在运行的容器中执行命令**
     ```bash
