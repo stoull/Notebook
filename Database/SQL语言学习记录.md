@@ -257,6 +257,13 @@ WHERE date='2021-11-16 12:00:01';
 删除特别的删除
 >`DELETE FROM system WHERE date='2021-11-16 12:00:01';`
 
+mysql删除所有，并将自增置为0
+
+>`ALTER TABLE 表名 AUTO_INCREMENT = 1;`
+
+mysql仅将自增置为0
+>`TRUNCATE TABLE 表名;`
+
 
 ## 数据关联 JOIN
 

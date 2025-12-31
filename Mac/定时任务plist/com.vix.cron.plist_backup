@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>com.vix.cron</string>
+
+    <key>ProgramArguments</key>
+    <array>
+      <string>/Users/hut/Desktop/Vault/run_weather_getter_crontab.sh</string>
+    </array>
+
+    <key>Nice</key>
+    <integer>1</integer>
+
+    <key>StartInterval</key>
+    <integer>300</integer>
+
+    <key>RunAtLoad</key>
+    <true />
+
+    <key>StandardErrorPath</key>
+    <string>/Users/hut/logs/weather_getter.err.log</string>
+
+    <key>StandardOutPath</key>
+    <string>/Users/hut/weather_getter.out.log</string>
+  </dict>
+</plist>

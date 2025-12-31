@@ -244,6 +244,25 @@ MariaDB [mysql]> SELECT User, Host, plugin FROM mysql.user;
 1 row in set (0.000 sec)
 ```
 可以看到root用户使用的是`unix_socket`进行用户授权验证.有的系统为`auth_socket`
+
+**注意：同名但不同Host的用户，是两个不同的账户**
+
+```
+Database changed
+MariaDB [mysql]> SELECT User, Host, plugin FROM mysql.user;
++-------------+-----------+-----------------------+
+| User        | Host      | plugin                |
++-------------+-----------+-----------------------+
+| mariadb.sys | localhost | mysql_native_password |
+| root        | localhost | mysql_native_password |
+| root        | %         | mysql_native_password |
+```
+
+这里的root可能是两个账户，不同的密码：
+```
+| root | localhost | (密码A) |
+| root | %         | (密码B) |
+```
 	
 * 方法一
 

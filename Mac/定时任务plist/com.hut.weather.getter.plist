@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- 任务标识符，应该是唯一的 -->
+    <key>Label</key>
+    <string>com.hut.weather.getter</string>
+    
+    <!-- 要执行的程序路径 -->
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/hut/Desktop/Vault/run_weather_getter_crontab.sh</string>
+    </array>
+    
+    <!-- 定时执行设置：每5分钟执行一次 -->
+    <key>StartCalendarInterval</key>
+    <array>
+        <dict>
+            <key>Minute</key>
+            <integer>0</integer>
+        </dict>
+        <dict>
+            <key>Minute</key>
+            <integer>5</integer>
+        </dict>
+        <dict>
+            <key>Minute</key>
+            <integer>10</integer>
+        </dict>
+        <dict>
+            <key>Minute</key>
+            <integer>15</integer>
+        </dict>
+        <dict>
+            <key>Minute</key>
+            <integer>20</integer>
+        </dict>
+        <dict>
+            <key>Minute</key>
+            <integer>25</integer>
+        </dict>
+        <dict>
+            <key>Minute</key>
+            <integer>30</integer>
+        </dict>
+        <dict>
+            <key>Minute</key>
+            <integer>35</integer>
+        </dict>
+        <dict>
+            <key>Minute</key>
+            <integer>40</integer>
+        </dict>
+        <dict>
+            <key>Minute</key>
+            <integer>45</integer>
+        </dict>
+        <dict>
+            <key>Minute</key>
+            <integer>50</integer>
+        </dict>
+        <dict>
+            <key>Minute</key>
+            <integer>55</integer>
+        </dict>
+    </array>
+    
+    <!-- 标准输出日志文件 -->
+    <key>StandardOutPath</key>
+    <string>/Users/hut/logs/weather_getter.error.log</string>
+    
+    <!-- 标准错误日志文件 -->
+    <key>StandardErrorPath</key>
+    <string>/Users/hut/logs/weather_getter.log</string>
+    
+    <!-- 即使之前执行失败也继续运行 -->
+    <key>KeepAlive</key>
+    <false/>
+    
+    <!-- 在用户登录时运行 -->
+    <key>RunAtLoad</key>
+    <false/>
+</dict>
+</plist>
