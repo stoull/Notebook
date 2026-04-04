@@ -21,6 +21,13 @@
 默认情况下，Thonny在“本地”计算机（运行Thonny的计算机）上使用解释器。
 在Thonny窗口的右下角，您将看到用于运行您在Thonny中编写的代码的解释器。
 
+
+#### Thonny三方包的下载安装
+
+[Installing Python packages with Thonny](https://projects.raspberrypi.org/en/projects/thonny-install-package)
+
+**参考资料**
+
 [MicroPython- official website](https://www.micropython.org): https://www.micropython.org
 
 [The MicroPython project - Github](https://github.com/micropython/micropython.git): https://github.com/micropython/micropython.git

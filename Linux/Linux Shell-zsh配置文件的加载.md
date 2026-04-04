@@ -43,9 +43,9 @@ Zsh 有 **5 个主要配置文件**：
 ### **Login Shell（登录式）**
 ```
 1. /etc/zshenv
-2. ~/. zshenv
+2. ~/.zshenv
 3. /etc/zprofile
-4. ~/. zprofile
+4. ~/.zprofile
 5. /etc/zshrc
 6. ~/.zshrc
 7. /etc/zlogin
@@ -60,7 +60,7 @@ Zsh 有 **5 个主要配置文件**：
 ### **Interactive Non-login Shell（交互式非登录）**
 ```
 1. /etc/zshenv
-2. ~/. zshenv
+2. ~/.zshenv
 3. /etc/zshrc
 4. ~/.zshrc
 ```

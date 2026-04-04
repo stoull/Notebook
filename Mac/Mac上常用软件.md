@@ -20,6 +20,15 @@
 
 	HandBrake is a open-source tool, built by volunteers, for converting video from nearly any format to a selection of modern, widely supported codecs.
 
+### 图片管理器：PhotoPrism
+
+[PhotoPrism-GitHub](https://github.com/photoprism/photoprism)
+
+[Setup For Community Version](https://docs.photoprism.app/getting-started/)
+
+[Diff Versions](https://www.photoprism.app/editions)
+
+
 ### 音频文件工具： 
 
 给mp3文件添加封面：
@@ -36,6 +45,11 @@ ffmpeg -i in.mp3 -i test.jpeg -map 0:0 -map 1:0 -codec copy -id3v2_version 3 \
 * [GIMP - downloads](https://www.gimp.org/downloads/)
 * [RawTherapee](https://rawtherapee.com/downloads/5.11/): 相机照片原始RAW文件处理
 
+### 相机图片管理：digiKam
+
+[www.digikam.org](https://www.digikam.org)
+
+
 ### 电子书编辑：
 
 * [calibre - E-book management](https://calibre-ebook.com)
@@ -44,14 +58,12 @@ ffmpeg -i in.mp3 -i test.jpeg -map 0:0 -map 1:0 -codec copy -id3v2_version 3 \
 	
 	
 	mp3tag
+	
 ### 系统清理
 
 * [OnlyX](https://www.titanium-software.fr/en/applications.html)
 
 	OnyX is the main application. The Maintenance, Deeper, and CalHash applications are parts of OnyX. Thus, if you use OnyX, the Maintenance, Deeper and CalHash applications are redundant!
-	
-	
-	
-	
-	
-	
+
+
+

@@ -58,6 +58,8 @@ docker compose up -d --build --no-deps nginx : 更新特定的容器
 		>* `.`为docker的build环境, docker会在当前目录下查找Dockerfile并进行build动作.
 		>* 其中`-t`为给镜像取一个tag名称为smart_clock, 如没有执行`docker build . `则没有tag, 已有的镜像可使用`docker image tag`设置tag名称
 		> `-t smart_clock:1.0`如果不指定后面的tag`:1.0`, 则默认为latest.
+		
+		`docker tag stoull/mqtt_client:0.1 stoul/mqtt_client:latest`: 将0.1的tag置为latest
 
 
 	* 镜像的导入与导出:
