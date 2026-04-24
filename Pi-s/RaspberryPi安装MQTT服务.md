@@ -110,6 +110,7 @@ Error: Connection refused
 
 * `mosquitto_sub -d -h 192.168.1.88 -t "binary/updates" -u leo -P xxxxx `: 设备2终端上订阅信息
 * `mosquitto_pub -d -h 192.168.1.88 -t "binary/updates" -m "update temperature data 25" -u leo -P xxxxx `: 设备3终端上发布信息
+* `mosquitto_pub -d -h macmini.local -t "test/updates" -m "update temperature data 25" -u ${MQTT_USERNAME} -P ${MQTT_PASSWORD}`: 从环境变量中加载用户及密码信息
 
 但是直接将密码放在命令里很危险，因为可能会被别查记录查到，仅测试用!!!!!!
 
@@ -343,6 +344,22 @@ allow_anonymous false
 password_file /etc/mosquitto/passwd
 
 ```
+
+**如果忘记了密码：**
+
+1. 修改密码： `sudo mosquitto_passwd /etc/mosquitto/passwd john`: 进行修改密码，john为你想要更改用户的用户名
+系统会提示你输入两次新密码。
+
+如果是Docker环境：
+
+* `docker exec -it mosquitto mosquitto_passwd /etc/mosquitto/passwd test`
+* `docker restart mosquitto`
+
+2. 重启服务让新密码生效
+
+* `sudo systemctl restart mosquitto`   # 传统部署
+* `docker restart mosquitto`            # Docker 部署
+
 
 ## 4. ACL访问控制配置
 
