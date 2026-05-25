@@ -748,3 +748,8 @@ $git branch -a
 `git+https://github.com/username/repo.git`: 明确使用https协议
 
 
+### 33 查看commit中更改的文件--name-only
+
+* `git log -1 --stat`
+* `git log -1 --name-only`
+* `git show --name-only <commit-hash>`
