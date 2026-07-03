@@ -1,0 +1,31 @@
+{
+  "chunk_id": "chunk_008",
+  "period": "2022-11",
+  "message_count": 4,
+  "messages": [
+    {
+      "local_id": 1890,
+      "timestamp": 1668771329,
+      "sender": "OTHER_PERSON",
+      "content": "上次忘了问你，你说的舒服的方式是什么？"
+    },
+    {
+      "local_id": 1891,
+      "timestamp": 1668778627,
+      "sender": "OTHER_PERSON",
+      "content": "我也不清楚"
+    },
+    {
+      "local_id": 1892,
+      "timestamp": 1668779547,
+      "sender": "OTHER_PERSON",
+      "content": "你们已经和好了吗"
+    },
+    {
+      "local_id": 1893,
+      "timestamp": 1668780127,
+      "sender": "OTHER_PERSON",
+      "content": "没有"
+    }
+  ]
+}

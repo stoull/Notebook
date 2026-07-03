@@ -1,0 +1,14 @@
+[Unit]
+Description=Pi Camera on-demand MJPEG stream
+After=network.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi
+ExecStart=/usr/bin/python3 /home/pi/camera_stream_on_demand.py
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

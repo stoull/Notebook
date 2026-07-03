@@ -1,0 +1,14 @@
+{
+  "chunk_id": "chunk_010",
+  "period": "2023-05",
+  "message_count": 1,
+  "messages": [
+    {
+      "local_id": 1898,
+      "timestamp": 1683821074,
+      "sender": "OTHER_PERSON",
+      "type": "system",
+      "content": "The message is successfully sent but rejected by the receiver."
+    }
+  ]
+}

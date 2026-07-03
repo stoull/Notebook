@@ -1,0 +1,96 @@
+{
+  "source": "/Users/hut/Desktop/Notebook/0WritedBy-AIs/微信消息处理/work/redacted/chat_redacted.json",
+  "chunks": [
+    {
+      "chunk_id": "chunk_001",
+      "period": "2019-05",
+      "file": "chunk_001.json",
+      "message_count": 52
+    },
+    {
+      "chunk_id": "chunk_002",
+      "period": "2019-06",
+      "file": "chunk_002.json",
+      "message_count": 118
+    },
+    {
+      "chunk_id": "chunk_003",
+      "period": "2022-06",
+      "file": "chunk_003.json",
+      "message_count": 3
+    },
+    {
+      "chunk_id": "chunk_004",
+      "period": "2022-07",
+      "file": "chunk_004.json",
+      "message_count": 254
+    },
+    {
+      "chunk_id": "chunk_005",
+      "period": "2022-08",
+      "file": "chunk_005.json",
+      "message_count": 175
+    },
+    {
+      "chunk_id": "chunk_006",
+      "period": "2022-09",
+      "file": "chunk_006.json",
+      "message_count": 246
+    },
+    {
+      "chunk_id": "chunk_007",
+      "period": "2022-10",
+      "file": "chunk_007.json",
+      "message_count": 1211
+    },
+    {
+      "chunk_id": "chunk_008",
+      "period": "2022-11",
+      "file": "chunk_008.json",
+      "message_count": 4
+    },
+    {
+      "chunk_id": "chunk_009",
+      "period": "2022-12",
+      "file": "chunk_009.json",
+      "message_count": 4
+    },
+    {
+      "chunk_id": "chunk_010",
+      "period": "2023-05",
+      "file": "chunk_010.json",
+      "message_count": 1
+    },
+    {
+      "chunk_id": "chunk_011",
+      "period": "2025-01",
+      "file": "chunk_011.json",
+      "message_count": 2
+    },
+    {
+      "chunk_id": "chunk_012",
+      "period": "2025-02",
+      "file": "chunk_012.json",
+      "message_count": 369
+    },
+    {
+      "chunk_id": "chunk_013",
+      "period": "2025-03",
+      "file": "chunk_013.json",
+      "message_count": 5745
+    },
+    {
+      "chunk_id": "chunk_014",
+      "period": "2025-04",
+      "file": "chunk_014.json",
+      "message_count": 5628
+    },
+    {
+      "chunk_id": "chunk_015",
+      "period": "2025-05",
+      "file": "chunk_015.json",
+      "message_count": 2499
+    }
+  ],
+  "total_messages": 16311
+}
