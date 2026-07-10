@@ -32,7 +32,7 @@ Build version 15C500b
 
 ## Xcode项目中的概念
 
-* project文件: 以`. xcodeproj` 结尾的文件，连接及组织项目里的所有代码及资源
+* project文件: 以`.xcodeproj` 结尾的文件，连接及组织项目里的所有代码及资源
 	* 代码文件，布局文件，图片及其它各种资源文件
 	* 项目的目录结构，及内外部的Libraries
 	*  编译配置(build configurations), project下一般有有`Debug`和`Release`两种编译配置。

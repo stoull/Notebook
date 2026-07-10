@@ -142,6 +142,8 @@ IMX序列是索尼公司制造的图像传感器，`IMX219`是一款由索尼公
 
 **注意在新版本中`libcamera`更名为`rpicam`。**
 
+rpicam-still 被设计用来模拟和替代旧版 raspistill 工具的大部分功能，它和 libcamera-still 的核心能力是相同的, 这两个命令在功能上99.9%是相同的，只是名字不同
+
 如没有安装`libcamera`， 使用命令： `sudo apt install libcamera-apps`进行安装。
 
 **常用测试指令：**
@@ -150,6 +152,23 @@ IMX序列是索尼公司制造的图像传感器，`IMX219`是一款由索尼公
 * `libcamera-hello --list-cameras`: 检测当时连接的摄像头信息
 * `libcamera-still -o ./libcamera-still-test.jpg`: 测试拍摄一张libcamera-still-test.jpng照片,存到当前目录下。
 *  `libcamera-vid -t 10000 -o ~/Shared/video.h264`: 测试录制一个10s的视频，PI5中`rpicam`可直接输出为mp4, `rpicam-vid  -t 10s -o test.mp4`
+
+更多：
+
+```
+# 多分辨率照片
+rpicam-still -o ./full-near.jpg --width 4608 --height 2592 # 全分辨率照片
+rpicam-still -o test_1080p.jpg --width 1920 --height 1080
+rpicam-still -o test_720p.jpg  --width 1280 --height 720
+
+# 1080p 录像
+rpicam-vid -t 10000 --codec h264 --inline -o test.h264
+
+# 5近/远对焦
+rpicam-still -o near.jpg --autofocus-mode auto   # 近物
+rpicam-still -o far.jpg  --autofocus-mode auto   # 远处
+rpicam-still -o test_manual.jpg --lens-position 5.0	# 手动设置焦距
+```
 
 使用 `vcgencmd get_camera`，如果如下信息，则表示成功识别到摄像头：
 
@@ -169,6 +188,17 @@ Available cameras
                              1296x972 [43.25 fps - (0, 0)/2592x1944 crop]
                              1920x1080 [30.62 fps - (348, 434)/1928x1080 crop]
                              2592x1944 [15.63 fps - (0, 0)/2592x1944 crop]
+```
+
+
+```
+$ libcamera-hello --list-cameras
+Available cameras
+-----------------
+0 : imx708 [4608x2592] (/base/soc/i2c0mux/i2c@1/imx708@1a)
+    Modes: 'SRGGB10_CSI2P' : 1536x864 [120.13 fps - (768, 432)/3072x1728 crop]
+                             2304x1296 [56.03 fps - (0, 0)/4608x2592 crop]
+                             4608x2592 [14.35 fps - (0, 0)/4608x2592 crop]
 ```
 
 #### 问题记录
