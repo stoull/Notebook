@@ -180,6 +180,25 @@ tailscale up --advertise-routes=192.168.1.0/24 --reset
 
 ---
 
+
+### OpenWRT的 DNS 解析被 Tailscale 接管, 设备无法访问公网域名（如 `baidu.com`）
+
+
+### 🎯 解决方案
+
+要解决 `ping: bad address 'baidu.com'` 的问题，你有以下两种选择：
+
+#### **方案一：在 Tailscale 中配置上游 DNS（推荐）**
+这是最优雅的方法，既保留 Tailscale 的功能，又能解析公网域名。你需要在 Tailscale 的管理后台设置 Nameservers，使其能够转发公网域名查询。
+
+1.  登录 [Tailscale 管理后台](https://login.tailscale.com/admin/dns)。
+2.  找到 **DNS** -> **Nameservers** 设置。
+3.  添加公共 DNS 服务器，如 `8.8.8.8`、`114.114.114.114` 或 `1.1.1.1`。
+4.  保存设置后，Tailscale 会自动更新你设备的 `/etc/resolv.conf`，届时公网域名解析就会恢复正常。
+
+
+
+
 ## 8. 附加建议
 
 - **持久化配置**：将 `/etc/config/tailscale` 和 `/var/lib/tailscale/` 目录添加到 `/etc/sysupgrade.conf`，以便系统升级后保留状态。
