@@ -1,0 +1,215 @@
+# Shadowrocket Rule
+# PROXY: 微信 / QQ / Gmail / 网易邮箱 / B站 / 支付宝 / 中国银行 / 招商银行 / 涨乐财富通 / 天天基金 / 雪球
+# DIRECT: Google搜索 / Facebook / X / YouTube / Instagram / Messenger
+# 用法：粘贴到 [Rule] 下；保存后点「使用配置」，确认黄点在本配置上
+
+[General]
+bypass-system = true
+skip-proxy = 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12, localhost, *.local, captive.apple.com
+dns-server = system
+ipv6 = false
+
+[Rule]
+# ========== 走代理：微信 ==========
+DOMAIN,apd-pcdnwxlogin.teg.tencent-cloud.net,PROXY
+DOMAIN,btrace.qq.com,PROXY
+DOMAIN,dldir1.qq.com,PROXY
+DOMAIN,slife.xy-asia.com,PROXY
+DOMAIN,soup.v.qq.com,PROXY
+DOMAIN,vweixinf.tc.qq.com,PROXY
+DOMAIN,weixin110.qq.com,PROXY
+DOMAIN,wup.imtt.qq.com,PROXY
+DOMAIN-SUFFIX,weixin.qq.com,PROXY
+DOMAIN-SUFFIX,weixin.qq.com.cn,PROXY
+DOMAIN-SUFFIX,wx.qq.com,PROXY
+DOMAIN-SUFFIX,weixin.com,PROXY
+DOMAIN-SUFFIX,wechat.com,PROXY
+DOMAIN-SUFFIX,servicewechat.com,PROXY
+DOMAIN-SUFFIX,weixinbridge.com,PROXY
+DOMAIN-SUFFIX,weixinsxy.com,PROXY
+DOMAIN-SUFFIX,wechatlegal.net,PROXY
+DOMAIN-SUFFIX,wechatos.net,PROXY
+DOMAIN-SUFFIX,wxapp.tc.qq.com,PROXY
+DOMAIN-SUFFIX,wxs.qq.com,PROXY
+DOMAIN-SUFFIX,tenpay.com,PROXY
+DOMAIN-SUFFIX,wechatpay.com,PROXY
+DOMAIN-SUFFIX,qlogo.cn,PROXY
+DOMAIN-SUFFIX,qpic.cn,PROXY
+DOMAIN-SUFFIX,wx.gtimg.com,PROXY
+DOMAIN-SUFFIX,vweixinthumb.tc.qq.com,PROXY
+# 微信运营商托管 IP（可按连接日志继续增补）
+IP-CIDR,101.226.142.0/24,PROXY
+IP-CIDR,101.91.37.0/24,PROXY
+IP-CIDR,117.89.177.0/24,PROXY
+IP-CIDR,180.111.196.0/24,PROXY
+IP-CIDR,175.6.84.0/24,PROXY
+IP-CIDR,221.181.99.18/32,PROXY
+IP-CIDR,112.65.193.165/32,PROXY
+IP-ASN,132203,PROXY
+
+# ========== 走代理：QQ App ==========
+DOMAIN-SUFFIX,qq.com,PROXY
+DOMAIN-SUFFIX,tencent.com,PROXY
+DOMAIN-SUFFIX,tencent-cloud.net,PROXY
+DOMAIN-SUFFIX,idqqimg.com,PROXY
+DOMAIN-SUFFIX,myapp.com,PROXY
+DOMAIN-SUFFIX,qzone.com,PROXY
+USER-AGENT,QQ*,PROXY
+USER-AGENT,TIM*,PROXY
+USER-AGENT,MicroMessenger*,PROXY
+USER-AGENT,WeChat*,PROXY
+
+# ========== 走代理：Google 邮箱（须写在 google.com 直连之前）==========
+DOMAIN-SUFFIX,gmail.com,PROXY
+DOMAIN-SUFFIX,googlemail.com,PROXY
+DOMAIN,mail.google.com,PROXY
+DOMAIN,inbox.google.com,PROXY
+DOMAIN,contacts.google.com,PROXY
+DOMAIN,calendar.google.com,PROXY
+DOMAIN,chat.google.com,PROXY
+DOMAIN,hangouts.google.com,PROXY
+DOMAIN,meet.google.com,PROXY
+DOMAIN,drive.google.com,PROXY
+DOMAIN,docs.google.com,PROXY
+DOMAIN,sheets.google.com,PROXY
+DOMAIN,slides.google.com,PROXY
+DOMAIN,script.google.com,PROXY
+DOMAIN,accounts.google.com,PROXY
+DOMAIN-SUFFIX,withgoogle.com,PROXY
+
+# ========== 走代理：网易邮箱 ==========
+DOMAIN-SUFFIX,163.com,PROXY
+DOMAIN-SUFFIX,126.com,PROXY
+DOMAIN-SUFFIX,yeah.net,PROXY
+DOMAIN-SUFFIX,netease.com,PROXY
+DOMAIN-SUFFIX,mail.163.com,PROXY
+DOMAIN-SUFFIX,qiye.163.com,PROXY
+
+# ========== 走代理：B站 ==========
+DOMAIN-SUFFIX,bilibili.com,PROXY
+DOMAIN-SUFFIX,bilibili.tv,PROXY
+DOMAIN-SUFFIX,biliapi.com,PROXY
+DOMAIN-SUFFIX,biliapi.net,PROXY
+DOMAIN-SUFFIX,bilivideo.com,PROXY
+DOMAIN-SUFFIX,bilivideo.cn,PROXY
+DOMAIN-SUFFIX,hdslb.com,PROXY
+DOMAIN-SUFFIX,acgvideo.com,PROXY
+DOMAIN-SUFFIX,im9.com,PROXY
+DOMAIN-SUFFIX,biliintl.com,PROXY
+USER-AGENT,Bilibili*,PROXY
+USER-AGENT,bili*,PROXY
+
+# ========== 走代理：支付宝 ==========
+DOMAIN-SUFFIX,alipay.com,PROXY
+DOMAIN-SUFFIX,alipay.com.cn,PROXY
+DOMAIN-SUFFIX,alipay.cn,PROXY
+DOMAIN-SUFFIX,alipay.hk,PROXY
+DOMAIN-SUFFIX,alipay.net,PROXY
+DOMAIN-SUFFIX,alipayobjects.com,PROXY
+DOMAIN-SUFFIX,alipaydns.com,PROXY
+DOMAIN-SUFFIX,alipaylog.com,PROXY
+DOMAIN-SUFFIX,alipaymo.com,PROXY
+DOMAIN-SUFFIX,alipayplus.com,PROXY
+DOMAIN-SUFFIX,alipay-eco.com,PROXY
+DOMAIN-SUFFIX,alipaydev.com,PROXY
+DOMAIN-SUFFIX,ifaa.org.cn,PROXY
+DOMAIN-SUFFIX,sinopayment.com.cn,PROXY
+USER-AGENT,Alipay*,PROXY
+USER-AGENT,AliPay*,PROXY
+
+# ========== 走代理：中国银行 ==========
+DOMAIN-SUFFIX,boc.cn,PROXY
+DOMAIN-SUFFIX,bankofchina.com,PROXY
+DOMAIN-SUFFIX,bocichina.com,PROXY
+DOMAIN-SUFFIX,bocifulife.com,PROXY
+DOMAIN-KEYWORD,bankofchina,PROXY
+
+# ========== 走代理：招商银行 ==========
+DOMAIN-SUFFIX,cmbchina.com,PROXY
+DOMAIN-SUFFIX,cmbchina.cn,PROXY
+DOMAIN-SUFFIX,cmbimg.com,PROXY
+DOMAIN-SUFFIX,cmbuat.com,PROXY
+DOMAIN-SUFFIX,mbank.cmbchina.com,PROXY
+USER-AGENT,CMB*,PROXY
+
+# ========== 走代理：涨乐财富通（华泰证券）==========
+DOMAIN-SUFFIX,zhangle.com,PROXY
+DOMAIN-SUFFIX,htsc.com.cn,PROXY
+DOMAIN-SUFFIX,htsec.com,PROXY
+DOMAIN-SUFFIX,htsc.com,PROXY
+DOMAIN-SUFFIX,ihtsc.com,PROXY
+
+# ========== 走代理：天天基金 / 东方财富 ==========
+DOMAIN-SUFFIX,1234567.com.cn,PROXY
+DOMAIN-SUFFIX,eastmoney.com,PROXY
+DOMAIN-SUFFIX,eastmoneyfutures.com,PROXY
+DOMAIN-SUFFIX,dfcfw.com,PROXY
+DOMAIN-SUFFIX,dfcfs.com,PROXY
+DOMAIN-SUFFIX,dfcfs.cn,PROXY
+DOMAIN-SUFFIX,tiantianfunds.cn,PROXY
+DOMAIN-SUFFIX,fund.eastmoney.com,PROXY
+DOMAIN-SUFFIX,18.cn,PROXY
+DOMAIN-SUFFIX,18.com.cn,PROXY
+DOMAIN-SUFFIX,guba.com.cn,PROXY
+DOMAIN-SUFFIX,emsec.hk,PROXY
+DOMAIN-SUFFIX,95021.com,PROXY
+
+# ========== 走代理：雪球 ==========
+DOMAIN-SUFFIX,xueqiu.com,PROXY
+DOMAIN-SUFFIX,snowballfinance.com,PROXY
+DOMAIN-SUFFIX,imedao.com,PROXY
+DOMAIN-SUFFIX,xqimg.com.cn,PROXY
+USER-AGENT,Xueqiu*,PROXY
+
+# ========== 不走代理：Google 搜索 ==========
+DOMAIN-SUFFIX,google.com,DIRECT
+DOMAIN-SUFFIX,google.com.hk,DIRECT
+DOMAIN-SUFFIX,google.cn,DIRECT
+DOMAIN-SUFFIX,g.cn,DIRECT
+DOMAIN-SUFFIX,gstatic.com,DIRECT
+DOMAIN-SUFFIX,googleapis.com,DIRECT
+DOMAIN-SUFFIX,googleusercontent.com,DIRECT
+DOMAIN-SUFFIX,ggpht.com,DIRECT
+DOMAIN-SUFFIX,googleadservices.com,DIRECT
+DOMAIN-SUFFIX,googlesyndication.com,DIRECT
+DOMAIN-KEYWORD,google,DIRECT
+
+# ========== 不走代理：YouTube ==========
+DOMAIN-SUFFIX,youtube.com,DIRECT
+DOMAIN-SUFFIX,youtu.be,DIRECT
+DOMAIN-SUFFIX,ytimg.com,DIRECT
+DOMAIN-SUFFIX,yt.be,DIRECT
+DOMAIN-SUFFIX,googlevideo.com,DIRECT
+DOMAIN-SUFFIX,youtube-nocookie.com,DIRECT
+DOMAIN-SUFFIX,youtubekids.com,DIRECT
+DOMAIN-KEYWORD,youtube,DIRECT
+
+# ========== 不走代理：Facebook / Instagram / Messenger / Meta ==========
+DOMAIN-SUFFIX,facebook.com,DIRECT
+DOMAIN-SUFFIX,facebook.net,DIRECT
+DOMAIN-SUFFIX,fb.com,DIRECT
+DOMAIN-SUFFIX,fb.me,DIRECT
+DOMAIN-SUFFIX,fbcdn.net,DIRECT
+DOMAIN-SUFFIX,fbsbx.com,DIRECT
+DOMAIN-SUFFIX,instagram.com,DIRECT
+DOMAIN-SUFFIX,cdninstagram.com,DIRECT
+DOMAIN-SUFFIX,messenger.com,DIRECT
+DOMAIN-SUFFIX,msngr.com,DIRECT
+DOMAIN-SUFFIX,meta.com,DIRECT
+DOMAIN-SUFFIX,metacareers.com,DIRECT
+DOMAIN-KEYWORD,facebook,DIRECT
+DOMAIN-KEYWORD,instagram,DIRECT
+
+# ========== 不走代理：X (Twitter) ==========
+DOMAIN-SUFFIX,x.com,DIRECT
+DOMAIN-SUFFIX,twitter.com,DIRECT
+DOMAIN-SUFFIX,twimg.com,DIRECT
+DOMAIN-SUFFIX,t.co,DIRECT
+DOMAIN-SUFFIX,twttr.com,DIRECT
+DOMAIN-SUFFIX,pscp.tv,DIRECT
+DOMAIN-SUFFIX,periscope.tv,DIRECT
+DOMAIN-KEYWORD,twitter,DIRECT
+
+# ========== 兜底：未列出的流量直连 ==========
+GEOIP,CN,DIRECT
+FINAL,DIRECT
